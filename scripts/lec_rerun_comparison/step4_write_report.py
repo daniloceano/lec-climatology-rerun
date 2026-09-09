@@ -317,9 +317,10 @@ The worst case is {name(top_flip['term'])}, which changes sign in
 {figure("signflip_heatmap.png",
         "Percentage of cyclone-phases whose term changed sign between the two "
         "versions.")}
-Three terms change the sign of their *climatological median*, which is the level at
-which the article's statements are made: **{listing(flipped)}**. Of these, `Ck` is
-the consequential one: it enters the clustering and the conversion LPS. `BΦE` and
+The terms that change the sign of their *pooled climatological median* are
+**{listing(flipped)}**. Although the pooled `Ck` median remains slightly negative,
+its phase median changes sign during incipience and intensification. `Ck` is the
+consequential clustering term because it enters the conversion LPS; `BΦE` and
 `RGz` enter neither, appearing only in the all-terms effect-size figure (Fig. S2),
 which would need regenerating but carries no headline claim.
 
