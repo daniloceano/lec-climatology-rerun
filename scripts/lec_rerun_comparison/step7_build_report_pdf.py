@@ -200,7 +200,7 @@ def table_flowable(rows: list[list[str]], styles: dict) -> Table:
 
 
 def split_row(line: str) -> list[str]:
-    """Split a pipe table row, honouring cells that contain an escaped ``\|``."""
+    r"""Split a pipe table row, honouring cells that contain an escaped ``\|``."""
     protected = line.strip().replace("\\|", "\x01")
     return [
         cell.strip().replace("\x01", "\\|")

@@ -50,3 +50,26 @@ Before deleting the original implementations, the migrated workflow must:
 5. distinguish PDF timestamps/rendering metadata from scientific differences.
 
 No numerical difference is accepted silently.
+
+## Executed cutover validation
+
+The migration was validated on `swell` on 2026-09-09 before the original
+implementation was retired:
+
+- the production database contained exactly 3,820 `COMPLETE` rows and no
+  other state;
+- manifest, database, and result-directory ID sets were identical;
+- all 3,820 integrated and pressure-level outputs were reopened with zero
+  validation errors;
+- the corrected cache contained 15,829 lifecycle-period rows for all 3,820
+  cyclones (SHA-256
+  `c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3`);
+- the migrated comparison reproduced 3,820 paired cyclones, 15,829 paired
+  period rows, and 379,896 paired term values;
+- all scientific CSV/Parquet tables were byte-for-byte or value/dtype/order
+  identical to the pre-migration products;
+- all 12 PNG figures and the Markdown report were byte-for-byte identical;
+- the 12 figure PDFs and nine-page report PDF rendered pixel-identically.
+
+The binary PDF hashes differ only because the PDF generators embed creation
+metadata. No scientific or visible difference was found.

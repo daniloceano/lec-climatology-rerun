@@ -116,6 +116,13 @@ The final run must report 3,820 paired cyclones, 15,829 period rows, and no
 partial/preliminary language. `corrected_phase_means.parquet` and
 `paired_terms.parquet` are reproducible caches and are not committed.
 
+The validated final products are versioned in
+[`results/lec_rerun_comparison/`](results/lec_rerun_comparison/),
+[`figures/lec_rerun_comparison/`](figures/lec_rerun_comparison/), and the
+technical report is available as
+[`Markdown`](docs/lec_rerun_comparison_report.md) or
+[`PDF`](docs/lec_rerun_comparison_report.pdf).
+
 ## Starting a new run
 
 Preparation requires all population-defining inputs explicitly:
