@@ -1,0 +1,6 @@
+phase,n,median_Ca_legacy,median_Ck_legacy,pct_Ca_positive_legacy,pct_Ck_negative_legacy,pct_upper_left_legacy,pct_barotropic_dominant_legacy,median_Ca_corrected,median_Ck_corrected,pct_Ca_positive_corrected,pct_Ck_negative_corrected,pct_upper_left_corrected,pct_barotropic_dominant_corrected
+incipient,3820,0.333783,-0.946557,72.8534,67.4607,53.4293,57.3037,0.876745,0.530387,70.9162,39.267,29.712,18.8482
+intensification,4003,0.974414,-2.62556,86.7849,76.8424,69.373,69.8226,2.87103,0.0973082,86.0605,48.3637,43.1676,19.1606
+mature,4003,0.647312,-3.04316,79.8901,70.9468,62.1534,66.4751,2.2094,-0.646673,80.2148,55.0837,49.5878,36.7724
+decay,4003,0.251855,-1.96621,71.6213,68.5236,57.8816,65.0262,0.901416,-0.745483,71.971,58.3063,50.637,41.9435
+all phases,15829,0.502494,-1.91399,77.8445,70.9836,60.7935,64.7419,1.54137,-0.0294078,77.3643,50.3822,43.4329,29.3007

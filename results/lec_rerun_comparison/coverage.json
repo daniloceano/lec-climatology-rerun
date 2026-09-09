@@ -1,0 +1,51 @@
+{
+  "generated_utc": "2026-09-09T14:50:18+00:00",
+  "run_root": "/p1-swell/danilocs/lec_climatology_corrected_v2",
+  "rerun_states": {
+    "COMPLETE": 3820
+  },
+  "population_target": 3820,
+  "cyclones_complete": 3820,
+  "completion_fraction": 1.0,
+  "paired_cyclones": 3820,
+  "paired_period_rows": 15829,
+  "paired_values": 379896,
+  "terms_compared": [
+    "Ae",
+    "Az",
+    "BAe",
+    "BAz",
+    "BKe",
+    "BKz",
+    "BΦE",
+    "BΦZ",
+    "Ca",
+    "Ce",
+    "Ck",
+    "Cz",
+    "Ge",
+    "Gz",
+    "Ke",
+    "Kz",
+    "RGe",
+    "RGz",
+    "RKe",
+    "RKz",
+    "∂Ae/∂t (finite diff.)",
+    "∂Az/∂t (finite diff.)",
+    "∂Ke/∂t (finite diff.)",
+    "∂Kz/∂t (finite diff.)"
+  ],
+  "corrected_only_terms_median": {
+    "C_overturning": 632.4214937074414,
+    "M": -0.0003098261595108531
+  },
+  "legacy_cache_verification": {
+    "checked": 10,
+    "max_relative_difference": 1.8843346894875e-14
+  },
+  "provenance": {
+    "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a",
+    "paper_commit": "452ddad83904c6deecae0611c57da828f78471aa"
+  }
+}
