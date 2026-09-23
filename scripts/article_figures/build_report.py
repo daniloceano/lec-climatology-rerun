@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -25,7 +26,9 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-from scripts.article_figures.generate import FIGURE_CAPTIONS
+sys.path.append(str(Path(__file__).resolve().parents[2]))
+
+from scripts.article_figures.captions import FIGURE_CAPTIONS
 
 
 def page_footer(canvas, document) -> None:
@@ -228,4 +231,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
