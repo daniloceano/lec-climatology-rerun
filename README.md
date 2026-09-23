@@ -44,12 +44,14 @@ The scientific chain and known caveats are recorded in
 scripts/lec_climatology_rerun/  preparation, scheduler, workers, monitor,
                                 validation, and corrected-product builders
 scripts/lec_rerun_comparison/   paired tables, statistics, figures, MD and PDF
+scripts/article_figures/        corrected reconstruction of article Figures 1-16
 scripts/utils/corrected_lec.py  corrected-output readers and vertical conventions
 tests/                          state, validation, population and safety tests
 data/README.md                  external data inventory and provenance
 docs/                           historical audit, migration notes and final report
 results/lec_rerun_comparison/   small final tables; large parquet caches ignored
 figures/lec_rerun_comparison/   final comparison figures
+figures/lec_climatology_corrected/  16 corrected figures in PNG and PDF
 ```
 
 Large data and execution state live outside Git. The established production
@@ -122,6 +124,23 @@ The validated final products are versioned in
 technical report is available as
 [`Markdown`](docs/lec_rerun_comparison_report.md) or
 [`PDF`](docs/lec_rerun_comparison_report.pdf).
+
+## Recreate the article figures with corrected data
+
+The complete figure workflow uses the validated corrected cache and frozen
+track database to recreate the scientific roles of all 16 main article figures:
+PDFs of LEC terms, phase-mean cycles, EOF cycles and track densities, the four
+intense-cyclone groups, and the two synthesis figures.
+
+```bash
+conda run -n lorenz python scripts/article_figures/generate.py \
+  --corrected-cache /p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet \
+  --tracks /p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv \
+  --output-root "$PWD"
+```
+
+See [`scripts/article_figures/README.md`](scripts/article_figures/README.md) for
+the scientific definitions, output inventory, and consolidated-report command.
 
 ## Starting a new run
 

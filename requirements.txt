@@ -5,6 +5,7 @@ xarray>=2023.0
 netCDF4>=1.6
 pyarrow>=14
 matplotlib>=3.7
+cartopy>=0.22
 seaborn>=0.12
 Pillow>=9
 reportlab>=4

@@ -99,12 +99,29 @@ An independent reopening of all 3,820 outputs produced zero validation errors.
 The final phase-mean cache contains 15,829 period rows for 3,820 cyclones.
 Secondary lifecycle periods explain why this is not simply `3,820 × 4`.
 
-## Interpretation boundaries
+## Corrected reconstruction of the article figures
 
-This repository establishes and compares the corrected climatology. It does
-not update PCA, k-means clusters, Energy Pattern labels, principal manuscript
-figures, or manuscript conclusions. Those are downstream responsibilities of
-`paper_energy_patterns`.
+This repository now also owns a clearly separated reconstruction of all 16
+main article figures. The reconstruction uses corrected LEC values throughout,
+while preserving the published figure roles and the frozen track definitions.
+The legacy article files are never overwritten.
+
+The main-article panels use exactly one primary `incipient`,
+`intensification`, `mature`, and `decay` row per cyclone (15,280 rows).
+Secondary periods remain in the 15,829-row corrected cache but are excluded
+from this explicitly four-phase product.
+
+The EOF analysis uses the correlation matrix of the 24 published LEC terms.
+Positive and negative subsets use the total-lifecycle PC upper and lower
+deciles for EOFs 1-4. Intense-cyclone groups retain the pointwise 90th-percentile
+vorticity threshold and the six published clustering terms (`Ck`, `Ca`, `Ke`,
+`Ge`, `BKe`, and `BAe`) across all four phases without feature scaling. The
+four-group fit is made deterministic with K-means++, 30 restarts, and seed 42;
+cluster numbers are ordered by decreasing membership.
+
+The reconstruction is a reproducible corrected scientific product, not a claim
+that the originally published numerical conclusions remain unchanged. Any
+revised manuscript interpretation must be based on the new tables and figures.
 
 ## Caveats
 
