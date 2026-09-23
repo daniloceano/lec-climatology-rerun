@@ -133,7 +133,7 @@ PDFs of LEC terms, phase-mean cycles, EOF cycles and track densities, the four
 intense-cyclone groups, and the two synthesis figures.
 
 ```bash
-conda run -n lorenz python scripts/article_figures/generate.py \
+conda run -n base python scripts/article_figures/generate.py \
   --corrected-cache /p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet \
   --tracks /p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv \
   --output-root "$PWD"

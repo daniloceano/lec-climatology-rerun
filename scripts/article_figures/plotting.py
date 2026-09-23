@@ -135,7 +135,15 @@ def draw_cycle_overlay(ax, series, *, title: str, scale: str) -> None:
             value = float(values.get(term, np.nan))
             symbol = "+" if value >= 0 else "-"
             ax.text(x + offset * 0.9, y - 0.11, symbol, color=color, fontsize=10, fontweight="bold", ha="center")
-    ax.text(0, 0.02, title, ha="center", va="center", fontsize=11, fontweight="bold")
+    for term, (_, _, label) in ARROWS.items():
+        ax.text(
+            label[0], label[1], ARROW_LABELS[term],
+            ha="center", va="center", fontsize=7.5, fontweight="bold",
+            color="#252525", bbox=dict(facecolor="white", edgecolor="none", alpha=0.82, pad=0.6),
+            zorder=10,
+        )
+    if title:
+        ax.text(0, 0.02, title, ha="center", va="center", fontsize=11, fontweight="bold")
 
 
 def density_levels(density: np.ndarray, n: int = 10) -> np.ndarray:
@@ -173,4 +181,3 @@ def plot_density(ax, lon, lat, density, *, title: str, cmap="Spectral_r"):
     ax.contour(lon, lat, density, levels=levels, colors="0.25", linewidths=0.18, alpha=0.45, transform=ccrs.PlateCarree())
     ax.set_title(title, fontsize=9, fontweight="bold", loc="left")
     return contour
-

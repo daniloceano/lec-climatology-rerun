@@ -94,6 +94,11 @@ def figure_stem(figures_dir: Path, number: int, name: str) -> Path:
 def add_region_boxes(ax) -> None:
     import cartopy.crs as ccrs
 
+    label_positions = {
+        "SE-BR": (-41.0, -25.0),
+        "LA-PLATA": (-66.5, -25.0),
+        "ARG": (-67.5, -42.0),
+    }
     for name, (lon_min, lat_min, lon_max, lat_max) in REGIONS.items():
         ax.add_patch(
             patches.Rectangle(
@@ -102,9 +107,10 @@ def add_region_boxes(ax) -> None:
                 transform=ccrs.PlateCarree(), zorder=7,
             )
         )
+        x, y = label_positions[name]
         ax.text(
-            (lon_min + lon_max) / 2, lat_max + 1.5, name,
-            ha="center", va="bottom", fontsize=7.5, fontweight="bold",
+            x, y, name,
+            ha="left", va="center", fontsize=5.7, fontweight="bold",
             bbox=dict(facecolor="white", edgecolor="none", alpha=0.75, pad=1),
             transform=ccrs.PlateCarree(), zorder=8,
         )
@@ -400,10 +406,11 @@ def fig15(stats: pd.DataFrame, stem: Path) -> None:
         (phase, _phase_series(stats, phase, "mean"), PHASE_COLORS[phase]) for phase in PHASES
     ]
     figure, ax = plt.subplots(figsize=(7.2, 7.2))
-    draw_cycle_overlay(ax, series, title="Corrected phase-mean synthesis", scale="terms")
+    draw_cycle_overlay(ax, series, title="", scale="terms")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=8)
-    figure.tight_layout(rect=(0, 0.05, 1, 1))
+    figure.suptitle("Corrected phase-mean synthesis", fontsize=14, fontweight="bold", y=0.97)
+    figure.tight_layout(rect=(0, 0.05, 1, 0.95))
     save_pair(figure, stem)
 
 
@@ -596,4 +603,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -23,10 +23,12 @@ ordered by decreasing cluster size.
 
 ## Generate Figures 1-16
 
-Run on `swell`, where the corrected cache and track database live:
+Run on `swell`, where the corrected cache and track database live. The current
+server `base` environment contains both `pyarrow` and `cartopy`; a newly created
+repository environment from `environment.yml` is equivalent:
 
 ```bash
-conda run -n lorenz python scripts/article_figures/generate.py \
+conda run -n base python scripts/article_figures/generate.py \
   --corrected-cache /p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet \
   --tracks /p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv \
   --output-root /p1-swell/danilocs/lec-climatology-rerun
