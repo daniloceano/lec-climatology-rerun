@@ -5,6 +5,7 @@ import pandas as pd
 
 from scripts.article_figures.common import (
     REGIONS,
+    align_eofs,
     classify_region,
     compute_eof,
     deterministic_kmeans,
@@ -57,3 +58,20 @@ def test_correlation_eof_shapes_variance_and_unit_pc_variance():
     assert np.all(np.diff(variance) <= 0)
     assert np.all((variance > 0) & (variance < 1))
     np.testing.assert_allclose(scores.var(axis=0, ddof=1), np.ones(3), atol=1e-10)
+
+
+def test_eof_matching_recovers_rank_permutation_and_sign():
+    legacy = np.array([[0.8, 0.3, -0.1], [0.1, -0.7, 0.5], [0.3, 0.2, 0.9]])
+    permutation = np.array([2, 0, 1])
+    signs = np.array([-1.0, 1.0, -1.0])
+    corrected = legacy[permutation] * signs[:, None]
+    scores = np.arange(18, dtype=float).reshape(6, 3)
+    variance = np.array([0.20, 0.50, 0.30])
+    aligned, aligned_scores, aligned_variance, ranks, correlations = align_eofs(
+        legacy, corrected, scores, variance
+    )
+    np.testing.assert_allclose(aligned, legacy)
+    assert ranks.tolist() == [2, 3, 1]
+    np.testing.assert_allclose(aligned_variance, [0.50, 0.30, 0.20])
+    assert np.all(correlations > 0.999)
+    assert aligned_scores.shape == scores.shape

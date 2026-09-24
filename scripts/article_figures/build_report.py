@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the corrected 16-figure climatology report as a paginated PDF."""
+"""Build the paired before-versus-after climatology report as a paginated PDF."""
 
 from __future__ import annotations
 
@@ -26,18 +26,13 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-sys.path.append(str(Path(__file__).resolve().parents[2]))
-
-from scripts.article_figures.captions import FIGURE_CAPTIONS
-
-
 def page_footer(canvas, document) -> None:
     canvas.saveState()
     canvas.setStrokeColor(colors.HexColor("#d4d8da"))
     canvas.line(18 * mm, 14 * mm, A4[0] - 18 * mm, 14 * mm)
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(colors.HexColor("#5f676b"))
-    canvas.drawString(18 * mm, 9 * mm, "Corrected LEC climatology figure reproduction")
+    canvas.drawString(18 * mm, 9 * mm, "LEC climatology before versus after")
     canvas.drawRightString(A4[0] - 18 * mm, 9 * mm, f"Page {document.page}")
     canvas.restoreState()
 
@@ -63,8 +58,8 @@ def main() -> int:
     cluster_stats = pd.read_csv(results_dir / "intense_cluster_statistics.csv")
     provenance = json.loads((results_dir / "provenance.json").read_text())
     cluster_meta = json.loads((results_dir / "intense_cluster_metadata.json").read_text())
-    if len(manifest) != 16:
-        raise ValueError(f"expected 16 figures, found {len(manifest)}")
+    if len(manifest) != 19:
+        raise ValueError(f"expected 19 comparison files (Figures 1-15 and 16a-d), found {len(manifest)}")
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(
@@ -98,24 +93,25 @@ def main() -> int:
         str(output), pagesize=A4,
         rightMargin=18 * mm, leftMargin=18 * mm,
         topMargin=17 * mm, bottomMargin=19 * mm,
-        title="Corrected reproduction of the LEC climatology figures",
+        title="LEC climatology figures before versus after",
         author="Danilo Couto de Souza",
         subject="Lorenz Energy Cycle climatology corrected rerun",
     )
     story = [
         Spacer(1, 8 * mm),
-        Paragraph("Corrected reproduction of the LEC climatology figures", styles["ReportTitle"]),
+        Paragraph("LEC climatology figures: before versus after", styles["ReportTitle"]),
         Paragraph(
-            "A new 16-figure report based on the validated LorenzCycleToolKit 2.0.0 rerun "
-            "for Southwestern Atlantic cyclones", styles["ReportSubtitle"],
+            "A direct comparison of the published legacy calculation and the validated "
+            "LorenzCycleToolKit 2.0.0 rerun for Southwestern Atlantic cyclones",
+            styles["ReportSubtitle"],
         ),
         Table(
             [
-                ["Corrected cyclones", f"{provenance['corrected_cyclones']:,}"],
-                ["Primary cyclone-phase rows", f"{provenance['primary_phase_rows']:,}"],
+                ["Paired cyclones", f"{provenance['paired_cyclones']:,}"],
+                ["Primary rows per version", f"{provenance['primary_phase_rows_per_version']:,}"],
                 ["Toolkit commit", provenance["toolkit_commit"][:12]],
                 ["Correction commit", provenance["toolkit_correction_commit"][:12]],
-                ["Figures", "16 PNG + 16 PDF"],
+                ["Comparison files", "19 PNG + 19 PDF"],
             ],
             colWidths=[58 * mm, 100 * mm],
             style=TableStyle([
@@ -133,35 +129,39 @@ def main() -> int:
         Spacer(1, 7 * mm),
         Paragraph("Purpose", styles["Section"]),
         Paragraph(
-            "This document recreates the scientific roles of Figures 1-16 in the published "
-            "LEC climatology article while replacing every LEC-dependent value with the corrected "
-            "3,820-case rerun. Published legacy figures remain untouched. Track-only and conceptual "
-            "panels are regenerated from their frozen source data and definitions.",
+            "This document places the legacy before result and the corrected after result in the same "
+            "figure wherever possible. Both sides use the identical 3,820-cyclone population, so the "
+            "differences isolate the toolkit correction rather than a change of sample. Published "
+            "article files remain untouched.",
             styles["BodySmall"],
         ),
         Paragraph("Scope decisions", styles["Section"]),
         Paragraph(
             "The main panels use one primary incipient, intensification, mature and decay record per "
             "cyclone. Secondary lifecycle episodes remain preserved upstream but are outside this "
-            "four-phase reproduction. EOFs use the published 24-term correlation-matrix definition. "
-            "Intense groups retain the published 90th-percentile vorticity criterion and four-cluster "
-            "structure, with deterministic initialization for reproducibility.",
+            "four-phase comparison. EOFs use the published 24-term correlation-matrix definition; "
+            "corrected modes are matched to legacy modes by loading-pattern correlation and sign-aligned. "
+            "Intense groups retain the published 90th-percentile criterion and are matched by standardized "
+            "centroid distance.",
             styles["BodySmall"],
         ),
         PageBreak(),
-        Paragraph("Updated numerical overview", styles["Section"]),
+        Paragraph("Before-after numerical overview", styles["Section"]),
     ]
 
-    phase_table = stats[stats["term"].isin(["Ca", "Ck", "Ce"])].pivot(index="phase", columns="term", values="mean")
-    eof1 = eof_variance[eof_variance["eof"] == 1].set_index("scope")["explained_variance_pct"]
-    overview = [["Phase", "Ca mean", "Ck mean", "Ce mean", "EOF1 variance"]]
+    phase_table = stats[stats["term"].isin(["Ca", "Ck", "Ce"])].pivot(index=["version", "phase"], columns="term", values="mean")
+    eof1 = eof_variance[eof_variance["eof"] == 1].set_index(["version", "scope"])["explained_variance_pct"]
+    overview = [["Phase", "Ca before -> after", "Ck before -> after", "Ce before -> after", "EOF1 variance"]]
     for phase in ["incipient", "intensification", "mature", "decay"]:
         overview.append([
-            phase, f"{phase_table.loc[phase, 'Ca']:.2f}", f"{phase_table.loc[phase, 'Ck']:.2f}",
-            f"{phase_table.loc[phase, 'Ce']:.2f}", f"{eof1.loc[phase]:.2f}%",
+            phase,
+            f"{phase_table.loc[('before', phase), 'Ca']:.2f} -> {phase_table.loc[('after', phase), 'Ca']:.2f}",
+            f"{phase_table.loc[('before', phase), 'Ck']:.2f} -> {phase_table.loc[('after', phase), 'Ck']:.2f}",
+            f"{phase_table.loc[('before', phase), 'Ce']:.2f} -> {phase_table.loc[('after', phase), 'Ce']:.2f}",
+            f"{eof1.loc[('before', phase)]:.1f}% -> {eof1.loc[('after', phase)]:.1f}%",
         ])
     story.append(Table(
-        overview, colWidths=[40 * mm, 27 * mm, 27 * mm, 27 * mm, 34 * mm],
+        overview, colWidths=[32 * mm, 34 * mm, 34 * mm, 34 * mm, 34 * mm],
         style=TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#183b4e")),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -179,15 +179,17 @@ def main() -> int:
         Paragraph("Intense-cyclone groups", styles["Section"]),
         Paragraph(
             f"The pointwise vorticity threshold is {cluster_meta['vorticity_threshold']:.3f}; "
-            f"{cluster_meta['eligible_corrected_cyclones']:,} corrected cyclones enter the four-group analysis.",
+            f"{cluster_meta['eligible_paired_cyclones']:,} paired cyclones enter both four-group analyses. "
+            "After groups are reordered to their closest before centroid.",
             styles["BodySmall"],
         ),
     ])
-    cluster_table = [["Cluster", "n", "Mean maximum vorticity", "Median maximum vorticity"]]
-    for row in cluster_stats.sort_values("cluster").itertuples():
-        cluster_table.append([row.cluster, row.n, f"{row.max_vor42_mean:.2f}", f"{row.max_vor42_median:.2f}"])
+    cluster_table = [["Version", "Cluster", "n", "Mean max. vorticity", "Median max. vorticity"]]
+    for version in ("before", "after"):
+        for row in cluster_stats[cluster_stats["version"] == version].sort_values("cluster").itertuples():
+            cluster_table.append([row.version, row.cluster, row.n, f"{row.max_vor42_mean:.2f}", f"{row.max_vor42_median:.2f}"])
     story.append(Table(
-        cluster_table, colWidths=[28 * mm, 28 * mm, 50 * mm, 50 * mm],
+        cluster_table, colWidths=[29 * mm, 24 * mm, 22 * mm, 43 * mm, 43 * mm],
         style=TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#183b4e")),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -203,12 +205,12 @@ def main() -> int:
 
     max_image_width = A4[0] - document.leftMargin - document.rightMargin
     max_image_height = A4[1] - document.topMargin - document.bottomMargin - 45 * mm
-    for number in range(1, 17):
-        png = sorted(figures_dir.glob(f"fig_{number:02d}_*.png"))[0]
+    for row in manifest.itertuples():
+        png = root / row.png
         block = [
-            Paragraph(f"Figure {number}", styles["FigureTitle"]),
+            Paragraph(f"Figure {row.figure_label}", styles["FigureTitle"]),
             scaled_image(png, max_image_width, max_image_height),
-            Paragraph(FIGURE_CAPTIONS[number], styles["Caption"]),
+            Paragraph(row.caption, styles["Caption"]),
         ]
         story.extend([PageBreak(), KeepTogether(block)])
 
@@ -218,7 +220,7 @@ def main() -> int:
         Paragraph(
             "Every figure has a PNG and PDF checksum in results/lec_climatology_corrected/figure_manifest.csv. "
             "The complete input hashes and pinned toolkit commits are recorded in the adjacent provenance.json. "
-            "The workflow is scripts/article_figures/generate.py; this report is built by "
+            "The workflow is scripts/article_figures/generate_comparison.py; this report is built by "
             "scripts/article_figures/build_report.py.", styles["BodySmall"],
         ),
     ])

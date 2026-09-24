@@ -127,13 +127,14 @@ technical report is available as
 
 ## Recreate the article figures with corrected data
 
-The complete figure workflow uses the validated corrected cache and frozen
-track database to recreate the scientific roles of all 16 main article figures:
-PDFs of LEC terms, phase-mean cycles, EOF cycles and track densities, the four
-intense-cyclone groups, and the two synthesis figures.
+The complete figure workflow uses the legacy and validated corrected caches on
+the same 3,820-cyclone population to compare all 16 main article figures:
+term PDFs, phase-mean cycles, EOF cycles and track densities, the four matched
+intense-cyclone groups, and the synthesis figures.
 
 ```bash
-conda run -n base python scripts/article_figures/generate.py \
+conda run -n base python scripts/article_figures/generate_comparison.py \
+  --legacy-cache /p1-swell/danilocs/paper_energy_patterns/data/energy_cache.parquet \
   --corrected-cache /p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet \
   --tracks /p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv \
   --output-root "$PWD"

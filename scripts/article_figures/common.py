@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.ndimage import gaussian_filter
+from scipy.optimize import linear_sum_assignment
 
 PHASES = ["incipient", "intensification", "mature", "decay"]
 PHASE_COLORS = {
@@ -91,6 +92,39 @@ def load_inputs(cache_path: Path, tracks_path: Path) -> tuple[pd.DataFrame, pd.D
     return cache, tracks
 
 
+def load_comparison_inputs(
+    legacy_cache_path: Path,
+    corrected_cache_path: Path,
+    tracks_path: Path,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Load an exactly paired four-phase legacy/corrected population."""
+    corrected, tracks = load_inputs(corrected_cache_path, tracks_path)
+    legacy = pd.read_parquet(legacy_cache_path)
+    missing = sorted({"track_id", "period", "phase", *EOF_TERMS} - set(legacy.columns))
+    if missing:
+        raise ValueError(f"legacy cache misses columns: {missing}")
+    legacy["track_id"] = pd.to_numeric(legacy["track_id"], errors="raise").astype("int64")
+    ids = set(corrected["track_id"])
+    legacy = legacy[
+        legacy["track_id"].isin(ids)
+        & legacy["phase"].isin(PHASES)
+        & legacy["period"].astype(str).eq(legacy["phase"])
+    ].copy()
+    keys = ["track_id", "phase"]
+    if legacy.duplicated(keys).any():
+        raise ValueError("legacy cache has duplicate primary cyclone-phase rows")
+    if len(legacy) != 3820 * len(PHASES) or legacy["track_id"].nunique() != 3820:
+        raise ValueError(
+            f"expected 15,280 paired legacy rows for 3,820 cyclones, got "
+            f"{len(legacy):,} rows for {legacy['track_id'].nunique():,} cyclones"
+        )
+    legacy_keys = set(map(tuple, legacy[keys].to_numpy()))
+    corrected_keys = set(map(tuple, corrected[keys].to_numpy()))
+    if legacy_keys != corrected_keys:
+        raise ValueError("legacy and corrected cyclone-phase keys differ")
+    return legacy.sort_values(keys).reset_index(drop=True), corrected.sort_values(keys).reset_index(drop=True), tracks
+
+
 def phase_statistics(cache: pd.DataFrame) -> pd.DataFrame:
     terms = [term for term in EOF_TERMS if term in cache]
     rows: list[dict] = []
@@ -139,6 +173,142 @@ def compute_eof(frame: pd.DataFrame, terms: list[str], n_modes: int = 8):
     scores = standardized.to_numpy() @ eigenvectors / np.sqrt(eigenvalues)[None, :]
     variance = eigenvalues / np.trace(covariance)
     return clean.index, loadings, scores, variance
+
+
+def align_eofs(
+    legacy_loadings: np.ndarray,
+    corrected_loadings: np.ndarray,
+    corrected_scores: np.ndarray,
+    corrected_variance: np.ndarray,
+):
+    """Match corrected modes to legacy modes and align their arbitrary signs."""
+    correlation = np.corrcoef(legacy_loadings, corrected_loadings)[
+        : len(legacy_loadings), len(legacy_loadings) :
+    ]
+    rows, columns = linear_sum_assignment(-np.abs(correlation))
+    order = columns[np.argsort(rows)]
+    signs = np.sign(correlation[np.arange(len(order)), order])
+    signs[signs == 0] = 1.0
+    return (
+        corrected_loadings[order] * signs[:, None],
+        corrected_scores[:, order] * signs[None, :],
+        corrected_variance[order],
+        order + 1,
+        correlation[np.arange(len(order)), order] * signs,
+    )
+
+
+def paired_eof_by_phase(legacy: pd.DataFrame, corrected: pd.DataFrame, n_modes: int = 8):
+    loading_rows: list[dict] = []
+    variance_rows: list[dict] = []
+    for phase in PHASES:
+        left = legacy[legacy["phase"] == phase].set_index("track_id").sort_index()
+        right = corrected[corrected["phase"] == phase].set_index("track_id").sort_index()
+        common = left.index.intersection(right.index)
+        left = left.loc[common]
+        right = right.loc[common]
+        _, legacy_loadings, _, legacy_variance = compute_eof(left, EOF_TERMS, n_modes)
+        _, corrected_loadings, corrected_scores, corrected_variance = compute_eof(
+            right, EOF_TERMS, n_modes
+        )
+        corrected_loadings, _, corrected_variance, ranks, correlations = align_eofs(
+            legacy_loadings, corrected_loadings, corrected_scores, corrected_variance
+        )
+        for mode in range(n_modes):
+            variance_rows.extend(
+                [
+                    {
+                        "scope": phase,
+                        "eof": mode + 1,
+                        "version": "before",
+                        "n": len(common),
+                        "explained_variance_pct": 100 * legacy_variance[mode],
+                        "matched_rank": mode + 1,
+                        "pattern_correlation": 1.0,
+                    },
+                    {
+                        "scope": phase,
+                        "eof": mode + 1,
+                        "version": "after",
+                        "n": len(common),
+                        "explained_variance_pct": 100 * corrected_variance[mode],
+                        "matched_rank": int(ranks[mode]),
+                        "pattern_correlation": float(correlations[mode]),
+                    },
+                ]
+            )
+            for term_index, term in enumerate(EOF_TERMS):
+                loading_rows.extend(
+                    [
+                        {
+                            "scope": phase,
+                            "eof": mode + 1,
+                            "version": "before",
+                            "term": term,
+                            "loading": float(legacy_loadings[mode, term_index]),
+                        },
+                        {
+                            "scope": phase,
+                            "eof": mode + 1,
+                            "version": "after",
+                            "term": term,
+                            "loading": float(corrected_loadings[mode, term_index]),
+                        },
+                    ]
+                )
+    return pd.DataFrame(loading_rows), pd.DataFrame(variance_rows)
+
+
+def paired_total_eof(legacy: pd.DataFrame, corrected: pd.DataFrame, n_modes: int = 8):
+    left = legacy.groupby("track_id", sort=True)[EOF_TERMS].mean()
+    right = corrected.groupby("track_id", sort=True)[EOF_TERMS].mean()
+    common = left.index.intersection(right.index)
+    left = left.loc[common]
+    right = right.loc[common]
+    _, legacy_loadings, legacy_scores, legacy_variance = compute_eof(left, EOF_TERMS, n_modes)
+    _, corrected_loadings, corrected_scores, corrected_variance = compute_eof(
+        right, EOF_TERMS, n_modes
+    )
+    corrected_loadings, corrected_scores, corrected_variance, ranks, correlations = align_eofs(
+        legacy_loadings, corrected_loadings, corrected_scores, corrected_variance
+    )
+
+    def loading_frame(values: np.ndarray, version: str) -> pd.DataFrame:
+        rows = []
+        for mode in range(n_modes):
+            for index, term in enumerate(EOF_TERMS):
+                rows.append(
+                    {"version": version, "eof": mode + 1, "term": term, "loading": values[mode, index]}
+                )
+        return pd.DataFrame(rows)
+
+    def score_frame(values: np.ndarray, version: str) -> pd.DataFrame:
+        frame = pd.DataFrame(values, columns=[f"PC{i + 1}" for i in range(n_modes)])
+        frame.insert(0, "track_id", common.to_numpy(dtype="int64"))
+        frame.insert(1, "version", version)
+        return frame
+
+    variance_rows = []
+    for mode in range(n_modes):
+        variance_rows.extend(
+            [
+                {
+                    "scope": "total", "eof": mode + 1, "version": "before", "n": len(common),
+                    "explained_variance_pct": 100 * legacy_variance[mode], "matched_rank": mode + 1,
+                    "pattern_correlation": 1.0,
+                },
+                {
+                    "scope": "total", "eof": mode + 1, "version": "after", "n": len(common),
+                    "explained_variance_pct": 100 * corrected_variance[mode],
+                    "matched_rank": int(ranks[mode]), "pattern_correlation": float(correlations[mode]),
+                },
+            ]
+        )
+    return (
+        pd.concat([loading_frame(legacy_loadings, "before"), loading_frame(corrected_loadings, "after")]),
+        pd.DataFrame(variance_rows),
+        pd.concat([score_frame(legacy_scores, "before"), score_frame(corrected_scores, "after")]),
+    )
 
 
 def eof_by_phase(cache: pd.DataFrame, n_modes: int = 8):
@@ -334,6 +504,63 @@ def intense_clusters(cache: pd.DataFrame, tracks: pd.DataFrame, k: int = 4):
         "feature_order": [f"{term}:{phase}" for term in CLUSTER_TERMS for phase in PHASES],
     }
     return assignments, centers, metadata
+
+
+def paired_intense_clusters(
+    legacy: pd.DataFrame,
+    corrected: pd.DataFrame,
+    tracks: pd.DataFrame,
+    k: int = 4,
+):
+    """Fit both versions and match corrected groups to legacy centroids."""
+    threshold = float(tracks["vor42"].quantile(0.90))
+    intense_ids = set(tracks.loc[tracks["vor42"] > threshold, "track_id"].unique())
+    expected = pd.MultiIndex.from_product([CLUSTER_TERMS, PHASES])
+
+    def matrix(cache: pd.DataFrame) -> pd.DataFrame:
+        selected = cache[cache["track_id"].isin(intense_ids)]
+        return selected.pivot_table(index="track_id", columns="phase", values=CLUSTER_TERMS).reindex(
+            columns=expected
+        ).dropna()
+
+    left = matrix(legacy)
+    right = matrix(corrected)
+    common = left.index.intersection(right.index)
+    left = left.loc[common]
+    right = right.loc[common]
+    legacy_labels, legacy_centers, legacy_inertia = deterministic_kmeans(left.to_numpy(), k=k)
+    corrected_labels, corrected_centers, corrected_inertia = deterministic_kmeans(right.to_numpy(), k=k)
+    scale = left.std(axis=0, ddof=1).replace(0, 1).to_numpy()
+    cost = np.sqrt(
+        np.sum(
+            ((legacy_centers[:, None, :] - corrected_centers[None, :, :]) / scale[None, None, :]) ** 2,
+            axis=2,
+        )
+    )
+    rows, columns = linear_sum_assignment(cost)
+    corrected_order = columns[np.argsort(rows)]
+    inverse = np.empty(k, dtype=int)
+    inverse[corrected_order] = np.arange(k)
+    corrected_labels = inverse[corrected_labels]
+    corrected_centers = corrected_centers[corrected_order]
+    legacy_assignments = pd.DataFrame(
+        {"track_id": common.to_numpy(dtype="int64"), "cluster": legacy_labels + 1, "version": "before"}
+    )
+    corrected_assignments = pd.DataFrame(
+        {"track_id": common.to_numpy(dtype="int64"), "cluster": corrected_labels + 1, "version": "after"}
+    )
+    metadata = {
+        "vorticity_quantile": 0.90,
+        "vorticity_threshold": threshold,
+        "eligible_paired_cyclones": int(len(common)),
+        "clusters": int(k),
+        "legacy_inertia": legacy_inertia,
+        "corrected_inertia": corrected_inertia,
+        "corrected_original_rank_by_matched_cluster": [int(value) + 1 for value in corrected_order],
+        "matched_centroid_distance": [float(cost[index, corrected_order[index]]) for index in range(k)],
+        "feature_order": [f"{term}:{phase}" for term in CLUSTER_TERMS for phase in PHASES],
+    }
+    return legacy_assignments, corrected_assignments, legacy_centers, corrected_centers, metadata
 
 
 def write_json(path: Path, value: dict) -> None:

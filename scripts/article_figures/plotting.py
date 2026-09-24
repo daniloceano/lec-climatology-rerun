@@ -43,6 +43,10 @@ ARROW_LABELS = {
     "BAz": r"$BA_Z$", "BAe": r"$BA_E$", "BKz": r"$BK_Z$", "BKe": r"$BK_E$",
 }
 
+BEFORE_COLOR = "#343434"
+AFTER_COLOR = "#d62728"
+COMPARE_OFFSET = 0.055
+
 
 def save_pair(figure, stem: Path, *, dpi: int = 300) -> None:
     stem.parent.mkdir(parents=True, exist_ok=True)
@@ -104,6 +108,89 @@ def draw_cycle(
                 text += f" ± {float(uncertainty[term]):.2f}"
             ax.text(label[0], label[1], text, ha="center", va="center", fontsize=6.7, fontweight="bold")
     ax.text(0, 0.06, title, ha="center", va="center", fontsize=9.5, fontweight="bold")
+
+
+def _shift_arrow(point, tail, head, amount):
+    if abs(tail[1] - head[1]) < 1e-9:
+        return point[0], point[1] + amount
+    return point[0] + amount, point[1]
+
+
+def _format_value(value: float, uncertainty) -> str:
+    text = f"{value:+.2f}"
+    if uncertainty is not None and np.isfinite(uncertainty):
+        text += f" ± {uncertainty:.2f}"
+    return text
+
+
+def draw_cycle_comparison(
+    ax,
+    before,
+    after,
+    *,
+    title: str,
+    before_uncertainty=None,
+    after_uncertainty=None,
+    scale: str = "terms",
+) -> None:
+    """Four-box LEC with dark legacy arrows and red corrected arrows."""
+    ax.set_xlim(-1.10, 1.10)
+    ax.set_ylim(-1.29, 1.29)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    for term, (x, y) in BOXES.items():
+        ax.add_patch(
+            patches.Rectangle(
+                (x - 0.20, y - 0.20), 0.40, 0.40,
+                facecolor="#8ecae6", edgecolor="#36535f", linewidth=0.8,
+            )
+        )
+        old = float(before.get(term, np.nan))
+        new = float(after.get(term, np.nan))
+        old_sd = None if before_uncertainty is None else float(before_uncertainty.get(term, np.nan))
+        new_sd = None if after_uncertainty is None else float(after_uncertainty.get(term, np.nan))
+        ax.text(x, y + 0.085, BOX_LABELS[term], ha="center", va="center", fontsize=7.2, fontweight="bold")
+        ax.text(x, y - 0.015, _format_value(old, old_sd), ha="center", va="center",
+                fontsize=6.2, color=BEFORE_COLOR, fontweight="bold")
+        ax.text(x, y - 0.105, _format_value(new, new_sd), ha="center", va="center",
+                fontsize=6.2, color=AFTER_COLOR, fontweight="bold")
+
+    for term, (tail, head, label) in ARROWS.items():
+        old = float(before.get(term, np.nan))
+        new = float(after.get(term, np.nan))
+        if not np.isfinite(old) or not np.isfinite(new):
+            continue
+        for value, color, offset in (
+            (old, BEFORE_COLOR, -COMPARE_OFFSET),
+            (new, AFTER_COLOR, COMPARE_OFFSET),
+        ):
+            start, end = (tail, head) if value >= 0 else (head, tail)
+            start = _shift_arrow(start, tail, head, offset)
+            end = _shift_arrow(end, tail, head, offset)
+            width = _width(value, scale)
+            ax.annotate(
+                "", xy=end, xytext=start,
+                arrowprops=dict(
+                    facecolor=color, edgecolor=color, width=width,
+                    headwidth=max(3.0, width * 2.0), headlength=max(3.0, width * 2.0),
+                ),
+            )
+        old_sd = None if before_uncertainty is None else float(before_uncertainty.get(term, np.nan))
+        new_sd = None if after_uncertainty is None else float(after_uncertainty.get(term, np.nan))
+        ax.text(label[0], label[1] + 0.045, ARROW_LABELS[term], ha="center", va="bottom",
+                fontsize=6.3, fontweight="bold")
+        ax.text(label[0], label[1] - 0.015, _format_value(old, old_sd), ha="center", va="top",
+                fontsize=5.8, color=BEFORE_COLOR, fontweight="bold")
+        ax.text(label[0], label[1] - 0.090, _format_value(new, new_sd), ha="center", va="top",
+                fontsize=5.8, color=AFTER_COLOR, fontweight="bold")
+    ax.text(0, 0.02, title, ha="center", va="center", fontsize=8.8, fontweight="bold")
+
+
+def comparison_legend_handles():
+    return [
+        plt.Line2D([], [], color=BEFORE_COLOR, linewidth=3.2, label="before (legacy)"),
+        plt.Line2D([], [], color=AFTER_COLOR, linewidth=3.2, label="after (corrected)"),
+    ]
 
 
 def draw_cycle_overlay(ax, series, *, title: str, scale: str) -> None:
@@ -173,10 +260,10 @@ def map_axis(figure, position=111, extent=(-80, 180, -85, -15)):
     return ax
 
 
-def plot_density(ax, lon, lat, density, *, title: str, cmap="Spectral_r"):
+def plot_density(ax, lon, lat, density, *, title: str, cmap="Spectral_r", levels=None):
     import cartopy.crs as ccrs
 
-    levels = density_levels(density)
+    levels = density_levels(density) if levels is None else levels
     contour = ax.contourf(lon, lat, density, levels=levels, cmap=cmap, extend="max", transform=ccrs.PlateCarree())
     ax.contour(lon, lat, density, levels=levels, colors="0.25", linewidths=0.18, alpha=0.45, transform=ccrs.PlateCarree())
     ax.set_title(title, fontsize=9, fontweight="bold", loc="left")
