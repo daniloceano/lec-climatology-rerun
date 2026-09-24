@@ -204,7 +204,7 @@ def fig_eof_density(sign: str, assignments: pd.DataFrame, tracks: pd.DataFrame, 
         ax = map_axis(figure, 241 + index)
         prefix = "Before" if version == "before" else "After"
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: EOF {mode} (n={len(ids)})", levels=levels))
-        add_region_boxes(ax)
+        add_region_boxes(ax, show_labels=False)
     figure.suptitle(f"Track density - {sign} total-lifecycle PC extremes", fontsize=13, fontweight="bold")
     figure.subplots_adjust(left=0.035, right=0.975, bottom=0.12, top=0.90, wspace=0.10, hspace=0.28)
     colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.08, fraction=0.045)
@@ -243,11 +243,11 @@ def fig12(
     stem: Path,
 ) -> None:
     all_ids = set(legacy_assignments["track_id"].astype(int))
-    groups = [("All intense systems", all_ids, all_ids)]
+    groups = [("All intense", all_ids, all_ids)]
     for cluster in range(1, 5):
         old_ids = set(legacy_assignments.loc[legacy_assignments["cluster"] == cluster, "track_id"].astype(int))
         new_ids = set(corrected_assignments.loc[corrected_assignments["cluster"] == cluster, "track_id"].astype(int))
-        groups.append((f"Matched cluster {cluster}", old_ids, new_ids))
+        groups.append((f"Cluster {cluster}", old_ids, new_ids))
     figure, axes = plt.subplots(2, 3, figsize=(11.2, 7.7))
     for ax, (label, old_ids, new_ids), tag in zip(axes.flat, groups, "ABCDE"):
         old_mean, old_std = _group_values(legacy, old_ids)
@@ -255,7 +255,7 @@ def fig12(
         draw_cycle_comparison(
             ax, old_mean, new_mean,
             before_uncertainty=old_std, after_uncertainty=new_std,
-            title=f"({tag}) {label}\n(n={len(old_ids)} → {len(new_ids)})",
+            title=f"({tag}) {label}\nn {len(old_ids)} → {len(new_ids)}",
         )
     axes.flat[-1].axis("off")
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
@@ -277,7 +277,7 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
         ax = map_axis(figure, 241 + index, extent=(-80, 100, -85, -15))
         prefix = "Before" if version == "before" else "After"
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: cluster {cluster} (n={len(ids)})", levels=levels))
-        add_region_boxes(ax)
+        add_region_boxes(ax, show_labels=False)
     figure.suptitle("Track density of matched intense-cyclone groups", fontsize=13, fontweight="bold")
     figure.subplots_adjust(left=0.035, right=0.975, bottom=0.12, top=0.90, wspace=0.10, hspace=0.28)
     colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.08, fraction=0.045)

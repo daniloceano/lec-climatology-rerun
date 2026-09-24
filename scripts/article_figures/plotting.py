@@ -132,6 +132,7 @@ def draw_cycle_comparison(
     before_uncertainty=None,
     after_uncertainty=None,
     scale: str = "terms",
+    show_arrow_uncertainty: bool = False,
 ) -> None:
     """Four-box LEC with dark legacy arrows and red corrected arrows."""
     ax.set_xlim(-1.10, 1.10)
@@ -177,6 +178,8 @@ def draw_cycle_comparison(
             )
         old_sd = None if before_uncertainty is None else float(before_uncertainty.get(term, np.nan))
         new_sd = None if after_uncertainty is None else float(after_uncertainty.get(term, np.nan))
+        if not show_arrow_uncertainty:
+            old_sd = new_sd = None
         ax.text(label[0], label[1] + 0.045, ARROW_LABELS[term], ha="center", va="bottom",
                 fontsize=6.3, fontweight="bold")
         ax.text(label[0], label[1] - 0.015, _format_value(old, old_sd), ha="center", va="top",

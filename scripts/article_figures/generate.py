@@ -72,7 +72,7 @@ def figure_stem(figures_dir: Path, number: int, name: str) -> Path:
     return figures_dir / f"fig_{number:02d}_{name}"
 
 
-def add_region_boxes(ax) -> None:
+def add_region_boxes(ax, *, show_labels: bool = True) -> None:
     import cartopy.crs as ccrs
 
     label_positions = {
@@ -88,13 +88,14 @@ def add_region_boxes(ax) -> None:
                 transform=ccrs.PlateCarree(), zorder=7,
             )
         )
-        x, y = label_positions[name]
-        ax.text(
-            x, y, name,
-            ha="left", va="center", fontsize=5.7, fontweight="bold",
-            bbox=dict(facecolor="white", edgecolor="none", alpha=0.75, pad=1),
-            transform=ccrs.PlateCarree(), zorder=8,
-        )
+        if show_labels:
+            x, y = label_positions[name]
+            ax.text(
+                x, y, name,
+                ha="left", va="center", fontsize=5.7, fontweight="bold",
+                bbox=dict(facecolor="white", edgecolor="none", alpha=0.75, pad=1),
+                transform=ccrs.PlateCarree(), zorder=8,
+            )
 
 
 def fig01(tracks: pd.DataFrame, stem: Path) -> None:
