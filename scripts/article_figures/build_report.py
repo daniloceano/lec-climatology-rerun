@@ -58,8 +58,8 @@ def main() -> int:
     cluster_stats = pd.read_csv(results_dir / "intense_cluster_statistics.csv")
     provenance = json.loads((results_dir / "provenance.json").read_text())
     cluster_meta = json.loads((results_dir / "intense_cluster_metadata.json").read_text())
-    if len(manifest) != 19:
-        raise ValueError(f"expected 19 comparison files (Figures 1-15 and 16a-d), found {len(manifest)}")
+    if len(manifest) != 20:
+        raise ValueError(f"expected 20 comparison files (Figures 1-11, 12a-b, 13-15 and 16a-d), found {len(manifest)}")
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(
@@ -111,7 +111,7 @@ def main() -> int:
                 ["Primary rows per version", f"{provenance['primary_phase_rows_per_version']:,}"],
                 ["Toolkit commit", provenance["toolkit_commit"][:12]],
                 ["Correction commit", provenance["toolkit_correction_commit"][:12]],
-                ["Comparison files", "19 PNG + 19 PDF"],
+                ["Comparison files", "20 PNG + 20 PDF"],
             ],
             colWidths=[58 * mm, 100 * mm],
             style=TableStyle([

@@ -71,7 +71,8 @@ FIGURE_CAPTIONS = {
     "9": "Positive PC-extreme track densities with before on the upper row and after on the lower row.",
     "10": "Negative PC-extreme track densities with before on the upper row and after on the lower row.",
     "11": "Genesis-region and seasonal composition of PC extremes, before above and after below.",
-    "12": "Intense-cyclone LEC groups with dark before arrows and red after arrows; corrected groups are centroid-matched.",
+    "12a": "All intense cyclones: dark arrows and values are before; red arrows and values are after.",
+    "12b": "Matched intense-cyclone clusters in a 2x2 layout; dark arrows and values are before and red arrows and values are after.",
     "13": "Track densities of intense-cyclone groups, before above and centroid-matched after groups below.",
     "14": "Intense-group counts, intensity, seasonality and genesis regions, before above and after below.",
     "15": "Lifecycle synthesis shown side by side: before on the left and after on the right.",
@@ -275,24 +276,35 @@ def fig12(
     corrected: pd.DataFrame,
     legacy_assignments: pd.DataFrame,
     corrected_assignments: pd.DataFrame,
-    stem: Path,
+    all_intense_stem: Path,
+    clusters_stem: Path,
 ) -> None:
     all_ids = set(legacy_assignments["track_id"].astype(int))
-    groups = [("All intense", all_ids, all_ids)]
+
+    old_mean, old_std = _group_values(legacy, all_ids)
+    new_mean, new_std = _group_values(corrected, all_ids)
+    figure, ax = plt.subplots(figsize=(6.2, 6.4))
+    draw_cycle_comparison(
+        ax,
+        old_mean,
+        new_mean,
+        before_uncertainty=old_std,
+        after_uncertainty=new_std,
+        title=f"All intense\nn {len(all_ids)} → {len(all_ids)}",
+        title_fontsize=9.4,
+    )
+    figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
+    figure.suptitle("All intense cyclones before and after", fontsize=14, fontweight="bold")
+    figure.subplots_adjust(left=0.04, right=0.96, bottom=0.12, top=0.90)
+    save_pair(figure, all_intense_stem)
+
+    groups = []
     for cluster in range(1, 5):
         old_ids = set(legacy_assignments.loc[legacy_assignments["cluster"] == cluster, "track_id"].astype(int))
         new_ids = set(corrected_assignments.loc[corrected_assignments["cluster"] == cluster, "track_id"].astype(int))
         groups.append((f"Cluster {cluster}", old_ids, new_ids))
-    figure = plt.figure(figsize=(8.6, 10.5))
-    grid = figure.add_gridspec(3, 4, wspace=-0.10, hspace=0.08)
-    axes = [
-        figure.add_subplot(grid[0, 1:3]),
-        figure.add_subplot(grid[1, 0:2]),
-        figure.add_subplot(grid[1, 2:4]),
-        figure.add_subplot(grid[2, 0:2]),
-        figure.add_subplot(grid[2, 2:4]),
-    ]
-    for ax, (label, old_ids, new_ids), tag in zip(axes, groups, "ABCDE"):
+    figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2), gridspec_kw={"wspace": -0.06})
+    for ax, (label, old_ids, new_ids), tag in zip(axes.flat, groups, "ABCD"):
         old_mean, old_std = _group_values(legacy, old_ids)
         new_mean, new_std = _group_values(corrected, new_ids)
         draw_cycle_comparison(
@@ -301,9 +313,9 @@ def fig12(
             title=f"({tag}) {label}\nn {len(old_ids)} → {len(new_ids)}",
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
-    figure.suptitle("Intense-cyclone LEC groups before and after", fontsize=14, fontweight="bold")
-    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.075, top=0.93, wspace=-0.10, hspace=0.08)
-    save_pair(figure, stem)
+    figure.suptitle("Matched intense-cyclone clusters before and after", fontsize=14, fontweight="bold")
+    figure.subplots_adjust(left=0.035, right=0.965, bottom=0.075, top=0.92, wspace=-0.06, hspace=0.12)
+    save_pair(figure, clusters_stem)
 
 
 def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
@@ -471,7 +483,14 @@ def main() -> int:
     fig_eof_density("positive", eof_assignments, tracks, figure_stem(figures_dir, 9, "eof_positive_density_before_after"))
     fig_eof_density("negative", eof_assignments, tracks, figure_stem(figures_dir, 10, "eof_negative_density_before_after"))
     fig11(eof_assignments, first, figure_stem(figures_dir, 11, "eof_genesis_season_before_after"))
-    fig12(legacy, corrected, legacy_clusters, corrected_clusters, figure_stem(figures_dir, 12, "intense_group_lec_before_after"))
+    fig12(
+        legacy,
+        corrected,
+        legacy_clusters,
+        corrected_clusters,
+        figures_dir / "fig_12a_all_intense_lec_before_after",
+        figures_dir / "fig_12b_intense_clusters_lec_before_after",
+    )
     fig13(tracks, cluster_assignments, figure_stem(figures_dir, 13, "intense_group_density_before_after"))
     cluster_stats = fig14(cluster_assignments, tracks, first, figure_stem(figures_dir, 14, "intense_group_characteristics_before_after"))
     fig15(stats, figure_stem(figures_dir, 15, "phase_synthesis_before_after"))
@@ -495,7 +514,15 @@ def main() -> int:
     cluster_stats.to_csv(results_dir / "intense_cluster_statistics.csv", index=False, float_format="%.8g")
     write_json(results_dir / "intense_cluster_metadata.json", cluster_meta)
 
-    figure_specs = [(str(number), sorted(figures_dir.glob(f"fig_{number:02d}_*.png"))[-1]) for number in range(1, 16)]
+    figure_specs = []
+    for number in range(1, 16):
+        if number == 12:
+            figure_specs.extend([
+                ("12a", figures_dir / "fig_12a_all_intense_lec_before_after.png"),
+                ("12b", figures_dir / "fig_12b_intense_clusters_lec_before_after.png"),
+            ])
+        else:
+            figure_specs.append((str(number), sorted(figures_dir.glob(f"fig_{number:02d}_*.png"))[-1]))
     figure_specs.extend(
         [(f"16{suffix}", figures_dir / f"fig_16{suffix}_eof{mode}_synthesis_before_after.png") for mode, suffix in zip(range(1, 5), suffixes)]
     )
