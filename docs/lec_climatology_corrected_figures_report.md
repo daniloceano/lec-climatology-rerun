@@ -87,11 +87,17 @@ This report compares the legacy article results directly with the corrected Lore
 
 *Genesis-region and seasonal composition of PC extremes, before above and after below.*
 
-### Figure 12
+### Figure 12a
 
-![Figure 12](../figures/lec_climatology_corrected/fig_12_intense_group_lec_before_after.png)
+![Figure 12a](../figures/lec_climatology_corrected/fig_12a_all_intense_lec_before_after.png)
 
-*Intense-cyclone LEC groups with dark before arrows and red after arrows; corrected groups are centroid-matched.*
+*All intense cyclones: dark arrows and values are before; red arrows and values are after.*
+
+### Figure 12b
+
+![Figure 12b](../figures/lec_climatology_corrected/fig_12b_intense_clusters_lec_before_after.png)
+
+*Matched intense-cyclone clusters in a 2x2 layout; dark arrows and values are before and red arrows and values are after.*
 
 ### Figure 13
 
