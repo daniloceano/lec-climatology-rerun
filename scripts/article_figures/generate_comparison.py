@@ -171,7 +171,11 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
             ax,
             _eof_series(loadings, "before", phase, mode),
             _eof_series(loadings, "after", phase, mode),
-            title=f"({tag}) EOF {mode} - {phase}\nvariance {before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%{rank_text}",
+            title=(
+                f"({tag}) EOF {mode}\n"
+                f"{phase}\n"
+                f"variance {before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%{rank_text}"
+            ),
             scale="eof",
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
@@ -198,7 +202,7 @@ def fig_eof_density(sign: str, assignments: pd.DataFrame, tracks: pd.DataFrame, 
             ids = set(subset.loc[subset["dominant_eof"] == mode, "track_id"].astype(int))
             items.append((version, mode, ids))
     blocks, levels = _density_panels(items, tracks)
-    figure = plt.figure(figsize=(13.0, 6.3))
+    figure = plt.figure(figsize=(13.0, 4.2))
     contours = []
     for index, (version, mode, ids, lon, lat, density) in enumerate(blocks):
         ax = map_axis(figure, 241 + index)
@@ -206,8 +210,8 @@ def fig_eof_density(sign: str, assignments: pd.DataFrame, tracks: pd.DataFrame, 
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: EOF {mode} (n={len(ids)})", levels=levels))
         add_region_boxes(ax, show_labels=False)
     figure.suptitle(f"Track density - {sign} total-lifecycle PC extremes", fontsize=13, fontweight="bold")
-    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.12, top=0.90, wspace=0.10, hspace=0.28)
-    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.08, fraction=0.045)
+    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.87, wspace=0.10, hspace=0.02)
+    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.055, fraction=0.055)
     colorbar.set_label("Smoothed track points per month", fontsize=8)
     save_pair(figure, stem)
 
@@ -271,7 +275,7 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
             ids = set(assignments.loc[(assignments["version"] == version) & (assignments["cluster"] == cluster), "track_id"].astype(int))
             items.append((version, cluster, ids))
     blocks, levels = _density_panels(items, tracks, lon_bounds=(-80, 100))
-    figure = plt.figure(figsize=(13.0, 6.3))
+    figure = plt.figure(figsize=(13.0, 4.2))
     contours = []
     for index, (version, cluster, ids, lon, lat, density) in enumerate(blocks):
         ax = map_axis(figure, 241 + index, extent=(-80, 100, -85, -15))
@@ -279,8 +283,8 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: cluster {cluster} (n={len(ids)})", levels=levels))
         add_region_boxes(ax, show_labels=False)
     figure.suptitle("Track density of matched intense-cyclone groups", fontsize=13, fontweight="bold")
-    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.12, top=0.90, wspace=0.10, hspace=0.28)
-    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.08, fraction=0.045)
+    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.87, wspace=0.10, hspace=0.02)
+    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.055, fraction=0.055)
     colorbar.set_label("Smoothed track points per month", fontsize=8)
     save_pair(figure, stem)
 
@@ -337,14 +341,14 @@ def fig15(stats: pd.DataFrame, stem: Path) -> None:
 
 
 def fig16(mode: int, loadings: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(1, 2, figsize=(12.0, 6.2))
+    figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.12})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _eof_series(loadings, version, phase, mode), PHASE_COLORS[phase]) for phase in PHASES]
         draw_cycle_overlay(ax, series, title=title, scale="eof")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} synthesis: before versus matched/sign-aligned after", fontsize=14, fontweight="bold")
-    figure.tight_layout(rect=(0, 0.06, 1, 0.95))
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.12)
     save_pair(figure, stem)
 
 
