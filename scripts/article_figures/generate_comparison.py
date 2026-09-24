@@ -165,8 +165,6 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
         after_row = variance[
             (variance["scope"] == phase) & (variance["eof"] == mode) & (variance["version"] == "after")
         ].iloc[0]
-        rank = int(after_row["matched_rank"])
-        rank_text = "" if rank == mode else f"; after rank {rank}"
         draw_cycle_comparison(
             ax,
             _eof_series(loadings, "before", phase, mode),
@@ -174,10 +172,10 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
             title=(
                 f"({tag}) EOF {mode}\n"
                 f"{phase}\n"
-                f"variance {before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%{rank_text}"
+                f"{before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%"
             ),
             scale="eof",
-            title_fontsize=7.6,
+            title_fontsize=8.2,
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} loadings before and after", fontsize=14, fontweight="bold")
