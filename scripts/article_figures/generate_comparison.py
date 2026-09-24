@@ -177,6 +177,7 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
                 f"variance {before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%{rank_text}"
             ),
             scale="eof",
+            title_fontsize=7.6,
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} loadings before and after", fontsize=14, fontweight="bold")
@@ -202,7 +203,7 @@ def fig_eof_density(sign: str, assignments: pd.DataFrame, tracks: pd.DataFrame, 
             ids = set(subset.loc[subset["dominant_eof"] == mode, "track_id"].astype(int))
             items.append((version, mode, ids))
     blocks, levels = _density_panels(items, tracks)
-    figure = plt.figure(figsize=(13.0, 4.2))
+    figure = plt.figure(figsize=(13.0, 4.7))
     contours = []
     for index, (version, mode, ids, lon, lat, density) in enumerate(blocks):
         ax = map_axis(figure, 241 + index)
@@ -210,8 +211,14 @@ def fig_eof_density(sign: str, assignments: pd.DataFrame, tracks: pd.DataFrame, 
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: EOF {mode} (n={len(ids)})", levels=levels))
         add_region_boxes(ax, show_labels=False)
     figure.suptitle(f"Track density - {sign} total-lifecycle PC extremes", fontsize=13, fontweight="bold")
-    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.87, wspace=0.10, hspace=0.02)
-    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.055, fraction=0.055)
+    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.88, wspace=0.10, hspace=0.16)
+    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.065, fraction=0.050)
+    ticks = levels[::2]
+    if ticks[-1] != levels[-1]:
+        ticks = np.append(ticks, levels[-1])
+    colorbar.set_ticks(ticks)
+    colorbar.set_ticklabels([f"{value:.3f}" for value in ticks])
+    colorbar.ax.tick_params(labelsize=7, pad=2)
     colorbar.set_label("Smoothed track points per month", fontsize=8)
     save_pair(figure, stem)
 
@@ -275,7 +282,7 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
             ids = set(assignments.loc[(assignments["version"] == version) & (assignments["cluster"] == cluster), "track_id"].astype(int))
             items.append((version, cluster, ids))
     blocks, levels = _density_panels(items, tracks, lon_bounds=(-80, 100))
-    figure = plt.figure(figsize=(13.0, 4.2))
+    figure = plt.figure(figsize=(13.0, 4.7))
     contours = []
     for index, (version, cluster, ids, lon, lat, density) in enumerate(blocks):
         ax = map_axis(figure, 241 + index, extent=(-80, 100, -85, -15))
@@ -283,8 +290,14 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
         contours.append(plot_density(ax, lon, lat, density, title=f"{prefix}: cluster {cluster} (n={len(ids)})", levels=levels))
         add_region_boxes(ax, show_labels=False)
     figure.suptitle("Track density of matched intense-cyclone groups", fontsize=13, fontweight="bold")
-    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.87, wspace=0.10, hspace=0.02)
-    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.055, fraction=0.055)
+    figure.subplots_adjust(left=0.035, right=0.975, bottom=0.19, top=0.88, wspace=0.10, hspace=0.16)
+    colorbar = figure.colorbar(contours[-1], ax=figure.axes, orientation="horizontal", pad=0.065, fraction=0.050)
+    ticks = levels[::2]
+    if ticks[-1] != levels[-1]:
+        ticks = np.append(ticks, levels[-1])
+    colorbar.set_ticks(ticks)
+    colorbar.set_ticklabels([f"{value:.3f}" for value in ticks])
+    colorbar.ax.tick_params(labelsize=7, pad=2)
     colorbar.set_label("Smoothed track points per month", fontsize=8)
     save_pair(figure, stem)
 

@@ -133,6 +133,7 @@ def draw_cycle_comparison(
     after_uncertainty=None,
     scale: str = "terms",
     show_arrow_uncertainty: bool = False,
+    title_fontsize: float = 8.8,
 ) -> None:
     """Four-box LEC with dark legacy arrows and red corrected arrows."""
     ax.set_xlim(-1.10, 1.10)
@@ -186,7 +187,11 @@ def draw_cycle_comparison(
                 fontsize=5.8, color=BEFORE_COLOR, fontweight="bold")
         ax.text(label[0], label[1] - 0.090, _format_value(new, new_sd), ha="center", va="top",
                 fontsize=5.8, color=AFTER_COLOR, fontweight="bold")
-    ax.text(0, 0.02, title, ha="center", va="center", fontsize=8.8, fontweight="bold")
+    ax.text(
+        0, 0.02, title,
+        ha="center", va="center", fontsize=title_fontsize,
+        fontweight="bold", linespacing=1.05,
+    )
 
 
 def comparison_legend_handles():
