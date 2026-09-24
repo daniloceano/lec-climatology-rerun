@@ -1,20 +1,16 @@
 {
   "corrected_cache": "/p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet",
   "corrected_cache_sha256": "c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3",
-  "corrected_cyclones": 3820,
-  "figure_count": 16,
-  "notes": "Secondary lifecycle periods are retained upstream but excluded from the four-phase main-article reproduction.",
-  "phases": [
-    "incipient",
-    "intensification",
-    "mature",
-    "decay"
-  ],
-  "primary_phase_rows": 15280,
-  "repository_commit_before_generation": "1c5bb44d89cfbd063a1357b0458b35b1a9d1b2b2",
+  "figure_files": 19,
+  "legacy_cache": "/p1-swell/danilocs/paper_energy_patterns/data/energy_cache.parquet",
+  "legacy_cache_sha256": "7a24617e56595737075a8f9975dd0018069196292eab32fd8f5ba2a49e25a16d",
+  "notes": "Legacy and corrected analyses use identical cyclone-phase keys; EOFs and clusters are explicitly matched.",
+  "paired_cyclones": 3820,
+  "primary_phase_rows_per_version": 15280,
+  "repository_commit_before_generation": "af682fd215e0bd9a21479e01a372c4657a8f507c",
   "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a",
   "toolkit_correction_commit": "d07707767c2962fed0475ff4573e7d15a97f8c69",
   "tracks": "/p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv",
   "tracks_sha256": "552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d",
-  "workflow": "corrected reproduction of article Figures 1-16"
+  "workflow": "paired before-versus-after reproduction of article Figures 1-16"
 }

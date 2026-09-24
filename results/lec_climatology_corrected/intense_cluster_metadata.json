@@ -1,6 +1,13 @@
 {
   "clusters": 4,
-  "eligible_corrected_cyclones": 1486,
+  "corrected_inertia": 191561262034633.66,
+  "corrected_original_rank_by_matched_cluster": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "eligible_paired_cyclones": 1486,
   "feature_order": [
     "Ck:incipient",
     "Ck:intensification",
@@ -27,7 +34,13 @@
     "BAe:mature",
     "BAe:decay"
   ],
-  "inertia": 191561262034633.66,
+  "legacy_inertia": 191560649701109.0,
+  "matched_centroid_distance": [
+    2.8763661069452877,
+    4.41862623317609,
+    4.418878872847899,
+    5.725814166422114
+  ],
   "vorticity_quantile": 0.9,
   "vorticity_threshold": 8.292780000000004
 }
