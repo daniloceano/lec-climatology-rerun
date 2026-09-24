@@ -18,7 +18,7 @@ Usage
     python scripts/lec_rerun_comparison/step5_plot_lec_diagram.py
     python scripts/lec_rerun_comparison/step5_plot_lec_diagram.py --no-pdf
 
-Outputs (figures/lec_rerun_comparison/)
+Outputs (figures/paired_control/)
 ---------------------------------------
     lec_diagram_before_after.png / .pdf
 

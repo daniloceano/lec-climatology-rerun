@@ -29,7 +29,7 @@ Usage
     python scripts/lec_rerun_comparison/step1_build_comparison_table.py \
         --run-root /p1-swell/danilocs/lec_climatology_corrected_v2 --verify-sample 20
 
-Outputs (results/lec_rerun_comparison/)
+Outputs (results/paired_control/)
 ---------------------------------------
     corrected_phase_means.parquet  wide table of corrected phase means (cached)
     paired_terms.parquet           long table: track_id, period, phase, term,

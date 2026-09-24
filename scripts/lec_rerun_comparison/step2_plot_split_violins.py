@@ -21,7 +21,7 @@ Usage
     python scripts/lec_rerun_comparison/step2_plot_split_violins.py --group conversion
     python scripts/lec_rerun_comparison/step2_plot_split_violins.py --trim 2 --no-pdf
 
-Outputs (figures/lec_rerun_comparison/)
+Outputs (figures/paired_control/)
 ---------------------------------------
     violin_<group>.png / .pdf     one per term family
     signflip_heatmap.png / .pdf   sign-change rate per term and phase

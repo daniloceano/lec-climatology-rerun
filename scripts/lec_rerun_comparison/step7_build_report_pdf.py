@@ -3,8 +3,8 @@
 """
 step7_build_report_pdf.py — Render the technical report as a shareable PDF.
 
-Converts docs/lec_rerun_comparison_report.md into
-docs/lec_rerun_comparison_report.pdf, with the figures embedded, so the report
+Converts docs/paired_control/lec_rerun_paired_control_report.md into
+docs/paired_control/lec_rerun_paired_control_report.pdf, with the figures embedded, so the report
 can be sent to co-authors as a single file.
 
 There is no pandoc or LaTeX in this environment, so the PDF is built directly
@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import os
 import re
 import sys
 from pathlib import Path
@@ -66,16 +67,33 @@ ACCENT = colors.HexColor("#1F3A5F")
 
 
 def register_fonts() -> tuple[str, str, str]:
-    """Register DejaVu from matplotlib so the LEC symbols survive."""
-    import matplotlib
-
-    fonts = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
-    faces = {
+    """Register a Unicode font family for the LEC symbols."""
+    font_override = os.environ.get("LEC_FONT_DIR")
+    if font_override:
+        fonts = Path(font_override).expanduser().resolve()
+    else:
+        try:
+            import matplotlib
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "A Unicode DejaVu font is required. Install matplotlib or set "
+                "LEC_FONT_DIR to the directory containing the DejaVu Sans TTF files."
+            ) from exc
+        fonts = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
+    filenames = {
         "DejaVu": "DejaVuSans.ttf",
         "DejaVu-Bold": "DejaVuSans-Bold.ttf",
         "DejaVu-Oblique": "DejaVuSans-Oblique.ttf",
         "DejaVu-BoldOblique": "DejaVuSans-BoldOblique.ttf",
         "DejaVuMono": "DejaVuSansMono.ttf",
+    }
+    missing = [filename for filename in filenames.values() if not (fonts / filename).is_file()]
+    if missing:
+        raise FileNotFoundError(
+            f"DejaVu font directory {fonts} misses: {', '.join(sorted(missing))}"
+        )
+    faces = {
+        name: filename for name, filename in filenames.items()
     }
     for name, filename in faces.items():
         pdfmetrics.registerFont(TTFont(name, fonts / filename))

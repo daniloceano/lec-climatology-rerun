@@ -463,8 +463,8 @@ def write_report_markdown(
         lines.append(f"| {row.cluster} | {row.n} | {row.max_vor42_median:.2f} |")
     lines.extend(["", "## Figures", ""])
     for number in range(1, 17):
-        png = sorted(path.parent.parent.joinpath("figures", "lec_climatology_corrected").glob(f"fig_{number:02d}_*.png"))[0]
-        relative = Path("..") / "figures" / "lec_climatology_corrected" / png.name
+        png = sorted(path.parents[2].joinpath("figures", "paired_control", "article_style").glob(f"fig_{number:02d}_*.png"))[0]
+        relative = Path("..") / ".." / "figures" / "paired_control" / "article_style" / png.name
         lines.extend(
             [
                 f"### Figure {number}",
@@ -499,8 +499,8 @@ def main() -> int:
     args = parser.parse_args()
 
     root = args.output_root.resolve()
-    figures_dir = root / "figures" / "lec_climatology_corrected"
-    results_dir = root / "results" / "lec_climatology_corrected"
+    figures_dir = root / "figures" / "paired_control" / "article_style"
+    results_dir = root / "results" / "paired_control" / "article_style"
     docs_dir = root / "docs"
     figures_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
@@ -576,7 +576,7 @@ def main() -> int:
     }
     write_json(results_dir / "provenance.json", provenance)
     write_report_markdown(
-        docs_dir / "lec_climatology_corrected_figures_report.md",
+        docs_dir / "paired_control" / "lec_climatology_paired_article_style_report.md",
         cache, stats, phase_variance, assignments, cluster_meta, cluster_stats,
     )
     print(json.dumps({"figures": 16, "cyclones": 3820, "output": str(root)}, indent=2))

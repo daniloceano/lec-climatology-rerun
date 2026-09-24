@@ -3,7 +3,7 @@
 """
 step4_write_report.py — Generate the legacy vs corrected LEC technical report.
 
-Assembles docs/lec_rerun_comparison_report.md from the tables written by steps
+Assembles docs/paired_control/lec_rerun_paired_control_report.md from the tables written by steps
 1 and 3. Every number in the report comes from those tables, so re-running this
 step after the rerun finishes refreshes the whole document; the wording adapts
 to which terms actually changed rather than assuming the current outcome.
@@ -71,7 +71,7 @@ class Figures:
         self.count += 1
         return (
             f"\n![Figure {self.count}. {caption}]"
-            f"(../figures/lec_rerun_comparison/{filename})\n\n"
+            f"(../../figures/paired_control/{filename})\n\n"
             f"*Figure {self.count}. {caption}*\n"
         )
 
@@ -172,7 +172,7 @@ def eof_paragraph() -> str:
 
     return f"""
 **The leading EOF survives in shape but is reweighted.**
-`figures/lec_rerun_comparison/eof1_diagram_before_after.png` redraws the thesis
+`figures/paired_control/eof1_diagram_before_after.png` redraws the thesis
 EOF figure with both versions on the same axes. EOF 1 still explains a comparable
 share of the variance ({legacy_range} before, {corrected_range} after) and the two
 patterns correlate at {correlation} across phases, so the mode is recognisably the
@@ -257,7 +257,7 @@ tendencies — the corrections did not touch them.
 
 The {len(changed)} terms that did change are exactly those the toolkit correction
 targets, plus the residuals that inherit them (see
-`figures/lec_rerun_comparison/violin_conversion.png` and `violin_boundary.png`;
+`figures/paired_control/violin_conversion.png` and `violin_boundary.png`;
 the energy, generation and budget figures show the two halves of each violin
 overlying each other exactly):
 
@@ -275,7 +275,7 @@ overlying each other exactly):
         "budget closure.")}
 The energy, generation and budget-tendency violins are not reproduced here: the
 two halves of every violin coincide exactly. They are in
-`figures/lec_rerun_comparison/` if a reader wants to confirm it.
+`figures/paired_control/` if a reader wants to confirm it.
 
 *Relative change* is the median |Δ| divided by the median |legacy| value: 1.00×
 means the typical change is as large as the term itself. *Spearman* is the
@@ -309,7 +309,7 @@ comparable and are excluded.
 
 Sign is what carries physical meaning in the LEC, so a change of sign matters more
 than a change of magnitude. Per-sample sign-change rates are in
-`figures/lec_rerun_comparison/signflip_heatmap.png`; the terms at risk are
+`figures/paired_control/signflip_heatmap.png`; the terms at risk are
 {listing([t for t in changed if pooled.loc[t, 'sign_flip_pct'] > 5])}.
 The worst case is {name(top_flip['term'])}, which changes sign in
 {top_flip['sign_flip_pct']:.0f}% of cyclone-phases.
@@ -335,7 +335,7 @@ the conversion Lorenz Phase Space and the EP1 signature, so the clustering must 
 rerun before any EP statement is reasserted.
 
 **The barotropic result is the one that moves.**
-`figures/lec_rerun_comparison/lec_diagram_before_after.png` shows this on the
+`figures/paired_control/lec_diagram_before_after.png` shows this on the
 four-box diagram: the `Ck` arrow reverses between the two versions during the
 incipient and intensification phases, and shortens during maturity and decay.
 With the convention of de Souza et al. (2025) — `Ca` > 0 feeds eddy APE,
@@ -399,17 +399,17 @@ any future use of the pressure-work terms.
 
 | Artifact | Path |
 |---|---|
-| This report (PDF, figures embedded) | `docs/lec_rerun_comparison_report.pdf` |
-| Paired table | `results/lec_rerun_comparison/paired_terms.parquet` |
-| Term summary | `results/lec_rerun_comparison/term_change_summary.csv` |
-| Per-phase summary | `results/lec_rerun_comparison/term_change_by_phase.csv` |
-| Conversion regime | `results/lec_rerun_comparison/conversion_regime.csv` |
-| Coverage / provenance | `results/lec_rerun_comparison/coverage.json` |
-| Split-violin figures | `figures/lec_rerun_comparison/violin_{{energy,conversion,generation,boundary,budget,residual}}.png` |
-| Sign-change heatmap | `figures/lec_rerun_comparison/signflip_heatmap.png` |
-| Before/after LEC diagram | `figures/lec_rerun_comparison/lec_diagram_before_after.png` |
-| Before/after EOF diagrams | `figures/lec_rerun_comparison/eof{{1,2,3,4}}_diagram_before_after.png` |
-| EOF loadings and variance | `results/lec_rerun_comparison/eof_loadings.csv`, `eof_variance.csv` |
+| This report (PDF, figures embedded) | `docs/paired_control/lec_rerun_paired_control_report.pdf` |
+| Paired table | `results/paired_control/paired_terms.parquet` |
+| Term summary | `results/paired_control/term_change_summary.csv` |
+| Per-phase summary | `results/paired_control/term_change_by_phase.csv` |
+| Conversion regime | `results/paired_control/conversion_regime.csv` |
+| Coverage / provenance | `results/paired_control/coverage.json` |
+| Split-violin figures | `figures/paired_control/violin_{{energy,conversion,generation,boundary,budget,residual}}.png` |
+| Sign-change heatmap | `figures/paired_control/signflip_heatmap.png` |
+| Before/after LEC diagram | `figures/paired_control/lec_diagram_before_after.png` |
+| Before/after EOF diagrams | `figures/paired_control/eof{{1,2,3,4}}_diagram_before_after.png` |
+| EOF loadings and variance | `results/paired_control/eof_loadings.csv`, `eof_variance.csv` |
 """
 
 

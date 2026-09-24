@@ -256,7 +256,10 @@ def map_axis(figure, position=111, extent=(-80, 180, -85, -15)):
     import cartopy.crs as ccrs
     import cartopy.feature as cfeature
 
-    ax = figure.add_subplot(position, projection=ccrs.PlateCarree())
+    if isinstance(position, tuple):
+        ax = figure.add_subplot(*position, projection=ccrs.PlateCarree())
+    else:
+        ax = figure.add_subplot(position, projection=ccrs.PlateCarree())
     ax.set_extent(extent, crs=ccrs.PlateCarree())
     ax.add_feature(cfeature.LAND, facecolor="#f0f0ed", edgecolor="black", linewidth=0.4, zorder=4)
     ax.coastlines(resolution="110m", linewidth=0.45, zorder=5)

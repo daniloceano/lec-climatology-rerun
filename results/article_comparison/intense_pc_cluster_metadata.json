@@ -1,0 +1,35 @@
+{
+  "clusters": 5,
+  "corrected_inertia": 8714.092515495107,
+  "corrected_original_rank_by_matched_cluster": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "eligible_corrected_cyclones": 1486,
+  "eligible_legacy_cyclones": 1744,
+  "feature_order": [
+    "PC1",
+    "PC2",
+    "PC3",
+    "PC4",
+    "PC5",
+    "PC6",
+    "PC7",
+    "PC8"
+  ],
+  "legacy_inertia": 7782.217937106529,
+  "matched_centroid_distance": [
+    0.5946178020420252,
+    2.4324211878441084,
+    1.3970122953377315,
+    0.46934261312835607,
+    1.633487337576131
+  ],
+  "method": "K-means on the first eight aligned total-lifecycle PC scores",
+  "pcs_used": 8,
+  "vorticity_quantile": 0.9,
+  "vorticity_threshold": 8.292780000000004
+}

@@ -6,6 +6,7 @@ import pandas as pd
 from scripts.article_figures.common import (
     REGIONS,
     align_eofs,
+    assign_published_eof_extremes,
     classify_region,
     compute_eof,
     deterministic_kmeans,
@@ -75,3 +76,24 @@ def test_eof_matching_recovers_rank_permutation_and_sign():
     np.testing.assert_allclose(aligned_variance, [0.50, 0.30, 0.20])
     assert np.all(correlations > 0.999)
     assert aligned_scores.shape == scores.shape
+
+
+def test_published_eof_extremes_screen_eight_pcs_before_retaining_four():
+    scores = pd.DataFrame(
+        {
+            "track_id": range(12),
+            "PC1": [9.0] + [0.0] * 11,
+            "PC2": [0.0] * 12,
+            "PC3": [0.0] * 12,
+            "PC4": [0.0] * 12,
+            "PC5": [0.0, 10.0] + [0.0] * 10,
+            "PC6": [0.0] * 12,
+            "PC7": [0.0] * 12,
+            "PC8": [0.0] * 12,
+        }
+    )
+    assigned = assign_published_eof_extremes(scores, n_modes=8, keep_modes=4)
+    positive = assigned[assigned["sign"] == "positive"]
+    assert 0 in set(positive["track_id"])
+    assert 1 not in set(positive["track_id"])
+    assert set(assigned["dominant_eof"]) <= {1, 2, 3, 4}

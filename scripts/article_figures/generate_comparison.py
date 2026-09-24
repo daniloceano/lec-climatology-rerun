@@ -449,8 +449,8 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, default=Path.cwd())
     args = parser.parse_args()
     root = args.output_root.resolve()
-    figures_dir = root / "figures" / "lec_climatology_corrected"
-    results_dir = root / "results" / "lec_climatology_corrected"
+    figures_dir = root / "figures" / "paired_control" / "article_style"
+    results_dir = root / "results" / "paired_control" / "article_style"
     docs_dir = root / "docs"
     figures_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
@@ -558,7 +558,12 @@ def main() -> int:
         "notes": "Legacy and corrected analyses use identical cyclone-phase keys; EOFs and clusters are explicitly matched.",
     }
     write_json(results_dir / "provenance.json", provenance)
-    write_report_markdown(docs_dir / "lec_climatology_corrected_figures_report.md", manifest, provenance, cluster_meta)
+    write_report_markdown(
+        docs_dir / "paired_control" / "lec_climatology_paired_article_style_report.md",
+        manifest,
+        provenance,
+        cluster_meta,
+    )
     print(json.dumps({"figure_files": len(manifest), "paired_cyclones": 3820, "output": str(root)}, indent=2))
     return 0
 

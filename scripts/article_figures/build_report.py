@@ -48,9 +48,9 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, default=Path.cwd())
     args = parser.parse_args()
     root = args.output_root.resolve()
-    figures_dir = root / "figures" / "lec_climatology_corrected"
-    results_dir = root / "results" / "lec_climatology_corrected"
-    output = root / "docs" / "lec_climatology_corrected_figures_report.pdf"
+    figures_dir = root / "figures" / "paired_control" / "article_style"
+    results_dir = root / "results" / "paired_control" / "article_style"
+    output = root / "docs" / "paired_control" / "lec_climatology_paired_article_style_report.pdf"
 
     manifest = pd.read_csv(results_dir / "figure_manifest.csv")
     stats = pd.read_csv(results_dir / "phase_statistics.csv")
@@ -218,7 +218,7 @@ def main() -> int:
         PageBreak(),
         Paragraph("Reproducibility record", styles["Section"]),
         Paragraph(
-            "Every figure has a PNG and PDF checksum in results/lec_climatology_corrected/figure_manifest.csv. "
+            "Every figure has a PNG and PDF checksum in results/paired_control/article_style/figure_manifest.csv. "
             "The complete input hashes and pinned toolkit commits are recorded in the adjacent provenance.json. "
             "The workflow is scripts/article_figures/generate_comparison.py; this report is built by "
             "scripts/article_figures/build_report.py.", styles["BodySmall"],

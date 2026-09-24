@@ -31,7 +31,7 @@ Usage
     python scripts/lec_rerun_comparison/step3_summary_stats.py
     python scripts/lec_rerun_comparison/step3_summary_stats.py --top 12
 
-Outputs (results/lec_rerun_comparison/)
+Outputs (results/paired_control/)
 ---------------------------------------
     term_change_summary.csv       one row per term (all phases pooled)
     term_change_by_phase.csv      one row per term and phase

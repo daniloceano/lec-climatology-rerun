@@ -1,133 +1,150 @@
-# Scientific notes — corrected LEC climatology
+# Scientific notes - corrected LEC climatology
 
-## Scientific objective
+## Research Questions
 
-Recompute the Lorenz Energy Cycle climatology for Southwestern Atlantic
-extratropical cyclones with the corrected LorenzCycleToolKit 2.0.0 equations,
-while holding the cyclone population, tracks, lifecycle windows, temporal
-sampling, pressure grid, and moving-domain geometry fixed. Quantify the effect
-of the correction through a paired legacy-versus-corrected analysis.
+1. How does the Southwestern Atlantic cyclone LEC climatology change after
+   applying the LorenzCycleToolKit 2.0.0 scientific corrections?
+2. Which differences arise from the correction itself, and which also reflect
+   the smaller validated rerun population?
+3. How do the corrected phase cycles, EOF patterns, track-density extremes and
+   intense-cyclone groups compare with the published article?
 
-## Hypothesis and controlled comparison
+## Physical / Statistical Framework
 
-The corrected implementation changes specific LEC terms and numerical
-operations. The comparison is interpretable only if every other choice remains
-fixed. Pairs are therefore matched by `(track_id, period)`, including secondary
-periods such as `decay 2`; non-phase residual rows are excluded from phase
-means.
+The Lorenz Energy Cycle is represented by the reservoirs $A_Z$, $A_E$, $K_Z$
+and $K_E$, their conversions $C_Z$, $C_A$, $C_K$ and $C_E$, generation,
+boundary transports and budget tendencies. Energy reservoirs are vertically
+integrated in J m$^{-2}$; conversions, generation, transports and tendencies
+are expressed in W m$^{-2}$.
 
-Legacy and corrected values are not assumed to be numerically equivalent.
+Pressure integration is trapezoidal in pressure. The checked corrected-output
+conventions are:
 
-## Population
+- no additional sign correction for corrected $C_A$;
+- $C_K$ and $C_{K1}\ldots C_{K5}$ divided by $g=9.80665$ before integration;
+- $K_Z$ and $K_E$ divided by $2g$;
+- $C_K=\sum_{i=1}^{5}C_{Ki}$ closes to round-off;
+- $C_A=-(C_{A1}+C_{A2})$ closes after the documented global sign;
+- $C_{E1}/C_{E2}$ and $C_{Z1}/C_{Z2}$ are intermediates, not additive
+  decompositions.
 
-The authoritative population contains 3,820 cyclones selected from the legacy
-phase-mean cache by these rules:
+## Datasets and Variables
 
-1. `incipient → intensification → mature → decay` occurs in order;
-2. all seven clustering terms `Ca`, `Ck`, `BAe`, `BKe`, `Ae`, `Ke`, and `Ge`
-   are finite after the workflow's aggregation;
-3. lifecycle windows are frozen from the archived article results.
+- Cyclone tracks: Zenodo DOI `10.5281/zenodo.18133432`, 1979-2020.
+- Archived article LEC results and lifecycle windows: Zenodo DOI
+  `10.5281/zenodo.18243447`.
+- ERA5 pressure-level `u`, `v`, `t`, `w` and `z`, sampled every three hours.
+- Moving 15 degree by 15 degree control volume centred on each cyclone.
+- 37 requested pressure levels; the toolkit analysis uses 32 levels from
+  10-1000 hPa.
+- Published archive: 6,789 cyclones and 25,000 lifecycle rows.
+- Validated corrected cache: 3,820 cyclones and 15,829 lifecycle rows.
 
-EP1 and other downstream article subsets are not population sources.
+The manuscript statement of 100-1000 hPa conflicts with runtime and archived
+outputs. This remains a manuscript caveat; the rerun follows the verified
+10-1000 hPa implementation.
 
-## Data and sampling
+## Methodology
 
-- Track database: Zenodo DOI `10.5281/zenodo.18133432`.
-- Frozen phase windows/results: Zenodo DOI `10.5281/zenodo.18243447`.
-- Atmospheric fields: ERA5 pressure-level geopotential, temperature, vertical
-  velocity, and zonal/meridional wind.
-- Temporal resolution: three hours, using exact UTC hours divisible by three.
-- Moving computational domain: 15° × 15°, centred on the cyclone.
-- Requested levels: 1–1000 hPa (37 levels).
-- Actual LEC analysis levels: 10–1000 hPa (32 levels).
+### Corrected production rerun
 
-The manuscript statement of 100–1000 hPa conflicts with runtime and archived
-outputs. This must be resolved in the manuscript, not by changing the rerun.
-
-## Corrected terms and numerical behavior
-
-Version 2.0.0 introduced scientifically relevant corrections including:
-
-- baroclinic conversion `Ca`;
-- the fifth `Ck` subterm;
-- pressure-work boundary terms `BΦZ` and `BΦE`;
-- pressure-level alignment;
-- time tendencies;
-- NaN handling.
+The authoritative population contains 3,820 cyclones with an ordered
+`incipient -> intensification -> mature -> decay` lifecycle and finite values
+for the population-defining LEC terms. Lifecycle windows are frozen from the
+archive. A cyclone becomes `COMPLETE` only after checking timestamps, track
+equality, lifecycle-window hash, integrated terms, required pressure-level
+files, dimensions and finite values.
 
 The production worktree is pinned at
-`d38cda7e37d8e8a3a937a5919640a94bef19e34a`, containing correction commit
+`d38cda7e37d8e8a3a937a5919640a94bef19e34a`, including correction commit
 `d07707767c2962fed0475ff4573e7d15a97f8c69`.
 
-## Vertical conventions
+### Article-population before/after comparison
 
-Pressure integration is explicit and trapezoidal in pressure. The output
-conventions were checked against vertically integrated toolkit values:
+The authoritative report compares two independent populations:
 
-- no sign correction is applied to corrected `Ca`;
-- `Ck` and `Ck_1…Ck_5` vertical fields are divided by `g = 9.80665` before
-  pressure integration;
-- `Kz` and `Ke` vertical fields are divided by `2g`;
-- `Ck = Ck_1 + … + Ck_5` closes to round-off;
-- `Ca = -(Ca_1 + Ca_2)` closes after its documented global sign;
-- `Ce_1/Ce_2` and `Cz_1/Cz_2` are intermediates, not additive decompositions.
+- **before:** all 6,789 archived legacy cyclones and all 25,000 archived
+  lifecycle rows;
+- **after:** all 3,820 validated corrected cyclones and all 15,829 corrected
+  lifecycle rows.
 
-These rules are implemented and self-checked in
-`scripts/utils/corrected_lec.py`.
+Primary phase panels retain exact `period == phase` records: 22,464 legacy and
+15,280 corrected rows. Total-lifecycle EOFs first average every archived period
+by cyclone and then use the correlation matrix of the 24 published LEC terms.
+EOFs are fitted independently. Corrected modes are matched one-to-one to
+legacy modes by maximum absolute loading-pattern correlation and sign-aligned.
 
-## Validation invariants
+PC extremes are screened against the upper and lower deciles of PCs 1-8. Each
+cyclone is assigned to its dominant extreme, after which Figures 9-11 and 16
+retain dominant EOFs 1-4. Figure 16 shows the mean LEC of the positive EOF
+cyclone groups, not an EOF-loading diagram.
 
-A cyclone is `COMPLETE` only after validation of:
+Intense cyclones satisfy the pointwise 90th-percentile vorticity criterion.
+Five K-means groups are fitted independently to the first eight aligned
+total-lifecycle PC scores. The corrected centroids are matched to the legacy
+centroids for comparison.
 
-- required integrated terms and finite values;
-- exact expected timestamps;
-- output track equality;
-- frozen lifecycle-window hash;
-- all required pressure-level files, levels, timestamps, shapes, and finite
-  values;
-- toolkit completion marker.
+### Paired correction-only control
 
-The corrected cache must never be built from a partial population.
+The paired control restricts both sides to the same 3,820 cyclones and matched
+`(track_id, period)` rows. It isolates equation and numerical corrections while
+holding population and lifecycle windows fixed. It is a diagnostic control,
+not a reproduction of the full article population.
 
-## Completed production record
+## Assumptions
 
-The established run-root is
-`/p1-swell/danilocs/lec_climatology_corrected_v2`. On 2026-09-09 it reached
-3,820/3,820 `COMPLETE`, with no pending, active, retryable, or final failures.
-An independent reopening of all 3,820 outputs produced zero validation errors.
+- Archived legacy phase means faithfully represent the article calculation;
+  direct checks against per-cyclone archive CSVs agree to numerical round-off.
+- The frozen track database supplies the spatial and intensity metadata for
+  both versions.
+- EOF sign is arbitrary; sign alignment does not alter the represented mode.
+- Centroid matching makes cluster labels comparable but does not imply that
+  clusters are identical physical populations.
+- Secondary lifecycle periods enter total-lifecycle analyses but not the exact
+  four-primary-phase panels.
 
-The final phase-mean cache contains 15,829 period rows for 3,820 cyclones.
-Secondary lifecycle periods explain why this is not simply `3,820 × 4`.
+## Results and Interpretation
 
-## Corrected reconstruction of the article figures
+### 2026-09-24 - article comparison reconstruction
 
-This repository now also owns a clearly separated reconstruction of all 16
-main article figures. The reconstruction uses corrected LEC values throughout,
-while preserving the published figure roles and the frozen track definitions.
-The legacy article files are never overwritten.
+The archived total-lifecycle calculation reproduces the article EOF 1-4
+variance fractions: **28.304%, 11.018%, 10.925% and 8.188%**. This numerical
+landmark verifies the full 6,789-cyclone legacy input definition.
 
-The main-article panels use exactly one primary `incipient`,
-`intensification`, `mature`, and `decay` row per cyclone (15,280 rows).
-Secondary periods remain in the 15,829-row corrected cache but are excluded
-from this explicitly four-phase product.
+The intense-cyclone PC analysis contains 1,744 legacy and 1,486 corrected
+systems. The final comparison comprises 20 files for article Figures 1-16,
+including split Figures 12 and 16.
 
-The EOF analysis uses the correlation matrix of the 24 published LEC terms.
-Positive and negative subsets use the total-lifecycle PC upper and lower
-deciles for EOFs 1-4. Intense-cyclone groups retain the pointwise 90th-percentile
-vorticity threshold and the six published clustering terms (`Ck`, `Ca`, `Ke`,
-`Ge`, `BKe`, and `BAe`) across all four phases without feature scaling. The
-four-group fit is made deterministic with K-means++, 30 restarts, and seed 42;
-cluster numbers are ordered by decreasing membership.
+Interpretation must distinguish the two comparisons. The article-population
+report answers how the published result changes after the validated rerun, but
+its differences combine correction and population. The paired control is the
+appropriate source for statements attributable only to the toolkit correction.
 
-The reconstruction is a reproducible corrected scientific product, not a claim
-that the originally published numerical conclusions remain unchanged. Any
-revised manuscript interpretation must be based on the new tables and figures.
+## Caveats and Limitations
 
-## Caveats
+- The corrected production covers 3,820 of the 6,789 archived article
+  cyclones; a complete corrected 6,789-cyclone population would require a new
+  ERA5 acquisition and rerun.
+- Higher EOF modes can exchange rank because their explained variances are
+  close; the report uses pattern matching rather than assuming rank stability.
+- LEC distributions are heavy-tailed. Means, medians, standard deviations and
+  display trimming must not be interpreted interchangeably.
+- The repository contains derived products, not the server-side ERA5 or full
+  per-cyclone run-root.
 
-- CDS failures are operational and may exhaust retry limits even when the
-  scientific configuration is valid.
-- The run-root is large and server-only; repository clones contain code and
-  small final products, not the production state.
-- Higher EOF modes may swap order because their explained variances are close;
-  corrected modes are matched to legacy modes by absolute pattern correlation.
+## Next Steps
+
+1. Interpret the scientific changes figure by figure, explicitly separating
+   article-population changes from paired correction effects.
+2. Update manuscript text and tables using the canonical report and numerical
+   result files.
+3. Decide whether a full 6,789-cyclone corrected rerun is scientifically worth
+   the ERA5 download and computational cost.
+
+## References
+
+- de Souza et al. (2025), *Lorenz Energy Cycle Climatology for the
+  Southwestern Atlantic Cyclones*, *Climate Dynamics*, DOI
+  `10.1007/s00382-025-07918-y`.
+- Cyclone tracks: Zenodo DOI `10.5281/zenodo.18133432`.
+- Archived LEC results: Zenodo DOI `10.5281/zenodo.18243447`.
