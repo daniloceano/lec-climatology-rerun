@@ -4,7 +4,7 @@ This report compares the legacy article results directly with the corrected Lore
 
 ## Comparison rules
 
-- Dashed lines are before and solid lines are after in Figure 3.
+- Figure 3 places the dashed legacy distributions above and the solid corrected distributions below.
 - Dark arrows/values are before and red arrows/values are after in four-box LEC diagrams.
 - Figures 9, 10, 11, 13 and 14 place before above and after below.
 - Figure 15 places before and after side by side.
@@ -37,7 +37,7 @@ This report compares the legacy article results directly with the corrected Lore
 
 ![Figure 3](../figures/lec_climatology_corrected/fig_03_term_pdfs_before_after.png)
 
-*LEC term probability densities: legacy before values are dashed and corrected after values are solid.*
+*LEC term probability densities with the legacy before distributions above and corrected after distributions below.*
 
 ### Figure 4
 
