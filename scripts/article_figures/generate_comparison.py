@@ -62,7 +62,7 @@ from scripts.article_figures.plotting import (  # noqa: E402
 FIGURE_CAPTIONS = {
     "1": "Track density and the three genesis regions; this track-only reference is common to both versions.",
     "2": "Reference four-box Lorenz Energy Cycle diagram; this conceptual panel is common to both versions.",
-    "3": "LEC term probability densities: legacy before values are dashed and corrected after values are solid.",
+    "3": "LEC term probability densities with the legacy before distributions above and corrected after distributions below.",
     "4": "Phase-mean LEC: dark arrows and values are before; red arrows and values are after.",
     "5": "EOF 1 LEC loadings before and after, after matching modes and aligning their signs.",
     "6": "EOF 2 LEC loadings before and after, after matching modes and aligning their signs.",
@@ -103,31 +103,52 @@ def fig03(legacy: pd.DataFrame, corrected: pd.DataFrame, stem: Path) -> None:
         ("(F) Budget terms", TENDENCY_TERMS, 1.0, "W m$^{-2}$"),
     ]
     colors = plt.get_cmap("tab10").colors
-    figure, axes = plt.subplots(2, 3, figsize=(10.8, 6.5))
-    for ax, (title, terms, scale, unit) in zip(axes.flat, groups):
-        for index, term in enumerate(terms):
-            color = colors[index % len(colors)]
-            _kde(ax, legacy[term], label="_nolegend_", color=color, scale=scale)
-            ax.lines[-1].set_linestyle("--")
-            _kde(ax, corrected[term], label=term.replace(" (finite diff.)", ""), color=color, scale=scale)
-        if scale == 1.0:
-            ax.axvline(0, color="0.45", linestyle=":", linewidth=0.7)
-        ax.set_title(title, fontsize=10, fontweight="bold", loc="left")
-        ax.set_xlabel(unit, fontsize=8)
-        ax.set_ylabel("Density", fontsize=8)
-        ax.tick_params(labelsize=7)
-        ax.grid(alpha=0.18, linewidth=0.4)
-        term_legend = ax.legend(fontsize=6.1, frameon=False, ncol=2 if len(terms) > 4 else 1, loc="upper right")
-        ax.add_artist(term_legend)
-        ax.legend(
-            handles=[
-                plt.Line2D([], [], color="0.25", linestyle="--", label="before"),
-                plt.Line2D([], [], color="0.25", linestyle="-", label="after"),
-            ],
-            fontsize=6.2, frameon=False, loc="upper left",
+    figure, axes = plt.subplots(4, 3, figsize=(10.8, 12.8))
+    before_axes = axes[:2].flat
+    after_axes = axes[2:].flat
+    for before_ax, after_ax, (title, terms, scale, unit) in zip(before_axes, after_axes, groups):
+        for ax, frame, linestyle in (
+            (before_ax, legacy, "--"),
+            (after_ax, corrected, "-"),
+        ):
+            for index, term in enumerate(terms):
+                color = colors[index % len(colors)]
+                _kde(
+                    ax,
+                    frame[term],
+                    label=term.replace(" (finite diff.)", ""),
+                    color=color,
+                    scale=scale,
+                )
+                ax.lines[-1].set_linestyle(linestyle)
+            if scale == 1.0:
+                ax.axvline(0, color="0.45", linestyle=":", linewidth=0.7)
+            ax.set_title(title, fontsize=9.3, fontweight="bold", loc="left")
+            ax.set_xlabel(unit, fontsize=8)
+            ax.set_ylabel("Density", fontsize=8)
+            ax.tick_params(labelsize=7)
+            ax.grid(alpha=0.18, linewidth=0.4)
+            ax.legend(
+                fontsize=6.1,
+                frameon=False,
+                ncol=2 if len(terms) > 4 else 1,
+                loc="upper right",
+            )
+
+        x_limits = (
+            min(before_ax.get_xlim()[0], after_ax.get_xlim()[0]),
+            max(before_ax.get_xlim()[1], after_ax.get_xlim()[1]),
         )
-    figure.suptitle("LEC term distributions before and after the toolkit correction", fontsize=13, fontweight="bold")
-    figure.tight_layout(rect=(0, 0, 1, 0.96))
+        y_limit = max(before_ax.get_ylim()[1], after_ax.get_ylim()[1])
+        before_ax.set_xlim(x_limits)
+        after_ax.set_xlim(x_limits)
+        before_ax.set_ylim(0, y_limit)
+        after_ax.set_ylim(0, y_limit)
+
+    figure.suptitle("LEC term distributions before and after the toolkit correction", y=0.985, fontsize=13, fontweight="bold")
+    figure.text(0.5, 0.94, "Before - legacy", ha="center", va="center", fontsize=11, fontweight="bold", color="#343434")
+    figure.text(0.5, 0.49, "After - corrected", ha="center", va="center", fontsize=11, fontweight="bold", color="#d62728")
+    figure.subplots_adjust(left=0.07, right=0.985, bottom=0.055, top=0.90, wspace=0.23, hspace=0.55)
     save_pair(figure, stem)
 
 
@@ -157,7 +178,9 @@ def _eof_series(loadings: pd.DataFrame, version: str, phase: str, mode: int) -> 
 
 
 def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2))
+    compact = mode in (2, 3, 4)
+    gridspec_kw = {"wspace": -0.06} if compact else None
+    figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2), gridspec_kw=gridspec_kw)
     for ax, phase, tag in zip(axes.flat, PHASES, "ABCD"):
         before_var = variance[
             (variance["scope"] == phase) & (variance["eof"] == mode) & (variance["version"] == "before")
@@ -179,7 +202,10 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} loadings before and after", fontsize=14, fontweight="bold")
-    figure.tight_layout(rect=(0, 0.045, 1, 0.96))
+    if compact:
+        figure.subplots_adjust(left=0.035, right=0.965, bottom=0.075, top=0.92, wspace=-0.06, hspace=0.12)
+    else:
+        figure.tight_layout(rect=(0, 0.045, 1, 0.96))
     save_pair(figure, stem)
 
 
@@ -257,8 +283,16 @@ def fig12(
         old_ids = set(legacy_assignments.loc[legacy_assignments["cluster"] == cluster, "track_id"].astype(int))
         new_ids = set(corrected_assignments.loc[corrected_assignments["cluster"] == cluster, "track_id"].astype(int))
         groups.append((f"Cluster {cluster}", old_ids, new_ids))
-    figure, axes = plt.subplots(2, 3, figsize=(11.2, 7.7), gridspec_kw={"wspace": 0.06})
-    for ax, (label, old_ids, new_ids), tag in zip(axes.flat, groups, "ABCDE"):
+    figure = plt.figure(figsize=(8.6, 10.5))
+    grid = figure.add_gridspec(3, 4, wspace=-0.10, hspace=0.08)
+    axes = [
+        figure.add_subplot(grid[0, 1:3]),
+        figure.add_subplot(grid[1, 0:2]),
+        figure.add_subplot(grid[1, 2:4]),
+        figure.add_subplot(grid[2, 0:2]),
+        figure.add_subplot(grid[2, 2:4]),
+    ]
+    for ax, (label, old_ids, new_ids), tag in zip(axes, groups, "ABCDE"):
         old_mean, old_std = _group_values(legacy, old_ids)
         new_mean, new_std = _group_values(corrected, new_ids)
         draw_cycle_comparison(
@@ -266,10 +300,9 @@ def fig12(
             before_uncertainty=old_std, after_uncertainty=new_std,
             title=f"({tag}) {label}\nn {len(old_ids)} → {len(new_ids)}",
         )
-    axes.flat[-1].axis("off")
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle("Intense-cyclone LEC groups before and after", fontsize=14, fontweight="bold")
-    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.09, top=0.91, wspace=0.06, hspace=0.14)
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.075, top=0.93, wspace=-0.10, hspace=0.08)
     save_pair(figure, stem)
 
 
@@ -340,26 +373,26 @@ def fig14(assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame, 
 
 
 def fig15(stats: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(1, 2, figsize=(12.0, 6.2), gridspec_kw={"wspace": -0.05})
+    figure, axes = plt.subplots(1, 2, figsize=(12.0, 6.2), gridspec_kw={"wspace": -0.08})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _phase_series(stats, version, phase, "mean"), PHASE_COLORS[phase]) for phase in PHASES]
         draw_cycle_overlay(ax, series, title=title, scale="terms")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     figure.suptitle("Phase-mean LEC synthesis: before versus after", fontsize=14, fontweight="bold")
-    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.05)
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.08)
     save_pair(figure, stem)
 
 
 def fig16(mode: int, loadings: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.15})
+    figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.18})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _eof_series(loadings, version, phase, mode), PHASE_COLORS[phase]) for phase in PHASES]
         draw_cycle_overlay(ax, series, title=title, scale="eof")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} synthesis: before versus matched/sign-aligned after", fontsize=14, fontweight="bold")
-    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.15)
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.18)
     save_pair(figure, stem)
 
 
@@ -371,7 +404,7 @@ def write_report_markdown(path: Path, manifest: pd.DataFrame, provenance: dict, 
         "",
         "## Comparison rules",
         "",
-        "- Dashed lines are before and solid lines are after in Figure 3.",
+        "- Figure 3 places the dashed legacy distributions above and the solid corrected distributions below.",
         "- Dark arrows/values are before and red arrows/values are after in four-box LEC diagrams.",
         "- Figures 9, 10, 11, 13 and 14 place before above and after below.",
         "- Figure 15 places before and after side by side.",
