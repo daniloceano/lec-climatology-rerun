@@ -132,7 +132,7 @@ def fig03(legacy: pd.DataFrame, corrected: pd.DataFrame, stem: Path) -> None:
 
 
 def fig04(stats: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2))
+    figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2), gridspec_kw={"wspace": -0.10})
     for ax, phase, tag in zip(axes.flat, PHASES, "ABCD"):
         draw_cycle_comparison(
             ax,
@@ -144,7 +144,7 @@ def fig04(stats: pd.DataFrame, stem: Path) -> None:
         )
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle("Phase-mean Lorenz Energy Cycle before and after\nmean ± sample standard deviation", fontsize=14, fontweight="bold")
-    figure.tight_layout(rect=(0, 0.045, 1, 0.94))
+    figure.subplots_adjust(left=0.035, right=0.965, bottom=0.075, top=0.90, wspace=-0.10, hspace=0.12)
     save_pair(figure, stem)
 
 
@@ -257,7 +257,7 @@ def fig12(
         old_ids = set(legacy_assignments.loc[legacy_assignments["cluster"] == cluster, "track_id"].astype(int))
         new_ids = set(corrected_assignments.loc[corrected_assignments["cluster"] == cluster, "track_id"].astype(int))
         groups.append((f"Cluster {cluster}", old_ids, new_ids))
-    figure, axes = plt.subplots(2, 3, figsize=(11.2, 7.7))
+    figure, axes = plt.subplots(2, 3, figsize=(11.2, 7.7), gridspec_kw={"wspace": 0.06})
     for ax, (label, old_ids, new_ids), tag in zip(axes.flat, groups, "ABCDE"):
         old_mean, old_std = _group_values(legacy, old_ids)
         new_mean, new_std = _group_values(corrected, new_ids)
@@ -269,7 +269,7 @@ def fig12(
     axes.flat[-1].axis("off")
     figure.legend(handles=comparison_legend_handles(), loc="lower center", ncol=2, frameon=False, fontsize=9)
     figure.suptitle("Intense-cyclone LEC groups before and after", fontsize=14, fontweight="bold")
-    figure.tight_layout(rect=(0, 0.05, 1, 0.95))
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.09, top=0.91, wspace=0.06, hspace=0.14)
     save_pair(figure, stem)
 
 
@@ -340,26 +340,26 @@ def fig14(assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame, 
 
 
 def fig15(stats: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(1, 2, figsize=(12.0, 6.2))
+    figure, axes = plt.subplots(1, 2, figsize=(12.0, 6.2), gridspec_kw={"wspace": -0.05})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _phase_series(stats, version, phase, "mean"), PHASE_COLORS[phase]) for phase in PHASES]
         draw_cycle_overlay(ax, series, title=title, scale="terms")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     figure.suptitle("Phase-mean LEC synthesis: before versus after", fontsize=14, fontweight="bold")
-    figure.tight_layout(rect=(0, 0.06, 1, 0.95))
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.05)
     save_pair(figure, stem)
 
 
 def fig16(mode: int, loadings: pd.DataFrame, stem: Path) -> None:
-    figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.12})
+    figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.15})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _eof_series(loadings, version, phase, mode), PHASE_COLORS[phase]) for phase in PHASES]
         draw_cycle_overlay(ax, series, title=title, scale="eof")
     handles = [plt.Line2D([], [], color=PHASE_COLORS[p], linewidth=4, label=p) for p in PHASES]
     figure.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=9)
     figure.suptitle(f"EOF {mode} synthesis: before versus matched/sign-aligned after", fontsize=14, fontweight="bold")
-    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.12)
+    figure.subplots_adjust(left=0.025, right=0.975, bottom=0.13, top=0.90, wspace=-0.15)
     save_pair(figure, stem)
 
 
