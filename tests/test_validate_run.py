@@ -7,6 +7,12 @@ import pandas as pd
 
 from scripts.lec_climatology_rerun.common import RunConfig, StateDB
 from scripts.lec_climatology_rerun.validate_run import audit
+from scripts.utils import corrected_lec
+
+
+def test_utils_package_exports_corrected_lec() -> None:
+    """Product builders can import the utility retained after migration."""
+    assert corrected_lec.__name__ == "scripts.utils.corrected_lec"
 
 
 def test_quick_audit_matches_manifest_state_and_result_directory(tmp_path: Path):
