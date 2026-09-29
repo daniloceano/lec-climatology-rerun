@@ -25,7 +25,7 @@
     5.236365551862333,
     4.362477076189223
   ],
-  "paired_control_report": "docs/paired_control/lec_rerun_paired_control_report.pdf",
+  "paired_control_report": "docs/comparison/paired_control/lec_rerun_paired_control_report.pdf",
   "repository_commit_before_generation": "af8973a230fb7f450531c9dbeb0345913c336cda",
   "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a",
   "toolkit_correction_commit": "d07707767c2962fed0475ff4573e7d15a97f8c69",

@@ -25,7 +25,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-RESULTS_NAME = "article_comparison"
+RESULTS_NAME = Path("comparison") / "article"
 
 
 def page_footer(canvas, document) -> None:
@@ -51,7 +51,7 @@ def main() -> int:
     args = parser.parse_args()
     root = args.output_root.resolve()
     results_dir = root / "results" / RESULTS_NAME
-    output = root / "docs" / "lec_climatology_article_before_after_report.pdf"
+    output = root / "docs" / "comparison" / "article_before_after_report.pdf"
 
     manifest = pd.read_csv(results_dir / "figure_manifest.csv")
     provenance = json.loads((results_dir / "provenance.json").read_text())
@@ -278,7 +278,7 @@ def main() -> int:
             Spacer(1, 8 * mm),
             Paragraph("Reproducibility record", styles["Section"]),
             Paragraph(
-                "Input and output SHA-256 hashes, population counts, EOF matching diagnostics, cluster centers, assignments and the audited source commit are recorded under results/article_comparison. The paired control is kept separately under docs/paired_control/.",
+                "Input and output SHA-256 hashes, population counts, EOF matching diagnostics, cluster centers, assignments and the audited source commit are recorded under results/comparison/article. The paired control is kept separately under docs/comparison/paired_control/.",
                 styles["BodySmall"],
             ),
         ]

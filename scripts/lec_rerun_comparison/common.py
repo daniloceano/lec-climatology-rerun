@@ -30,9 +30,9 @@ LEGACY_RESULTS = Path(
     )
 )
 
-RESULTS_DIR = OUTPUT_ROOT / "results" / "paired_control"
-FIGURES_DIR = OUTPUT_ROOT / "figures" / "paired_control"
-REPORT_PATH = OUTPUT_ROOT / "docs" / "paired_control" / "lec_rerun_paired_control_report.md"
+RESULTS_DIR = OUTPUT_ROOT / "results" / "comparison" / "paired_control"
+FIGURES_DIR = OUTPUT_ROOT / "figures" / "comparison" / "paired_control"
+REPORT_PATH = OUTPUT_ROOT / "docs" / "comparison" / "paired_control" / "lec_rerun_paired_control_report.md"
 
 CORRECTED_MEANS = RESULTS_DIR / "corrected_phase_means.parquet"
 PAIRED_TABLE = RESULTS_DIR / "paired_terms.parquet"

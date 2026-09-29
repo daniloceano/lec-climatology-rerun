@@ -4,8 +4,13 @@
 
 | Artifact | Purpose |
 |---|---|
-| `lec_climatology_article_before_after_report.pdf` | Shareable final report: full archived article population versus validated corrected rerun |
-| `lec_climatology_article_before_after_report.md` | Markdown source with links to every paper figure |
+| `comparison/article_before_after_report.pdf` | Shareable final report: full archived article population versus validated corrected rerun |
+| `comparison/article_before_after_report.md` | Markdown source with links to every comparison figure |
+| `article_figure_manifest.csv` | Published-to-original/corrected/comparison mapping |
+| `article_artifact_dependency_audit.md` | Per-figure recomputation decision |
+| `original_workflow_inventory.md` | Legacy script/input/output audit |
+| `data_sources.md` | External input metadata, hashes and observed discrepancy |
+| `provenance/current_to_proposed_mapping.csv` | Pre-move to final-path mapping |
 
 The canonical comparison uses 6,789 legacy cyclones and 3,820 corrected
 cyclones. Its differences combine the toolkit correction and population
@@ -13,7 +18,7 @@ change.
 
 ## Paired control
 
-`paired_control/` contains the correction-only diagnostic report. Both sides
+`comparison/paired_control/` contains the correction-only diagnostic report. Both sides
 use the same 3,820 cyclones, so it is scientifically useful but must not be
 presented as the literal article-population comparison.
 

@@ -42,9 +42,9 @@ Usage
 
 Outputs
 -------
-    figures/paired_control/eof<N>_diagram_before_after.png / .pdf
-    results/paired_control/eof_loadings.csv    all modes, all terms
-    results/paired_control/eof_variance.csv    explained variance and
+    figures/comparison/paired_control/eof<N>_diagram_before_after.png / .pdf
+    results/comparison/paired_control/eof_loadings.csv    all modes, all terms
+    results/comparison/paired_control/eof_variance.csv    explained variance and
                                                      pattern correlation
 
 Author: Danilo Couto de Souza
@@ -199,7 +199,7 @@ def footnote(loadings: pd.DataFrame, eof: int) -> str:
     worst = block.loc[block["diff"].abs().idxmax()]
     return (
         f"{', '.join(OMITTED_TERMS)} take part in the EOF but have no place in the "
-        f"classical diagram; their loadings are in results/paired_control/"
+        f"classical diagram; their loadings are in results/comparison/paired_control/"
         f"eof_loadings.csv (largest change: {worst['term']} "
         f"{worst['legacy']:+.2f} → {worst['corrected']:+.2f} during {worst['phase']})."
     )

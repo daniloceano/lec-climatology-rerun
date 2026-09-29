@@ -56,11 +56,16 @@ continuing.
 ## Outputs
 
 ```text
-figures/paper/                                  20 PNG + 20 vector PDF files
-results/article_comparison/                     tables, assignments and hashes
-docs/lec_climatology_article_before_after_report.md
-docs/lec_climatology_article_before_after_report.pdf
+figures/comparison/article/                                  20 PNG + 20 vector PDF files
+results/comparison/article/                     tables, assignments and hashes
+docs/comparison/article_before_after_report.md
+docs/comparison/article_before_after_report.pdf
 ```
+
+The comparison CSVs can be separated without numerical recomputation with
+`materialize_version_views.py`, which writes hash-traceable `before` and
+`after` views under `results/original/article/` and
+`results/corrected/article/`.
 
 The figure manifest records SHA-256 hashes for each PNG/PDF pair. Provenance
 records both input hashes, population sizes, source/toolkit commits and EOF

@@ -3,8 +3,8 @@
 """
 step7_build_report_pdf.py — Render the technical report as a shareable PDF.
 
-Converts docs/paired_control/lec_rerun_paired_control_report.md into
-docs/paired_control/lec_rerun_paired_control_report.pdf, with the figures embedded, so the report
+Converts docs/comparison/paired_control/lec_rerun_paired_control_report.md into
+docs/comparison/paired_control/lec_rerun_paired_control_report.pdf, with the figures embedded, so the report
 can be sent to co-authors as a single file.
 
 There is no pandoc or LaTeX in this environment, so the PDF is built directly

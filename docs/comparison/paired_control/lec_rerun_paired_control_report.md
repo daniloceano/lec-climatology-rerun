@@ -37,7 +37,7 @@ tendencies — the corrections did not touch them.
 
 The 8 terms that did change are exactly those the toolkit correction
 targets, plus the residuals that inherit them (see
-`figures/paired_control/violin_conversion.png` and `violin_boundary.png`;
+`figures/comparison/paired_control/violin_conversion.png` and `violin_boundary.png`;
 the energy, generation and budget figures show the two halves of each violin
 overlying each other exactly):
 
@@ -53,23 +53,23 @@ overlying each other exactly):
 | RKz | residual | 8.18 | 6.04 | -1.81 | 0.09× | 1.00 | 3.0% |
 
 
-![Figure 1. Conversion terms, legacy (left half) versus corrected (right half) of each violin, by life-cycle phase. C_A shifts upward in every phase and C_K crosses zero.](../../figures/paired_control/violin_conversion.png)
+![Figure 1. Conversion terms, legacy (left half) versus corrected (right half) of each violin, by life-cycle phase. C_A shifts upward in every phase and C_K crosses zero.](../../../figures/comparison/paired_control/violin_conversion.png)
 
 *Figure 1. Conversion terms, legacy (left half) versus corrected (right half) of each violin, by life-cycle phase. C_A shifts upward in every phase and C_K crosses zero.*
 
 
-![Figure 2. Boundary transport terms. The four lateral fluxes are unchanged; the two pressure-work terms BΦZ and BΦE collapse.](../../figures/paired_control/violin_boundary.png)
+![Figure 2. Boundary transport terms. The four lateral fluxes are unchanged; the two pressure-work terms BΦZ and BΦE collapse.](../../../figures/comparison/paired_control/violin_boundary.png)
 
 *Figure 2. Boundary transport terms. The four lateral fluxes are unchanged; the two pressure-work terms BΦZ and BΦE collapse.*
 
 
-![Figure 3. Residual terms, which inherit the C_A and C_K corrections through the budget closure.](../../figures/paired_control/violin_residual.png)
+![Figure 3. Residual terms, which inherit the C_A and C_K corrections through the budget closure.](../../../figures/comparison/paired_control/violin_residual.png)
 
 *Figure 3. Residual terms, which inherit the C_A and C_K corrections through the budget closure.*
 
 The energy, generation and budget-tendency violins are not reproduced here: the
 two halves of every violin coincide exactly. They are in
-`figures/paired_control/` if a reader wants to confirm it.
+`figures/comparison/paired_control/` if a reader wants to confirm it.
 
 *Relative change* is the median |Δ| divided by the median |legacy| value: 1.00×
 means the typical change is as large as the term itself. *Spearman* is the
@@ -103,13 +103,13 @@ comparable and are excluded.
 
 Sign is what carries physical meaning in the LEC, so a change of sign matters more
 than a change of magnitude. Per-sample sign-change rates are in
-`figures/paired_control/signflip_heatmap.png`; the terms at risk are
+`figures/comparison/paired_control/signflip_heatmap.png`; the terms at risk are
 Ca, Ck, BΦZ, BΦE, RGz, RGe and RKe.
 The worst case is BΦE, which changes sign in
 68% of cyclone-phases.
 
 
-![Figure 4. Percentage of cyclone-phases whose term changed sign between the two versions.](../../figures/paired_control/signflip_heatmap.png)
+![Figure 4. Percentage of cyclone-phases whose term changed sign between the two versions.](../../../figures/comparison/paired_control/signflip_heatmap.png)
 
 *Figure 4. Percentage of cyclone-phases whose term changed sign between the two versions.*
 
@@ -131,7 +131,7 @@ the conversion Lorenz Phase Space and the EP1 signature, so the clustering must 
 rerun before any EP statement is reasserted.
 
 **The barotropic result is the one that moves.**
-`figures/paired_control/lec_diagram_before_after.png` shows this on the
+`figures/comparison/paired_control/lec_diagram_before_after.png` shows this on the
 four-box diagram: the `Ck` arrow reverses between the two versions during the
 incipient and intensification phases, and shortens during maturity and decay.
 With the convention of de Souza et al. (2025) — `Ca` > 0 feeds eddy APE,
@@ -157,7 +157,7 @@ last figure drops from 70% to
 19%.
 
 
-![Figure 5. Four-box Lorenz Energy Cycle by life-cycle phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.](../../figures/paired_control/lec_diagram_before_after.png)
+![Figure 5. Four-box Lorenz Energy Cycle by life-cycle phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.](../../../figures/comparison/paired_control/lec_diagram_before_after.png)
 
 *Figure 5. Four-box Lorenz Energy Cycle by life-cycle phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.*
 
@@ -183,7 +183,7 @@ does not:
 
 
 **The leading EOF survives in shape but is reweighted.**
-`figures/paired_control/eof1_diagram_before_after.png` redraws the thesis
+`figures/comparison/paired_control/eof1_diagram_before_after.png` redraws the thesis
 EOF figure with both versions on the same axes. EOF 1 still explains a comparable
 share of the variance (21-31% before, 21-29% after) and the two
 patterns correlate at 0.77-0.86 across phases, so the mode is recognisably the
@@ -196,7 +196,7 @@ downstream PCA and k-means will inherit, and another reason to rerun them rather
 than assume the EPs carry over. Beyond the leading mode the rank itself is not preserved — legacy EOF 2 in the incipient phase matches corrected mode 3; legacy EOF 3 in the incipient phase matches corrected mode 2; legacy EOF 2 in the intensification phase matches corrected mode 4; legacy EOF 3 in the intensification phase matches corrected mode 2; legacy EOF 4 in the intensification phase matches corrected mode 3; legacy EOF 2 in the mature phase matches corrected mode 3; legacy EOF 3 in the mature phase matches corrected mode 2; legacy EOF 3 in the decay phase matches corrected mode 4; legacy EOF 4 in the decay phase matches corrected mode 3 — because EOF 2 and EOF 3 explain similar variance and the correction is enough to reorder them. The figures pair modes by pattern correlation rather than by rank; comparing them by rank would be misleading.
 
 
-![Figure 6. EOF 1 loadings on the LEC diagram, by phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.](../../figures/paired_control/eof1_diagram_before_after.png)
+![Figure 6. EOF 1 loadings on the LEC diagram, by phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.](../../../figures/comparison/paired_control/eof1_diagram_before_after.png)
 
 *Figure 6. EOF 1 loadings on the LEC diagram, by phase: (A) incipient, (B) intensification, (C) mature, (D) decay. Dark is legacy, red is corrected.*
 
@@ -223,14 +223,14 @@ any future use of the pressure-work terms.
 
 | Artifact | Path |
 |---|---|
-| This report (PDF, figures embedded) | `docs/paired_control/lec_rerun_paired_control_report.pdf` |
-| Paired table | `results/paired_control/paired_terms.parquet` |
-| Term summary | `results/paired_control/term_change_summary.csv` |
-| Per-phase summary | `results/paired_control/term_change_by_phase.csv` |
-| Conversion regime | `results/paired_control/conversion_regime.csv` |
-| Coverage / provenance | `results/paired_control/coverage.json` |
-| Split-violin figures | `figures/paired_control/violin_{energy,conversion,generation,boundary,budget,residual}.png` |
-| Sign-change heatmap | `figures/paired_control/signflip_heatmap.png` |
-| Before/after LEC diagram | `figures/paired_control/lec_diagram_before_after.png` |
-| Before/after EOF diagrams | `figures/paired_control/eof{1,2,3,4}_diagram_before_after.png` |
-| EOF loadings and variance | `results/paired_control/eof_loadings.csv`, `eof_variance.csv` |
+| This report (PDF, figures embedded) | `docs/comparison/paired_control/lec_rerun_paired_control_report.pdf` |
+| Paired table | `results/comparison/paired_control/paired_terms.parquet` |
+| Term summary | `results/comparison/paired_control/term_change_summary.csv` |
+| Per-phase summary | `results/comparison/paired_control/term_change_by_phase.csv` |
+| Conversion regime | `results/comparison/paired_control/conversion_regime.csv` |
+| Coverage / provenance | `results/comparison/paired_control/coverage.json` |
+| Split-violin figures | `figures/comparison/paired_control/violin_{energy,conversion,generation,boundary,budget,residual}.png` |
+| Sign-change heatmap | `figures/comparison/paired_control/signflip_heatmap.png` |
+| Before/after LEC diagram | `figures/comparison/paired_control/lec_diagram_before_after.png` |
+| Before/after EOF diagrams | `figures/comparison/paired_control/eof{1,2,3,4}_diagram_before_after.png` |
+| EOF loadings and variance | `results/comparison/paired_control/eof_loadings.csv`, `eof_variance.csv` |

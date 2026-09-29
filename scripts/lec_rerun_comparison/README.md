@@ -50,13 +50,13 @@ Individual steps, in execution order:
 
 | Step | Script | Produces |
 |---|---|---|
-| 1 | `step1_build_comparison_table.py` | `results/paired_control/paired_terms.parquet`, `corrected_phase_means.parquet`, `coverage.json` |
-| 2 | `step2_plot_split_violins.py` | `figures/paired_control/violin_<group>.png`, `signflip_heatmap.png` |
+| 1 | `step1_build_comparison_table.py` | `results/comparison/paired_control/paired_terms.parquet`, `corrected_phase_means.parquet`, `coverage.json` |
+| 2 | `step2_plot_split_violins.py` | `figures/comparison/paired_control/violin_<group>.png`, `signflip_heatmap.png` |
 | 3 | `step3_summary_stats.py` | `term_change_summary.csv`, `term_change_by_phase.csv`, `conversion_regime.csv` |
-| 5 | `step5_plot_lec_diagram.py` | `figures/paired_control/lec_diagram_before_after.png` |
-| 6 | `step6_plot_eof_diagram.py --eof 1..4` | `figures/paired_control/eof<N>_diagram_before_after.png`, `eof_loadings.csv`, `eof_variance.csv` |
-| 4 | `step4_write_report.py` | `docs/paired_control/lec_rerun_paired_control_report.md` |
-| 7 | `step7_build_report_pdf.py` | `docs/paired_control/lec_rerun_paired_control_report.pdf` |
+| 5 | `step5_plot_lec_diagram.py` | `figures/comparison/paired_control/lec_diagram_before_after.png` |
+| 6 | `step6_plot_eof_diagram.py --eof 1..4` | `figures/comparison/paired_control/eof<N>_diagram_before_after.png`, `eof_loadings.csv`, `eof_variance.csv` |
+| 4 | `step4_write_report.py` | `docs/comparison/paired_control/lec_rerun_paired_control_report.md` |
+| 7 | `step7_build_report_pdf.py` | `docs/comparison/paired_control/lec_rerun_paired_control_report.pdf` |
 
 Steps 5 and 6 run before step 4 so that the report can point at figures that
 exist; step 7 runs after it. Steps 5 and 6 draw through `lec_diagram.py`, which

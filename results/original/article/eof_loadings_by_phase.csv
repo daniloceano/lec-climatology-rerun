@@ -1,0 +1,769 @@
+scope,eof,version,term,loading
+incipient,1,before,Az,0.22976797
+incipient,1,before,Ae,0.52327281
+incipient,1,before,Kz,0.25486759
+incipient,1,before,Ke,0.63643112
+incipient,1,before,Cz,0.077012076
+incipient,1,before,Ca,0.85092676
+incipient,1,before,Ck,-0.41760213
+incipient,1,before,Ce,0.73134951
+incipient,1,before,BAz,0.51131308
+incipient,1,before,BAe,-0.17429436
+incipient,1,before,BKz,-0.58240417
+incipient,1,before,BKe,0.2890819
+incipient,1,before,BΦZ,0.43836682
+incipient,1,before,BΦE,0.28895173
+incipient,1,before,Gz,-0.10594816
+incipient,1,before,Ge,0.24062567
+incipient,1,before,∂Az/∂t (finite diff.),-0.23615181
+incipient,1,before,∂Ae/∂t (finite diff.),0.10461108
+incipient,1,before,∂Kz/∂t (finite diff.),0.14604521
+incipient,1,before,∂Ke/∂t (finite diff.),0.32534919
+incipient,1,before,RGz,-0.43878283
+incipient,1,before,RKz,0.59249808
+incipient,1,before,RGe,0.59086259
+incipient,1,before,RKe,-0.77940927
+incipient,2,before,Az,-0.13459836
+incipient,2,before,Ae,0.55925137
+incipient,2,before,Kz,0.258833
+incipient,2,before,Ke,0.12061414
+incipient,2,before,Cz,-0.44690263
+incipient,2,before,Ca,-0.12158846
+incipient,2,before,Ck,0.29575189
+incipient,2,before,Ce,0.30159835
+incipient,2,before,BAz,-0.44517775
+incipient,2,before,BAe,0.79022214
+incipient,2,before,BKz,0.026316856
+incipient,2,before,BKe,-0.065834026
+incipient,2,before,BΦZ,0.73323978
+incipient,2,before,BΦE,0.77036218
+incipient,2,before,Gz,-0.10511508
+incipient,2,before,Ge,-0.22465059
+incipient,2,before,∂Az/∂t (finite diff.),0.070974762
+incipient,2,before,∂Ae/∂t (finite diff.),-0.27902133
+incipient,2,before,∂Kz/∂t (finite diff.),0.14797356
+incipient,2,before,∂Ke/∂t (finite diff.),-0.071464374
+incipient,2,before,RGz,0.1518504
+incipient,2,before,RKz,0.052326506
+incipient,2,before,RGe,-0.56960371
+incipient,2,before,RKe,0.058057127
+incipient,3,before,Az,-0.28816091
+incipient,3,before,Ae,-0.28982221
+incipient,3,before,Kz,-0.24503968
+incipient,3,before,Ke,-0.15376054
+incipient,3,before,Cz,0.25317026
+incipient,3,before,Ca,-0.068350553
+incipient,3,before,Ck,-0.054027237
+incipient,3,before,Ce,0.016892984
+incipient,3,before,BAz,-0.20134172
+incipient,3,before,BAe,-0.14037758
+incipient,3,before,BKz,-0.54257142
+incipient,3,before,BKe,-0.31478186
+incipient,3,before,BΦZ,0.24933363
+incipient,3,before,BΦE,0.2649542
+incipient,3,before,Gz,0.58366342
+incipient,3,before,Ge,0.44535583
+incipient,3,before,∂Az/∂t (finite diff.),0.4670337
+incipient,3,before,∂Ae/∂t (finite diff.),0.12353744
+incipient,3,before,∂Kz/∂t (finite diff.),0.52062924
+incipient,3,before,∂Ke/∂t (finite diff.),-0.25052469
+incipient,3,before,RGz,0.64157005
+incipient,3,before,RKz,0.62054601
+incipient,3,before,RGe,0.21243389
+incipient,3,before,RKe,0.13422746
+incipient,4,before,Az,0.75041535
+incipient,4,before,Ae,-0.11536111
+incipient,4,before,Kz,0.69181703
+incipient,4,before,Ke,-0.24133562
+incipient,4,before,Cz,-0.0078234345
+incipient,4,before,Ca,-0.0052950652
+incipient,4,before,Ck,-0.15956154
+incipient,4,before,Ce,-0.26836728
+incipient,4,before,BAz,0.27642192
+incipient,4,before,BAe,0.0054520105
+incipient,4,before,BKz,-0.15681625
+incipient,4,before,BKe,-0.13051931
+incipient,4,before,BΦZ,-0.0038017106
+incipient,4,before,BΦE,-0.14545489
+incipient,4,before,Gz,-0.33395244
+incipient,4,before,Ge,-0.29985257
+incipient,4,before,∂Az/∂t (finite diff.),0.39774531
+incipient,4,before,∂Ae/∂t (finite diff.),-0.029787464
+incipient,4,before,∂Kz/∂t (finite diff.),0.4338349
+incipient,4,before,∂Ke/∂t (finite diff.),-0.12264341
+incipient,4,before,RGz,0.01639921
+incipient,4,before,RKz,0.31636013
+incipient,4,before,RGe,-0.23071425
+incipient,4,before,RKe,0.10764554
+incipient,5,before,Az,0.18661348
+incipient,5,before,Ae,0.073605763
+incipient,5,before,Kz,0.20254198
+incipient,5,before,Ke,-0.05419675
+incipient,5,before,Cz,0.63892932
+incipient,5,before,Ca,0.027910507
+incipient,5,before,Ck,-0.16856235
+incipient,5,before,Ce,0.060612693
+incipient,5,before,BAz,0.21296579
+incipient,5,before,BAe,0.17092136
+incipient,5,before,BKz,-0.12711236
+incipient,5,before,BKe,-0.55693705
+incipient,5,before,BΦZ,0.17262701
+incipient,5,before,BΦE,0.086544882
+incipient,5,before,Gz,0.37383565
+incipient,5,before,Ge,0.023678903
+incipient,5,before,∂Az/∂t (finite diff.),-0.43255833
+incipient,5,before,∂Ae/∂t (finite diff.),-0.11033479
+incipient,5,before,∂Kz/∂t (finite diff.),-0.3879859
+incipient,5,before,∂Ke/∂t (finite diff.),0.0029638997
+incipient,5,before,RGz,-0.084951346
+incipient,5,before,RKz,-0.10177281
+incipient,5,before,RGe,-0.16273512
+incipient,5,before,RKe,0.3346526
+incipient,6,before,Az,0.096275069
+incipient,6,before,Ae,-0.21104848
+incipient,6,before,Kz,0.15800569
+incipient,6,before,Ke,-0.3960209
+incipient,6,before,Cz,-0.24747931
+incipient,6,before,Ca,-0.083199612
+incipient,6,before,Ck,0.51743211
+incipient,6,before,Ce,0.17687322
+incipient,6,before,BAz,0.19563019
+incipient,6,before,BAe,0.0096388066
+incipient,6,before,BKz,0.066853403
+incipient,6,before,BKe,-0.091813873
+incipient,6,before,BΦZ,0.15135929
+incipient,6,before,BΦE,0.23146799
+incipient,6,before,Gz,-0.1031584
+incipient,6,before,Ge,0.47423839
+incipient,6,before,∂Az/∂t (finite diff.),-0.18492601
+incipient,6,before,∂Ae/∂t (finite diff.),0.33459536
+incipient,6,before,∂Kz/∂t (finite diff.),0.090283528
+incipient,6,before,∂Ke/∂t (finite diff.),-0.26047652
+incipient,6,before,RGz,-0.46532974
+incipient,6,before,RKz,-0.06295058
+incipient,6,before,RGe,0.30792994
+incipient,6,before,RKe,0.21865399
+incipient,7,before,Az,0.033203462
+incipient,7,before,Ae,-0.036892906
+incipient,7,before,Kz,0.056152996
+incipient,7,before,Ke,-0.17212751
+incipient,7,before,Cz,0.36529286
+incipient,7,before,Ca,-0.1164224
+incipient,7,before,Ck,0.5103979
+incipient,7,before,Ce,-0.10953685
+incipient,7,before,BAz,0.19843099
+incipient,7,before,BAe,0.095346321
+incipient,7,before,BKz,-0.21238174
+incipient,7,before,BKe,0.66052629
+incipient,7,before,BΦZ,0.029582542
+incipient,7,before,BΦE,0.047167262
+incipient,7,before,Gz,0.31714595
+incipient,7,before,Ge,-0.15901688
+incipient,7,before,∂Az/∂t (finite diff.),-0.043388291
+incipient,7,before,∂Ae/∂t (finite diff.),-0.00043326665
+incipient,7,before,∂Kz/∂t (finite diff.),0.02684237
+incipient,7,before,∂Ke/∂t (finite diff.),0.25329171
+incipient,7,before,RGz,0.00055160924
+incipient,7,before,RKz,0.0633778
+incipient,7,before,RGe,-0.14571475
+incipient,7,before,RKe,-0.0887156
+incipient,8,before,Az,0.14153004
+incipient,8,before,Ae,0.086576819
+incipient,8,before,Kz,0.14846481
+incipient,8,before,Ke,0.097001295
+incipient,8,before,Cz,0.030829452
+incipient,8,before,Ca,-0.02729709
+incipient,8,before,Ck,-0.1027987
+incipient,8,before,Ce,0.034675608
+incipient,8,before,BAz,-0.13843303
+incipient,8,before,BAe,0.29040467
+incipient,8,before,BKz,0.19663741
+incipient,8,before,BKe,-0.024329501
+incipient,8,before,BΦZ,-0.045922239
+incipient,8,before,BΦE,-0.04884087
+incipient,8,before,Gz,0.076056972
+incipient,8,before,Ge,0.14319358
+incipient,8,before,∂Az/∂t (finite diff.),0.10595586
+incipient,8,before,∂Ae/∂t (finite diff.),0.68812679
+incipient,8,before,∂Kz/∂t (finite diff.),0.080604318
+incipient,8,before,∂Ke/∂t (finite diff.),0.5765873
+incipient,8,before,RGz,0.2102589
+incipient,8,before,RKz,-0.12464437
+incipient,8,before,RGe,0.097426748
+incipient,8,before,RKe,0.14346244
+intensification,1,before,Az,0.19524889
+intensification,1,before,Ae,0.73113923
+intensification,1,before,Kz,0.3379418
+intensification,1,before,Ke,0.70858301
+intensification,1,before,Cz,-0.24423084
+intensification,1,before,Ca,0.89284509
+intensification,1,before,Ck,-0.45058958
+intensification,1,before,Ce,0.88093445
+intensification,1,before,BAz,0.41403849
+intensification,1,before,BAe,-0.080766423
+intensification,1,before,BKz,-0.5286291
+intensification,1,before,BKe,0.28782972
+intensification,1,before,BΦZ,0.57398219
+intensification,1,before,BΦE,0.45677779
+intensification,1,before,Gz,-0.22104537
+intensification,1,before,Ge,0.65786643
+intensification,1,before,∂Az/∂t (finite diff.),-0.31685843
+intensification,1,before,∂Ae/∂t (finite diff.),0.20316606
+intensification,1,before,∂Kz/∂t (finite diff.),0.15825495
+intensification,1,before,∂Ke/∂t (finite diff.),0.36938318
+intensification,1,before,RGz,-0.53185134
+intensification,1,before,RKz,0.58083822
+intensification,1,before,RGe,0.77558379
+intensification,1,before,RKe,-0.87214194
+intensification,2,before,Az,-0.20673697
+intensification,2,before,Ae,0.12000425
+intensification,2,before,Kz,0.096751326
+intensification,2,before,Ke,-0.12895061
+intensification,2,before,Cz,-0.27473281
+intensification,2,before,Ca,-0.15127715
+intensification,2,before,Ck,0.14780483
+intensification,2,before,Ce,0.13773804
+intensification,2,before,BAz,-0.46836325
+intensification,2,before,BAe,0.47163841
+intensification,2,before,BKz,-0.36729853
+intensification,2,before,BKe,-0.26561677
+intensification,2,before,BΦZ,0.64547659
+intensification,2,before,BΦE,0.68916906
+intensification,2,before,Gz,0.12037392
+intensification,2,before,Ge,0.12139213
+intensification,2,before,∂Az/∂t (finite diff.),0.45952798
+intensification,2,before,∂Ae/∂t (finite diff.),-0.24265492
+intensification,2,before,∂Kz/∂t (finite diff.),0.46973941
+intensification,2,before,∂Ke/∂t (finite diff.),-0.38033319
+intensification,2,before,RGz,0.49694201
+intensification,2,before,RKz,0.43965439
+intensification,2,before,RGe,-0.27229179
+intensification,2,before,RKe,0.13591603
+intensification,3,before,Az,0.28284722
+intensification,3,before,Ae,-0.30659319
+intensification,3,before,Kz,-0.060940876
+intensification,3,before,Ke,-0.1481641
+intensification,3,before,Cz,0.53268786
+intensification,3,before,Ca,0.14116384
+intensification,3,before,Ck,-0.38551144
+intensification,3,before,Ce,-0.22007148
+intensification,3,before,BAz,0.37825812
+intensification,3,before,BAe,-0.46749592
+intensification,3,before,BKz,-0.53352772
+intensification,3,before,BKe,-0.25038272
+intensification,3,before,BΦZ,-0.18598417
+intensification,3,before,BΦE,-0.29631965
+intensification,3,before,Gz,0.25448463
+intensification,3,before,Ge,-0.14310429
+intensification,3,before,∂Az/∂t (finite diff.),0.46437804
+intensification,3,before,∂Ae/∂t (finite diff.),0.25128368
+intensification,3,before,∂Kz/∂t (finite diff.),0.539401
+intensification,3,before,∂Ke/∂t (finite diff.),-0.13184967
+intensification,3,before,RGz,0.2346849
+intensification,3,before,RKz,0.59553626
+intensification,3,before,RGe,0.18841648
+intensification,3,before,RKe,0.0010289927
+intensification,4,before,Az,0.75621439
+intensification,4,before,Ae,-0.037299125
+intensification,4,before,Kz,0.7590125
+intensification,4,before,Ke,-0.32638447
+intensification,4,before,Cz,-0.13220668
+intensification,4,before,Ca,0.041450224
+intensification,4,before,Ck,-0.0047553666
+intensification,4,before,Ce,-0.051767393
+intensification,4,before,BAz,0.31000247
+intensification,4,before,BAe,0.29161942
+intensification,4,before,BKz,0.14260621
+intensification,4,before,BKe,-0.25536065
+intensification,4,before,BΦZ,0.14120274
+intensification,4,before,BΦE,0.0360361
+intensification,4,before,Gz,-0.39662236
+intensification,4,before,Ge,-0.22763488
+intensification,4,before,∂Az/∂t (finite diff.),-0.049366849
+intensification,4,before,∂Ae/∂t (finite diff.),0.13742636
+intensification,4,before,∂Kz/∂t (finite diff.),0.17282071
+intensification,4,before,∂Ke/∂t (finite diff.),-0.18924044
+intensification,4,before,RGz,-0.39778879
+intensification,4,before,RKz,-0.044087969
+intensification,4,before,RGe,-0.26488132
+intensification,4,before,RKe,0.16547381
+intensification,5,before,Az,0.089950747
+intensification,5,before,Ae,0.1805336
+intensification,5,before,Kz,0.21593741
+intensification,5,before,Ke,0.049527932
+intensification,5,before,Cz,0.63599314
+intensification,5,before,Ca,-0.0029508913
+intensification,5,before,Ck,-0.16147881
+intensification,5,before,Ce,0.1003386
+intensification,5,before,BAz,0.11171866
+intensification,5,before,BAe,0.26423499
+intensification,5,before,BKz,-0.0062701358
+intensification,5,before,BKe,-0.34226727
+intensification,5,before,BΦZ,0.17831393
+intensification,5,before,BΦE,0.097504803
+intensification,5,before,Gz,0.64130875
+intensification,5,before,Ge,0.1217955
+intensification,5,before,∂Az/∂t (finite diff.),-0.28971073
+intensification,5,before,∂Ae/∂t (finite diff.),-0.054031986
+intensification,5,before,∂Kz/∂t (finite diff.),-0.32496799
+intensification,5,before,∂Ke/∂t (finite diff.),0.14104721
+intensification,5,before,RGz,0.12609264
+intensification,5,before,RKz,-0.13965421
+intensification,5,before,RGe,-0.12832549
+intensification,5,before,RKe,0.12563327
+intensification,6,before,Az,0.030537992
+intensification,6,before,Ae,-0.10315005
+intensification,6,before,Kz,0.070599917
+intensification,6,before,Ke,-0.15461867
+intensification,6,before,Cz,0.14371873
+intensification,6,before,Ca,-0.17753521
+intensification,6,before,Ck,0.62053137
+intensification,6,before,Ce,0.11565318
+intensification,6,before,BAz,0.16628586
+intensification,6,before,BAe,0.34046588
+intensification,6,before,BKz,-0.10693496
+intensification,6,before,BKe,0.51511301
+intensification,6,before,BΦZ,-0.10432393
+intensification,6,before,BΦE,-0.044442972
+intensification,6,before,Gz,0.26930664
+intensification,6,before,Ge,0.28193203
+intensification,6,before,∂Az/∂t (finite diff.),0.069510056
+intensification,6,before,∂Ae/∂t (finite diff.),0.43656726
+intensification,6,before,∂Kz/∂t (finite diff.),0.25915034
+intensification,6,before,∂Ke/∂t (finite diff.),0.20601232
+intensification,6,before,RGz,-0.072983256
+intensification,6,before,RKz,0.031027046
+intensification,6,before,RGe,0.030513665
+intensification,6,before,RKe,0.034056531
+intensification,7,before,Az,0.13087089
+intensification,7,before,Ae,0.093549769
+intensification,7,before,Kz,0.0023053161
+intensification,7,before,Ke,0.22600148
+intensification,7,before,Cz,-0.14787441
+intensification,7,before,Ca,-0.0018738291
+intensification,7,before,Ck,-0.36228773
+intensification,7,before,Ce,-0.0025606283
+intensification,7,before,BAz,-0.34002796
+intensification,7,before,BAe,0.34010721
+intensification,7,before,BKz,0.14906179
+intensification,7,before,BKe,-0.17070756
+intensification,7,before,BΦZ,-0.17604635
+intensification,7,before,BΦE,-0.2186265
+intensification,7,before,Gz,-0.14412423
+intensification,7,before,Ge,0.059850992
+intensification,7,before,∂Az/∂t (finite diff.),0.15541338
+intensification,7,before,∂Ae/∂t (finite diff.),0.44496093
+intensification,7,before,∂Kz/∂t (finite diff.),0.13354013
+intensification,7,before,∂Ke/∂t (finite diff.),0.54588464
+intensification,7,before,RGz,0.32026043
+intensification,7,before,RKz,0.0072278253
+intensification,7,before,RGe,-0.14488021
+intensification,7,before,RKe,0.011311367
+intensification,8,before,Az,0.21330527
+intensification,8,before,Ae,0.14048139
+intensification,8,before,Kz,0.19825897
+intensification,8,before,Ke,0.23036437
+intensification,8,before,Cz,0.13569267
+intensification,8,before,Ca,-0.044447569
+intensification,8,before,Ck,0.021519869
+intensification,8,before,Ce,-0.15989577
+intensification,8,before,BAz,-0.086674136
+intensification,8,before,BAe,0.046259352
+intensification,8,before,BKz,-0.22954735
+intensification,8,before,BKe,0.51083593
+intensification,8,before,BΦZ,-0.011759827
+intensification,8,before,BΦE,-0.080723559
+intensification,8,before,Gz,-0.016375767
+intensification,8,before,Ge,-0.38673237
+intensification,8,before,∂Az/∂t (finite diff.),0.044287274
+intensification,8,before,∂Ae/∂t (finite diff.),-0.3310487
+intensification,8,before,∂Kz/∂t (finite diff.),-0.11862347
+intensification,8,before,∂Ke/∂t (finite diff.),0.12595634
+intensification,8,before,RGz,0.18079399
+intensification,8,before,RKz,0.12605271
+intensification,8,before,RGe,-0.29408909
+intensification,8,before,RKe,-0.2511288
+mature,1,before,Az,0.18010344
+mature,1,before,Ae,0.74599388
+mature,1,before,Kz,0.35583137
+mature,1,before,Ke,0.57869122
+mature,1,before,Cz,-0.29564859
+mature,1,before,Ca,0.87818073
+mature,1,before,Ck,-0.58391907
+mature,1,before,Ce,0.85629354
+mature,1,before,BAz,0.39419497
+mature,1,before,BAe,-0.24337445
+mature,1,before,BKz,-0.58986797
+mature,1,before,BKe,-0.091737126
+mature,1,before,BΦZ,0.68345032
+mature,1,before,BΦE,0.61149361
+mature,1,before,Gz,-0.28918721
+mature,1,before,Ge,0.54639769
+mature,1,before,∂Az/∂t (finite diff.),-0.081193172
+mature,1,before,∂Ae/∂t (finite diff.),-0.18765904
+mature,1,before,∂Kz/∂t (finite diff.),0.17449381
+mature,1,before,∂Ke/∂t (finite diff.),0.038465734
+mature,1,before,RGz,-0.48249935
+mature,1,before,RKz,0.70019819
+mature,1,before,RGe,0.72074411
+mature,1,before,RKe,-0.85996172
+mature,2,before,Az,0.06116461
+mature,2,before,Ae,0.023332794
+mature,2,before,Kz,0.35044836
+mature,2,before,Ke,-0.17783939
+mature,2,before,Cz,-0.2809291
+mature,2,before,Ca,-0.22367019
+mature,2,before,Ck,0.062489804
+mature,2,before,Ce,-0.021656184
+mature,2,before,BAz,-0.51084974
+mature,2,before,BAe,0.39111873
+mature,2,before,BKz,-0.26052118
+mature,2,before,BKe,-0.22956268
+mature,2,before,BΦZ,0.55847731
+mature,2,before,BΦE,0.56172884
+mature,2,before,Gz,0.014919694
+mature,2,before,Ge,-0.096847255
+mature,2,before,∂Az/∂t (finite diff.),0.4714414
+mature,2,before,∂Ae/∂t (finite diff.),-0.46017639
+mature,2,before,∂Kz/∂t (finite diff.),0.18589155
+mature,2,before,∂Ke/∂t (finite diff.),-0.52636102
+mature,2,before,RGz,0.56503053
+mature,2,before,RKz,0.26577637
+mature,2,before,RGe,-0.45646835
+mature,2,before,RKe,0.084507247
+mature,3,before,Az,0.39277377
+mature,3,before,Ae,-0.21020434
+mature,3,before,Kz,-0.024667631
+mature,3,before,Ke,-0.31998901
+mature,3,before,Cz,0.49840891
+mature,3,before,Ca,0.031271351
+mature,3,before,Ck,-0.23604013
+mature,3,before,Ce,-0.21413675
+mature,3,before,BAz,0.52648324
+mature,3,before,BAe,-0.15061597
+mature,3,before,BKz,-0.44033927
+mature,3,before,BKe,-0.36280286
+mature,3,before,BΦZ,-0.10621736
+mature,3,before,BΦE,-0.19817388
+mature,3,before,Gz,0.059926125
+mature,3,before,Ge,-0.17347751
+mature,3,before,∂Az/∂t (finite diff.),0.49728001
+mature,3,before,∂Ae/∂t (finite diff.),0.32944152
+mature,3,before,∂Kz/∂t (finite diff.),0.5956717
+mature,3,before,∂Ke/∂t (finite diff.),0.051698197
+mature,3,before,RGz,0.1140018
+mature,3,before,RKz,0.52897892
+mature,3,before,RGe,0.023673977
+mature,3,before,RKe,0.14192601
+mature,4,before,Az,0.62560008
+mature,4,before,Ae,-0.042831835
+mature,4,before,Kz,0.51996887
+mature,4,before,Ke,-0.34125528
+mature,4,before,Cz,-0.34280947
+mature,4,before,Ca,0.034393556
+mature,4,before,Ck,0.30654619
+mature,4,before,Ce,0.14257161
+mature,4,before,BAz,0.063438446
+mature,4,before,BAe,0.5268473
+mature,4,before,BKz,0.12067672
+mature,4,before,BKe,0.28986265
+mature,4,before,BΦZ,-0.028246113
+mature,4,before,BΦE,-0.055717647
+mature,4,before,Gz,-0.4727674
+mature,4,before,Ge,-0.00095671091
+mature,4,before,∂Az/∂t (finite diff.),-0.12916957
+mature,4,before,∂Ae/∂t (finite diff.),0.39137996
+mature,4,before,∂Kz/∂t (finite diff.),0.2433342
+mature,4,before,∂Ke/∂t (finite diff.),0.079922923
+mature,4,before,RGz,-0.40422254
+mature,4,before,RKz,-0.060397431
+mature,4,before,RGe,-0.15574396
+mature,4,before,RKe,0.055587361
+mature,5,before,Az,-0.29544206
+mature,5,before,Ae,0.029380038
+mature,5,before,Kz,-0.28003709
+mature,5,before,Ke,0.069772585
+mature,5,before,Cz,0.087534173
+mature,5,before,Ca,-0.15610755
+mature,5,before,Ck,0.56175588
+mature,5,before,Ce,0.27196884
+mature,5,before,BAz,-0.025570248
+mature,5,before,BAe,0.28664017
+mature,5,before,BKz,-0.32298909
+mature,5,before,BKe,0.63450379
+mature,5,before,BΦZ,-0.11075288
+mature,5,before,BΦE,0.00269782
+mature,5,before,Gz,0.30712535
+mature,5,before,Ge,0.50762823
+mature,5,before,∂Az/∂t (finite diff.),0.19506424
+mature,5,before,∂Ae/∂t (finite diff.),0.15626298
+mature,5,before,∂Kz/∂t (finite diff.),0.37635065
+mature,5,before,∂Ke/∂t (finite diff.),0.065166525
+mature,5,before,RGz,0.17173172
+mature,5,before,RKz,0.17864967
+mature,5,before,RGe,0.15333978
+mature,5,before,RKe,-0.0068889642
+mature,6,before,Az,0.26363103
+mature,6,before,Ae,0.1890505
+mature,6,before,Kz,0.39722942
+mature,6,before,Ke,-0.069337747
+mature,6,before,Cz,0.58095315
+mature,6,before,Ca,-0.037519278
+mature,6,before,Ck,-0.01817766
+mature,6,before,Ce,0.079066907
+mature,6,before,BAz,0.17456865
+mature,6,before,BAe,0.26861364
+mature,6,before,BKz,-0.03963809
+mature,6,before,BKe,0.012813891
+mature,6,before,BΦZ,0.19574105
+mature,6,before,BΦE,0.13313603
+mature,6,before,Gz,0.60080142
+mature,6,before,Ge,0.11185223
+mature,6,before,∂Az/∂t (finite diff.),-0.25458739
+mature,6,before,∂Ae/∂t (finite diff.),-0.032523022
+mature,6,before,∂Kz/∂t (finite diff.),-0.33081517
+mature,6,before,∂Ke/∂t (finite diff.),0.26403814
+mature,6,before,RGz,0.098672374
+mature,6,before,RKz,-0.14322159
+mature,6,before,RGe,-0.14484057
+mature,6,before,RKe,0.021481551
+mature,7,before,Az,-0.23115878
+mature,7,before,Ae,0.1130808
+mature,7,before,Kz,-0.25999011
+mature,7,before,Ke,0.083776552
+mature,7,before,Cz,-0.085546031
+mature,7,before,Ca,0.067383321
+mature,7,before,Ck,-0.27839895
+mature,7,before,Ce,-0.12312586
+mature,7,before,BAz,-0.2552296
+mature,7,before,BAe,0.31708826
+mature,7,before,BKz,-0.1220907
+mature,7,before,BKe,0.013285797
+mature,7,before,BΦZ,0.13056435
+mature,7,before,BΦE,0.16524264
+mature,7,before,Gz,-0.047741499
+mature,7,before,Ge,-0.32215185
+mature,7,before,∂Az/∂t (finite diff.),-0.20081698
+mature,7,before,∂Ae/∂t (finite diff.),0.45151001
+mature,7,before,∂Kz/∂t (finite diff.),0.051895369
+mature,7,before,∂Ke/∂t (finite diff.),0.53859274
+mature,7,before,RGz,0.11156172
+mature,7,before,RKz,0.20073039
+mature,7,before,RGe,-0.24128848
+mature,7,before,RKe,-0.074965302
+mature,8,before,Az,0.22780165
+mature,8,before,Ae,0.28515782
+mature,8,before,Kz,0.11003616
+mature,8,before,Ke,0.41253806
+mature,8,before,Cz,-0.035974887
+mature,8,before,Ca,0.026578567
+mature,8,before,Ck,-0.14095368
+mature,8,before,Ce,0.061987286
+mature,8,before,BAz,-0.05684804
+mature,8,before,BAe,0.13413836
+mature,8,before,BKz,0.19439561
+mature,8,before,BKe,0.067308331
+mature,8,before,BΦZ,-0.27974792
+mature,8,before,BΦE,-0.33558224
+mature,8,before,Gz,-0.040709295
+mature,8,before,Ge,-0.029561405
+mature,8,before,∂Az/∂t (finite diff.),0.39641041
+mature,8,before,∂Ae/∂t (finite diff.),-0.1788846
+mature,8,before,∂Kz/∂t (finite diff.),0.073439514
+mature,8,before,∂Ke/∂t (finite diff.),0.22663225
+mature,8,before,RGz,0.27752379
+mature,8,before,RKz,-0.070928523
+mature,8,before,RGe,-0.12791011
+mature,8,before,RKe,-0.14944758
+decay,1,before,Az,0.25746458
+decay,1,before,Ae,0.62448445
+decay,1,before,Kz,0.34993339
+decay,1,before,Ke,0.49472937
+decay,1,before,Cz,0.064386137
+decay,1,before,Ca,0.88249812
+decay,1,before,Ck,-0.54461767
+decay,1,before,Ce,0.83411121
+decay,1,before,BAz,0.61630712
+decay,1,before,BAe,-0.41965094
+decay,1,before,BKz,-0.68313118
+decay,1,before,BKe,-0.22103837
+decay,1,before,BΦZ,0.70036163
+decay,1,before,BΦE,0.57333129
+decay,1,before,Gz,-0.089330608
+decay,1,before,Ge,0.5261826
+decay,1,before,∂Az/∂t (finite diff.),0.010357738
+decay,1,before,∂Ae/∂t (finite diff.),-0.058520465
+decay,1,before,∂Kz/∂t (finite diff.),0.34349668
+decay,1,before,∂Ke/∂t (finite diff.),-0.10936891
+decay,1,before,RGz,-0.45247501
+decay,1,before,RKz,0.76719233
+decay,1,before,RGe,0.79273734
+decay,1,before,RKe,-0.79807692
+decay,2,before,Az,0.53275862
+decay,2,before,Ae,-0.2565389
+decay,2,before,Kz,0.24101622
+decay,2,before,Ke,-0.20217191
+decay,2,before,Cz,0.47905243
+decay,2,before,Ca,0.048613687
+decay,2,before,Ck,-0.44149082
+decay,2,before,Ce,-0.36124144
+decay,2,before,BAz,0.16341847
+decay,2,before,BAe,-0.31649313
+decay,2,before,BKz,-0.26397027
+decay,2,before,BKe,-0.52511998
+decay,2,before,BΦZ,-0.11594211
+decay,2,before,BΦE,-0.28753391
+decay,2,before,Gz,0.059453401
+decay,2,before,Ge,-0.46805784
+decay,2,before,∂Az/∂t (finite diff.),0.55538814
+decay,2,before,∂Ae/∂t (finite diff.),0.015671379
+decay,2,before,∂Kz/∂t (finite diff.),0.30232899
+decay,2,before,∂Ke/∂t (finite diff.),0.007346438
+decay,2,before,RGz,0.42840218
+decay,2,before,RKz,0.35916156
+decay,2,before,RGe,-0.075638696
+decay,2,before,RKe,0.17048652
+decay,3,before,Az,0.0082890938
+decay,3,before,Ae,-0.021197886
+decay,3,before,Kz,0.24797795
+decay,3,before,Ke,-0.1540355
+decay,3,before,Cz,-0.25981653
+decay,3,before,Ca,-0.27432977
+decay,3,before,Ck,0.334396
+decay,3,before,Ce,0.072779232
+decay,3,before,BAz,-0.3085913
+decay,3,before,BAe,0.47292265
+decay,3,before,BKz,-0.31377772
+decay,3,before,BKe,0.17878997
+decay,3,before,BΦZ,0.43760725
+decay,3,before,BΦE,0.47123964
+decay,3,before,Gz,0.0096972747
+decay,3,before,Ge,0.078889548
+decay,3,before,∂Az/∂t (finite diff.),0.42132802
+decay,3,before,∂Ae/∂t (finite diff.),-0.44779955
+decay,3,before,∂Kz/∂t (finite diff.),0.4018237
+decay,3,before,∂Ke/∂t (finite diff.),-0.46399794
+decay,3,before,RGz,0.35694213
+decay,3,before,RKz,0.31404036
+decay,3,before,RGe,-0.37060056
+decay,3,before,RKe,0.034697166
+decay,4,before,Az,0.60544778
+decay,4,before,Ae,0.01552972
+decay,4,before,Kz,0.5723383
+decay,4,before,Ke,-0.37837476
+decay,4,before,Cz,0.26136768
+decay,4,before,Ca,-0.065824757
+decay,4,before,Ck,0.43772015
+decay,4,before,Ce,0.14171838
+decay,4,before,BAz,0.47878226
+decay,4,before,BAe,0.30606915
+decay,4,before,BKz,0.0042593135
+decay,4,before,BKe,0.43686448
+decay,4,before,BΦZ,-0.1578364
+decay,4,before,BΦE,-0.22072966
+decay,4,before,Gz,-0.10129322
+decay,4,before,Ge,0.19531173
+decay,4,before,∂Az/∂t (finite diff.),-0.030263505
+decay,4,before,∂Ae/∂t (finite diff.),0.11605611
+decay,4,before,∂Kz/∂t (finite diff.),0.17671997
+decay,4,before,∂Ke/∂t (finite diff.),0.19703051
+decay,4,before,RGz,-0.40164419
+decay,4,before,RKz,-0.084106315
+decay,4,before,RGe,-0.069475349
+decay,4,before,RKe,0.066773496
+decay,5,before,Az,-0.20034236
+decay,5,before,Ae,0.052963918
+decay,5,before,Kz,-0.18936126
+decay,5,before,Ke,0.036218097
+decay,5,before,Cz,0.61300293
+decay,5,before,Ca,-0.081739509
+decay,5,before,Ck,0.092958436
+decay,5,before,Ce,0.11265129
+decay,5,before,BAz,0.040088204
+decay,5,before,BAe,0.16509662
+decay,5,before,BKz,-0.19498258
+decay,5,before,BKe,0.13479112
+decay,5,before,BΦZ,0.028180715
+decay,5,before,BΦE,0.031873887
+decay,5,before,Gz,0.8423229
+decay,5,before,Ge,0.30473239
+decay,5,before,∂Az/∂t (finite diff.),-0.01820379
+decay,5,before,∂Ae/∂t (finite diff.),0.083495474
+decay,5,before,∂Kz/∂t (finite diff.),-0.025234658
+decay,5,before,∂Ke/∂t (finite diff.),0.26411636
+decay,5,before,RGz,0.30441087
+decay,5,before,RKz,0.056334095
+decay,5,before,RGe,0.017172423
+decay,5,before,RKe,0.0027858978
+decay,6,before,Az,-0.031873234
+decay,6,before,Ae,0.2008082
+decay,6,before,Kz,-0.086637373
+decay,6,before,Ke,0.27537771
+decay,6,before,Cz,-0.32315668
+decay,6,before,Ca,0.04179246
+decay,6,before,Ck,0.033981125
+decay,6,before,Ce,0.053400707
+decay,6,before,BAz,-0.21070297
+decay,6,before,BAe,0.11076579
+decay,6,before,BKz,0.030505852
+decay,6,before,BKe,0.25395634
+decay,6,before,BΦZ,-0.2664787
+decay,6,before,BΦE,-0.23502502
+decay,6,before,Gz,-0.14869291
+decay,6,before,Ge,0.12100789
+decay,6,before,∂Az/∂t (finite diff.),0.41881026
+decay,6,before,∂Ae/∂t (finite diff.),0.51467359
+decay,6,before,∂Kz/∂t (finite diff.),0.42506462
+decay,6,before,∂Ke/∂t (finite diff.),0.36723041
+decay,6,before,RGz,0.27481518
+decay,6,before,RKz,0.13473348
+decay,6,before,RGe,0.096855448
+decay,6,before,RKe,-0.121101
+decay,7,before,Az,0.24563324
+decay,7,before,Ae,0.41172137
+decay,7,before,Kz,0.3547625
+decay,7,before,Ke,0.21746986
+decay,7,before,Cz,0.013035331
+decay,7,before,Ca,0.0067235707
+decay,7,before,Ck,-0.29851964
+decay,7,before,Ce,0.018521426
+decay,7,before,BAz,-0.18018496
+decay,7,before,BAe,0.42257294
+decay,7,before,BKz,0.19047114
+decay,7,before,BKe,-0.33394995
+decay,7,before,BΦZ,0.1865879
+decay,7,before,BΦE,0.15191507
+decay,7,before,Gz,-0.0064989706
+decay,7,before,Ge,-0.023028344
+decay,7,before,∂Az/∂t (finite diff.),-0.13302705
+decay,7,before,∂Ae/∂t (finite diff.),0.11304872
+decay,7,before,∂Kz/∂t (finite diff.),-0.24445211
+decay,7,before,∂Ke/∂t (finite diff.),0.30670019
+decay,7,before,RGz,0.13625568
+decay,7,before,RKz,-0.15189872
+decay,7,before,RGe,-0.30358473
+decay,7,before,RKe,0.067773765
+decay,8,before,Az,-0.040669898
+decay,8,before,Ae,-0.25784316
+decay,8,before,Kz,-0.074731471
+decay,8,before,Ke,-0.42517848
+decay,8,before,Cz,-0.095980099
+decay,8,before,Ca,0.064780342
+decay,8,before,Ck,-0.00081423026
+decay,8,before,Ce,-0.11641978
+decay,8,before,BAz,-0.11442354
+decay,8,before,BAe,-0.0059471558
+decay,8,before,BKz,-0.21691911
+decay,8,before,BKe,0.052651716
+decay,8,before,BΦZ,0.32445381
+decay,8,before,BΦE,0.36523694
+decay,8,before,Gz,-0.066133181
+decay,8,before,Ge,-0.19243771
+decay,8,before,∂Az/∂t (finite diff.),-0.2571497
+decay,8,before,∂Ae/∂t (finite diff.),0.49857122
+decay,8,before,∂Kz/∂t (finite diff.),0.022654959
+decay,8,before,∂Ke/∂t (finite diff.),0.35966498
+decay,8,before,RGz,-0.059666093
+decay,8,before,RKz,0.18608542
+decay,8,before,RGe,0.027472536
+decay,8,before,RKe,0.1056158

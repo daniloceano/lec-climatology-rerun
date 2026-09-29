@@ -435,7 +435,7 @@ def write_report_markdown(path: Path, manifest: pd.DataFrame, provenance: dict, 
         "",
     ]
     for row in manifest.itertuples():
-        relative = Path("..") / row.png
+        relative = Path("..") / ".." / ".." / row.png
         lines.extend([f"### Figure {row.figure_label}", "", f"![Figure {row.figure_label}]({relative.as_posix()})", "", f"*{row.caption}*", ""])
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines))
@@ -449,9 +449,9 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, default=Path.cwd())
     args = parser.parse_args()
     root = args.output_root.resolve()
-    figures_dir = root / "figures" / "paired_control" / "article_style"
-    results_dir = root / "results" / "paired_control" / "article_style"
-    docs_dir = root / "docs"
+    figures_dir = root / "figures" / "comparison" / "paired_control" / "article_style"
+    results_dir = root / "results" / "comparison" / "paired_control" / "article_style"
+    docs_dir = root / "docs" / "comparison"
     figures_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
 

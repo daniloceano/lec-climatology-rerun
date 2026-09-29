@@ -31,8 +31,8 @@ invalid_outputs/
 # External datasets and corrected caches
 data/*
 !data/README.md
-results/paired_control/corrected_phase_means.parquet
-results/paired_control/paired_terms.parquet
+results/comparison/paired_control/corrected_phase_means.parquet
+results/comparison/paired_control/paired_terms.parquet
 
 # Local rendering scratch space
 tmp/

@@ -463,8 +463,8 @@ def write_report_markdown(
         lines.append(f"| {row.cluster} | {row.n} | {row.max_vor42_median:.2f} |")
     lines.extend(["", "## Figures", ""])
     for number in range(1, 17):
-        png = sorted(path.parents[2].joinpath("figures", "paired_control", "article_style").glob(f"fig_{number:02d}_*.png"))[0]
-        relative = Path("..") / ".." / "figures" / "paired_control" / "article_style" / png.name
+        png = sorted(path.parents[3].joinpath("figures", "comparison", "paired_control", "article_style").glob(f"fig_{number:02d}_*.png"))[0]
+        relative = Path("..") / ".." / ".." / "figures" / "comparison" / "paired_control" / "article_style" / png.name
         lines.extend(
             [
                 f"### Figure {number}",
@@ -499,9 +499,9 @@ def main() -> int:
     args = parser.parse_args()
 
     root = args.output_root.resolve()
-    figures_dir = root / "figures" / "paired_control" / "article_style"
-    results_dir = root / "results" / "paired_control" / "article_style"
-    docs_dir = root / "docs"
+    figures_dir = root / "figures" / "comparison" / "paired_control" / "article_style"
+    results_dir = root / "results" / "comparison" / "paired_control" / "article_style"
+    docs_dir = root / "docs" / "comparison"
     figures_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
 

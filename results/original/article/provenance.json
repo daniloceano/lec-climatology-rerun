@@ -1,0 +1,44 @@
+{
+  "comparison_version": "before",
+  "method": "lossless row selection from validated comparison CSVs; no scientific recomputation",
+  "output_sha256": {
+    "eof_extreme_assignments.csv": "f10bb65f9a631ddf88e1a1c26d2b1deb2cdde0aceee7155fcc549378be443f20",
+    "eof_loadings_by_phase.csv": "c9835a3abb083ab605b894d3f673d2ee5d304d134098b70c60a06e5ff0f0df24",
+    "eof_loadings_total.csv": "a12cb9eeb26e4a0911f3e6156d119719c2a5e9417e2d5a9ba9665b72a94b3c4d",
+    "eof_scores_total.csv": "e262b60dac1d38b69c56ace06da816c27c15bc25255848698d8f806bd32d213b",
+    "eof_variance_by_phase.csv": "927f55d4df8c9b690b5ad02dff77a0b92c7c2948275868cd7fe77b94146cf580",
+    "eof_variance_total.csv": "8068adb7ebeabf718a52283b3a14c3f85b276f5cc8fb7eafdaa3e1da9ed1084d",
+    "intense_pc_cluster_assignments.csv": "73b4a0f154e9ed269b86bd3221f4e27b6aa58ec956e1dcf13c5426ed78dcaa4f",
+    "intense_pc_cluster_centers.csv": "2475fca57347d65c3d8b7f9b31cde73d6e6b246654adb2f0fff59172d0c192db",
+    "intense_pc_cluster_statistics.csv": "ba690da93eb0e9d4dd3bdd05009f72223b7d38881aa2efc6015faa06d8d035a6",
+    "phase_statistics.csv": "6e7753a49cc916da5414b248bb200dd6ce7ab994973c470e8d9eb2e6bfff7b62"
+  },
+  "row_counts": {
+    "eof_extreme_assignments.csv": 3591,
+    "eof_loadings_by_phase.csv": 768,
+    "eof_loadings_total.csv": 192,
+    "eof_scores_total.csv": 6789,
+    "eof_variance_by_phase.csv": 32,
+    "eof_variance_total.csv": 8,
+    "intense_pc_cluster_assignments.csv": 1744,
+    "intense_pc_cluster_centers.csv": 5,
+    "intense_pc_cluster_statistics.csv": 5,
+    "phase_statistics.csv": 96
+  },
+  "scientific_status": "ORIGINAL",
+  "source_directory": "results/comparison/article",
+  "source_provenance": "results/comparison/article/provenance.json",
+  "source_provenance_sha256": "bfdeefb851eb00cb325ef694e7c0bd8c416e9c92b5935b3845cc83c01243d2c5",
+  "source_sha256": {
+    "eof_extreme_assignments.csv": "daedbca4463526af9b304af765467c6d8a724062dab10e422bad36224292593a",
+    "eof_loadings_by_phase.csv": "9aba928ab7b86c931e27703cb7aaa6aed581584dbd044ca7dc23cbbf8d3d4007",
+    "eof_loadings_total.csv": "557359521a83403246fbfd99bf5f3d867cf5278eefb260d2542194a80bce8a14",
+    "eof_scores_total.csv": "9252da8d42ce9dfb73cac6bb456e2cee7f76e709d5ecf6b181ecac7e7ee3b2b8",
+    "eof_variance_by_phase.csv": "3d7c21504e18ebf0fdf04a1f86ee8f900cbf6cb8485bb9040d09ca113a3d4428",
+    "eof_variance_total.csv": "d1e5caeae64b04d760a4e8c14866beed7413bc4fe1d973e7b7a6582d3dff50c4",
+    "intense_pc_cluster_assignments.csv": "7ff438f2c1e18f289d0378ac3bfbf4c50d4b087f30d2e16ceddbef9f5fcfb4ab",
+    "intense_pc_cluster_centers.csv": "efac0610072e3305cf617366095db09462cec313d532b32b5faed7a82d985a7c",
+    "intense_pc_cluster_statistics.csv": "294a871d94b87a157c88409a6680f7a6e18f4668b637309bd2a817777cf58abd",
+    "phase_statistics.csv": "c2e550180c59523063f0842a20536a224d57028b21c105dc91ff150a44aa0b87"
+  }
+}

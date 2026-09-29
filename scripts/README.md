@@ -11,6 +11,8 @@ Run commands from the repository root so local imports and output paths resolve
 consistently. Input data must be supplied explicitly; scripts must not embed
 credentials or modify archived legacy products.
 
-The article workflow owns `figures/paper/`, `results/article_comparison/` and
-the canonical report in `docs/`. The paired workflow owns only the three
-`paired_control/` destinations.
+The article workflow owns `figures/comparison/article/`,
+`results/comparison/article/` and the canonical report in `docs/comparison/`.
+`materialize_version_views.py` creates the read-only ORIGINAL/CORRECTED table
+views. The paired workflow owns only the three `comparison/paired_control/`
+destinations.

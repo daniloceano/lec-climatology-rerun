@@ -60,8 +60,8 @@ from scripts.article_figures.plotting import (  # noqa: E402
     save_pair,
 )
 
-FIGURES_NAME = "paper"
-RESULTS_NAME = "article_comparison"
+FIGURES_NAME = Path("comparison") / "article"
+RESULTS_NAME = Path("comparison") / "article"
 
 FIGURE_CAPTIONS = {
     "1": "Track density and the three genesis regions; this track-only reference is common to both datasets.",
@@ -311,7 +311,7 @@ def write_report_markdown(path: Path, manifest: pd.DataFrame, provenance: dict, 
         "",
     ]
     for row in manifest.itertuples():
-        relative = Path("..") / row.png
+        relative = Path("..") / ".." / row.png
         lines.extend(
             [
                 f"### Figure {row.figure_label}",
@@ -342,7 +342,7 @@ def main() -> int:
     root = args.output_root.resolve()
     figures_dir = root / "figures" / FIGURES_NAME
     results_dir = root / "results" / RESULTS_NAME
-    docs_dir = root / "docs"
+    docs_dir = root / "docs" / "comparison"
     figures_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
 
@@ -506,13 +506,13 @@ def main() -> int:
         "clusters": 5,
         "cluster_features": "first eight aligned total-lifecycle PC scores",
         "figure_files": len(manifest),
-        "paired_control_report": "docs/paired_control/lec_rerun_paired_control_report.pdf",
+        "paired_control_report": "docs/comparison/paired_control/lec_rerun_paired_control_report.pdf",
         "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a",
         "toolkit_correction_commit": "d07707767c2962fed0475ff4573e7d15a97f8c69",
     }
     write_json(results_dir / "provenance.json", provenance)
     write_report_markdown(
-        docs_dir / "lec_climatology_article_before_after_report.md",
+        docs_dir / "article_before_after_report.md",
         manifest,
         provenance,
         cluster_meta,

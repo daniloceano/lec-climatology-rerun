@@ -13,17 +13,17 @@ per-cyclone outputs and execution state remain outside Git.
 
 The authoritative article comparison is:
 
-- [final PDF](docs/lec_climatology_article_before_after_report.pdf);
-- [Markdown report](docs/lec_climatology_article_before_after_report.md);
-- [paper figures](figures/paper/);
-- [numerical results and provenance](results/article_comparison/).
+- [final PDF](docs/comparison/article_before_after_report.pdf);
+- [Markdown report](docs/comparison/article_before_after_report.md);
+- [paper figures](figures/comparison/article/);
+- [numerical results and provenance](results/comparison/article/).
 
 It compares the complete archived article population (**6,789 legacy
 cyclones; 25,000 lifecycle rows**) with the validated corrected rerun
 (**3,820 cyclones; 15,829 lifecycle rows**). Differences therefore combine
 the toolkit correction and the population change.
 
-The separate [paired control](docs/paired_control/) compares the same 3,820
+The separate [paired control](docs/comparison/paired_control/) compares the same 3,820
 cyclones on both sides. Use it only to isolate the effect of the toolkit
 correction. It is not the article-population comparison.
 
@@ -42,16 +42,20 @@ in [SCIENTIFIC_NOTES.md](SCIENTIFIC_NOTES.md).
 ## Repository structure
 
 ```text
-data/README.md                  external datasets and provenance
-scripts/                        production, analysis and figure workflows
-figures/paper/                  final article before/after figures (PNG + PDF)
-figures/paired_control/         paired diagnostic figures
-results/article_comparison/     EOFs, clusters, statistics, hashes and manifest
-results/paired_control/         paired diagnostic tables
-docs/                           authoritative report and documentation index
-docs/paired_control/            correction-only paired report
-docs/technical/                 migration and production-audit records
-tests/                          focused scientific/workflow validation
+data/README.md                         external-dataset policy
+figures/original/article/              published/final-submission figures
+figures/corrected/article/             corrected-only reusable figures
+figures/comparison/article/            full-population before/after figures
+figures/comparison/paired_control/     fixed-population diagnostics
+results/original/article/              validated `before` numerical views
+results/corrected/article/             validated `after` numerical views
+results/comparison/article/            canonical paired tables and provenance
+results/comparison/paired_control/     correction-only paired tables
+scripts/article_figures/               maintained article workflow
+docs/comparison/                       reports
+docs/provenance/                       source mapping and provenance records
+docs/technical/                        migration and production audits
+tests/                                 focused scientific/workflow validation
 ```
 
 Each major directory has its own README with ownership and regeneration
@@ -93,6 +97,13 @@ legacy cyclones, 3,820 corrected cyclones and a 22-page consolidated report.
 See [scripts/article_figures/README.md](scripts/article_figures/README.md) for
 the statistical definitions and complete output inventory.
 
+Materialize the already-computed ORIGINAL and CORRECTED table views without
+recalculating scientific quantities:
+
+```bash
+python scripts/article_figures/materialize_version_views.py --output-root "$PWD"
+```
+
 ## Validate the production rerun
 
 Heavy validation runs on `swell`:
@@ -122,8 +133,8 @@ python scripts/lec_rerun_comparison/run_all.py \
   --output-root "$PWD" --refresh
 ```
 
-The paired workflow writes only under the clearly marked `paired_control`
-directories.
+The paired workflow writes only under the clearly marked
+`comparison/paired_control` directories.
 
 ## Verification
 
@@ -141,7 +152,7 @@ CI pipeline or packaging layer.
   results.
 - Never overwrite archived legacy data or the validated corrected run-root.
 - Version small final tables, figures, manifests, hashes and reports.
-- Treat `docs/lec_climatology_article_before_after_report.pdf` as the canonical
+- Treat `docs/comparison/article_before_after_report.pdf` as the canonical
   shareable artifact.
 - Run `git pull --ff-only` before new work and review `git status` before
   committing generated products.

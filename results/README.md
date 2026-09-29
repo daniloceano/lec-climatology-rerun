@@ -1,8 +1,16 @@
 # Results
 
-## `article_comparison/`
+## `original/article/` and `corrected/article/`
 
-Canonical numerical products behind `figures/paper/`:
+Lossless `version=before` and `version=after` row views of the canonical
+comparison CSVs. They are produced by
+`scripts/article_figures/materialize_version_views.py`; each directory has a
+provenance file with source/output hashes and row counts. No scientific values
+are recalculated.
+
+## `comparison/article/`
+
+Canonical numerical products behind `figures/comparison/article/`:
 
 - phase statistics;
 - phase and total-lifecycle EOF loadings and variance;
@@ -14,11 +22,7 @@ Canonical numerical products behind `figures/paper/`:
 The small CSV/JSON files are versioned. Rebuild them with
 `scripts/article_figures/generate_article_comparison.py`.
 
-## `paired_control/`
+## `comparison/paired_control/`
 
 Correction-only summary tables for the fixed 3,820-cyclone population. Large
 reproducible parquet intermediates remain ignored by Git.
-
-The obsolete `lec_climatology_corrected/` results were removed together with
-the misleading earlier figure set. Git history preserves them if an audit
-needs the exact former state.
