@@ -25,7 +25,7 @@
   "legacy_source_root": "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology",
   "pixel_dimensions_match_published_article": true,
   "primary_phase_rows": 15280,
-  "repository_commit_before_generation": "e2e1b8e1367bf9a4d7500db129032555ea8df5ac",
+  "repository_commit_before_generation": "489a6b3e4c3fde58661f52b23f4515d7f57b3885",
   "tracks": {
     "local": "data/external/swell/paper_energy_patterns/tracks_SAt_filtered_with_energetics_processed.csv",
     "remote": "/p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv",

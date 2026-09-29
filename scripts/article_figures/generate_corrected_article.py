@@ -124,7 +124,7 @@ def render_term_pdfs(cache: pd.DataFrame, output: Path) -> None:
         ("Energy Terms", ENERGY_TERMS, (0, 1e6), "upper right"),
         ("Conversion Terms", CONVERSION_TERMS, (-10, 10), "upper right"),
         ("Boundary Terms", BOUNDARY_TERMS, (-15, 15), "upper right"),
-        ("Pressure Work Terms", PRESSURE_TERMS, (-100, 100), "upper right"),
+        ("Pressure Work Terms", PRESSURE_TERMS, (-10, 10), "upper right"),
         ("Generation/Residual Terms", GENERATION_TERMS, (-20, 10), "best"),
         ("Budget Terms", TENDENCY_TERMS, (-5, 5), "best"),
     ]
@@ -135,10 +135,11 @@ def render_term_pdfs(cache: pd.DataFrame, output: Path) -> None:
         ax = axes[index // 3, index % 3]
         for term_index, term in enumerate(terms):
             values = mean_data[term].dropna().copy()
-            if "Kz" in term:
+            scale_by_ten = "Kz" in term or term == "BΦZ"
+            if scale_by_ten:
                 values = values / 10
             label = term if "∂" not in term else term.split("(finite diff.)")[0]
-            if "Kz" in label:
+            if scale_by_ten:
                 label += "*"
             sns.kdeplot(
                 x=values,
