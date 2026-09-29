@@ -27,6 +27,11 @@ The separate [paired control](docs/comparison/paired_control/) compares the same
 cyclones on both sides. Use it only to isolate the effect of the toolkit
 correction. It is not the article-population comparison.
 
+The independent [corrected article figures](figures/corrected/article/) retain
+the exact 16-figure publication layout while replacing the LEC-dependent data
+with the validated rerun. Access paths and secure swell synchronization are
+documented in [docs/data_access.md](docs/data_access.md).
+
 ## Scientific scope
 
 The rerun preserves the archived cyclone tracks and lifecycle windows while
@@ -96,6 +101,19 @@ Expected products are 20 figure files (each in PNG and vector PDF), 6,789
 legacy cyclones, 3,820 corrected cyclones and a 22-page consolidated report.
 See [scripts/article_figures/README.md](scripts/article_figures/README.md) for
 the statistical definitions and complete output inventory.
+
+## Regenerate the corrected article-layout figures
+
+```bash
+python scripts/sync_swell_inputs.py
+python scripts/article_figures/generate_corrected_article.py
+```
+
+This writes 16 PNG/PDF pairs under `figures/corrected/article/` and the
+supporting tables, hashes and provenance under
+`results/corrected/article/reproduction/`. The generator refuses inputs whose
+size or SHA-256 differs from the pinned swell files and verifies that every PNG
+has the published figure's pixel dimensions.
 
 Materialize the already-computed ORIGINAL and CORRECTED table views without
 recalculating scientific quantities:

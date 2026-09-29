@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import tomllib
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
+from PIL import Image
 
 from scripts.article_figures.common import (
     REGIONS,
@@ -97,3 +101,35 @@ def test_published_eof_extremes_screen_eight_pcs_before_retaining_four():
     assert 0 in set(positive["track_id"])
     assert 1 not in set(positive["track_id"])
     assert set(assigned["dominant_eof"]) <= {1, 2, 3, 4}
+
+
+def test_swell_source_registry_pins_paths_and_hashes_without_a_secret():
+    repository = Path(__file__).resolve().parents[1]
+    with (repository / "config" / "data_sources.toml").open("rb") as stream:
+        config = tomllib.load(stream)
+    assert config["swell"]["host"] == "swell"
+    assert config["swell"]["password_file"] == "~/Documents/Mastr/senha.txt"
+    assert set(config["inputs"]) == {"corrected_cache", "tracks"}
+    for specification in config["inputs"].values():
+        assert specification["remote"].startswith("/p1-swell/danilocs/")
+        assert specification["local"].startswith("data/external/swell/")
+        assert len(specification["sha256"]) == 64
+        assert "password" not in specification
+
+
+def test_corrected_article_manifest_matches_all_published_dimensions():
+    repository = Path(__file__).resolve().parents[1]
+    manifest = pd.read_csv(
+        repository / "results" / "corrected" / "article" / "reproduction" / "figure_manifest.csv"
+    )
+    assert manifest["figure"].tolist() == list(range(1, 17))
+    assert manifest["layout_dimensions_match_article"].all()
+    for row in manifest.itertuples():
+        corrected = repository / row.png
+        original = next(
+            (repository / "figures" / "original" / "article").glob(
+                f"fig_{row.figure:02d}_*.png"
+            )
+        )
+        with Image.open(corrected) as after, Image.open(original) as before:
+            assert after.size == before.size

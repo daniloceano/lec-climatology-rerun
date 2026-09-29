@@ -36,6 +36,23 @@ the correction-only paired control.
 Input hashes and population assertions are written to provenance and checked
 before figures are generated.
 
+## Corrected figures in the original article layout
+
+The standalone corrected suite preserves the publication's 16-file layout and
+four-cluster intense-system analysis. It reuses the frozen manuscript drawing
+functions while supplying the corrected cache and authoritative track table.
+Figures 1–2 remain unchanged; Figures 3–16 are recalculated.
+
+```bash
+python scripts/sync_swell_inputs.py
+python scripts/article_figures/generate_corrected_article.py
+```
+
+Inputs and access locations come from `config/data_sources.toml`. Outputs are
+written to `figures/corrected/article/` and
+`results/corrected/article/reproduction/`. This is intentionally distinct from
+the five-group before/after comparison described below.
+
 ## Run
 
 ```bash

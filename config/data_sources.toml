@@ -1,0 +1,23 @@
+[swell]
+host = "swell"
+password_file = "~/Documents/Mastr/senha.txt"
+production_root = "/p1-swell/danilocs/lec_climatology_corrected_v2"
+paper_root = "/p1-swell/danilocs/paper_energy_patterns"
+
+[inputs.corrected_cache]
+remote = "/p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet"
+local = "data/external/swell/paper_energy_patterns/energy_cache_corrected.parquet"
+size_bytes = 4068203
+sha256 = "c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3"
+
+[inputs.tracks]
+remote = "/p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv"
+local = "data/external/swell/paper_energy_patterns/tracks_SAt_filtered_with_energetics_processed.csv"
+size_bytes = 66328188
+sha256 = "552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d"
+
+[article]
+legacy_source_root = "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology"
+published_figure_root = "figures/original/article"
+corrected_figure_root = "figures/corrected/article"
+corrected_results_root = "results/corrected/article/reproduction"

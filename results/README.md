@@ -8,6 +8,10 @@ comparison CSVs. They are produced by
 provenance file with source/output hashes and row counts. No scientific values
 are recalculated.
 
+`corrected/article/reproduction/` is separate: it contains the freshly
+recalculated tables, assignments, four-cluster products, figure manifest and
+provenance for the 16 corrected figures that retain the publication layout.
+
 ## `comparison/article/`
 
 Canonical numerical products behind `figures/comparison/article/`:

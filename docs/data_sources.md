@@ -29,9 +29,13 @@ The canonical legacy cache used by the maintained comparison is external:
 - `phase_windows/`: 3,820 files
 - Corrected cache actually used by the validated comparison: `/p1-swell/danilocs/paper_energy_patterns/data/corrected/energy_cache_corrected.parquet`, 4,068,203 bytes, SHA-256 `c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3`
 - Validated corrected population: 3,820 cyclones and 15,829 lifecycle rows (15,280 primary-phase rows)
+- Authoritative processed tracks: `/p1-swell/danilocs/paper_energy_patterns/data/tracks_SAt_filtered_with_energetics_processed.csv`, 66,328,188 bytes, SHA-256 `552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d`
 
-No remote data file was downloaded during this reorganization. Existing
-validated figures and compact tables were reused.
+The two authoritative files are mirrored below the Git-ignored
+`data/external/swell/` directory. Remote/local paths, expected sizes, hashes,
+SSH alias and the external password-file path are registered in
+`config/data_sources.toml`; secure operating instructions are in
+`docs/data_access.md`.
 
 ## Fail-fast discrepancy recorded
 
@@ -41,5 +45,5 @@ The local processed track file named in the existing comparison provenance,
 The validated provenance expects SHA-256
 `552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d`;
 the file with that expected hash exists on `swell` at the documented path and
-is 66,328,188 bytes. The local file was therefore not used and no figures were
-regenerated from it.
+is 66,328,188 bytes. The mismatched pre-existing local file was not used; the
+verified swell copy was used for the corrected article-layout figures.

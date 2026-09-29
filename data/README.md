@@ -12,8 +12,10 @@ the command line or through the documented environment variables.
 | ERA5 pressure levels | Corrected LEC computation | `u`, `v`, `t`, `w`, `z` | Per cyclone; 3-hourly; 37 requested levels | Copernicus Climate Data Store; requests described by run config |
 | Corrected run-root | State and validated per-cyclone outputs | config, provenance, manifest, SQLite, tracks, phase windows, ERA5 staging, LEC results | One production run | `/p1-swell/danilocs/lec_climatology_corrected_v2` on `swell` |
 
-Credentials are read from a secure external inventory. They must never be
-copied into this repository, logs, provenance, or documentation.
+The remote paths, ignored local mirror, checksums, SSH alias and path to the
+external password file are registered in `config/data_sources.toml`; operating
+instructions are in `docs/data_access.md`. The password itself must never be
+copied into this repository, printed, logged, or included in provenance.
 
 Derived caches can be rebuilt with scripts under
 `scripts/lec_climatology_rerun/`. Small final comparison tables, figures and
