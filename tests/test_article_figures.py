@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import tomllib
 from pathlib import Path
 
@@ -8,6 +10,7 @@ import pandas as pd
 from PIL import Image
 
 from scripts.article_figures.common import (
+    EOF_TERMS,
     REGIONS,
     align_eofs,
     assign_published_eof_extremes,
@@ -133,3 +136,55 @@ def test_corrected_article_manifest_matches_all_published_dimensions():
         )
         with Image.open(corrected) as after, Image.open(original) as before:
             assert after.size == before.size
+
+
+def test_corrected_article_table_preserves_layout_and_uses_corrected_values():
+    repository = Path(__file__).resolve().parents[1]
+    original = (
+        repository / "tables" / "original" / "article"
+        / "table_01_lec_summary_statistics.tex"
+    ).read_text()
+    corrected = (
+        repository / "tables" / "corrected" / "article"
+        / "table_01_lec_summary_statistics.tex"
+    ).read_text()
+
+    original_header, original_body = original.split(r"\midrule", maxsplit=1)
+    corrected_header, corrected_body = corrected.split(r"\midrule", maxsplit=1)
+    original_rows, original_footer = original_body.split(r"\bottomrule", maxsplit=1)
+    corrected_rows, corrected_footer = corrected_body.split(r"\bottomrule", maxsplit=1)
+    assert corrected_header == original_header
+    assert corrected_footer == original_footer
+
+    def labels(rows: str) -> list[str]:
+        return [line.split(" & ", maxsplit=1)[0] for line in rows.splitlines() if " & " in line]
+
+    assert labels(corrected_rows) == labels(original_rows)
+    assert len(labels(corrected_rows)) == 24
+
+    statistics = pd.read_csv(
+        repository / "results" / "corrected" / "article" / "reproduction"
+        / "table_01_lec_summary_statistics.csv"
+    )
+    assert statistics["term"].tolist() == EOF_TERMS
+    assert set(statistics["n"]) == {15829}
+    rounded = statistics.set_index("term").round(2)
+    assert rounded.loc["Ca", ["mean", "std_dev", "range"]].tolist() == [2.98, 4.76, 56.54]
+    assert rounded.loc["BΦZ", ["mean", "median", "range"]].tolist() == [8.92, 6.85, 298.87]
+    assert "Ca & 2.98 & 1.54 & 4.76" in corrected_rows
+    assert "Ca & 0.93 & 0.46 & 1.57" in original_rows
+
+
+def test_corrected_article_table_manifest_hashes_every_output():
+    repository = Path(__file__).resolve().parents[1]
+    manifest_path = (
+        repository / "results" / "corrected" / "article" / "reproduction"
+        / "table_01_manifest.json"
+    )
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["corrected_cyclones"] == 3820
+    assert manifest["lifecycle_period_rows"] == 15829
+    assert manifest["terms"] == 24
+    for relative, expected_hash in manifest["outputs"].items():
+        digest = hashlib.sha256((repository / relative).read_bytes()).hexdigest()
+        assert digest == expected_hash

@@ -18,6 +18,9 @@ sha256 = "552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d"
 
 [article]
 legacy_source_root = "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology"
+published_article_tex = "submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/sn-article_rev2.tex"
 published_figure_root = "figures/original/article"
 corrected_figure_root = "figures/corrected/article"
 corrected_results_root = "results/corrected/article/reproduction"
+original_table_root = "tables/original/article"
+corrected_table_root = "tables/corrected/article"

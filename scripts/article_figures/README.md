@@ -1,4 +1,4 @@
-# Canonical article-figure workflow
+# Canonical article artifact workflow
 
 This directory reconstructs Figures 1-16 of *Lorenz Energy Cycle Climatology
 for the Southwestern Atlantic Cyclones* as a literal published-versus-corrected
@@ -52,6 +52,26 @@ Inputs and access locations come from `config/data_sources.toml`. Outputs are
 written to `figures/corrected/article/` and
 `results/corrected/article/reproduction/`. This is intentionally distinct from
 the five-group before/after comparison described below.
+
+## Corrected table in the original article layout
+
+Table 1 pools the lifecycle-period means exactly as the archived generator did:
+25,000 rows in the publication and 15,829 rows in the corrected rerun. It does
+not first compute one total-lifecycle mean per cyclone. Energy reservoirs are
+divided by $10^5$; standard deviation uses `ddof=1`; all displayed values use
+two decimals.
+
+```bash
+python scripts/sync_swell_inputs.py
+python scripts/article_figures/generate_corrected_article_table.py
+```
+
+The command extracts the final-submission table verbatim, retains its caption,
+column order, term labels and LaTeX structure, and replaces only the 24 rows of
+statistics. Outputs are under `tables/original/article/`,
+`tables/corrected/article/` and `results/corrected/article/reproduction/`.
+The standalone `.tex` file is provided for independent compilation and visual
+inspection.
 
 ## Run
 

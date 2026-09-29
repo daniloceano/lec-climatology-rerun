@@ -32,6 +32,10 @@ the exact 16-figure publication layout while replacing the LEC-dependent data
 with the validated rerun. Access paths and secure swell synchronization are
 documented in [docs/data_access.md](docs/data_access.md).
 
+The article's summary table is likewise preserved in its published LaTeX
+layout under [tables/corrected/article/](tables/corrected/article/), with only
+the statistics replaced by values from the validated corrected cache.
+
 ## Scientific scope
 
 The rerun preserves the archived cyclone tracks and lifecycle windows while
@@ -52,6 +56,8 @@ figures/original/article/              published/final-submission figures
 figures/corrected/article/             corrected-only reusable figures
 figures/comparison/article/            full-population before/after figures
 figures/comparison/paired_control/     fixed-population diagnostics
+tables/original/article/               verbatim final-submission table
+tables/corrected/article/              corrected table in publication layout
 results/original/article/              validated `before` numerical views
 results/corrected/article/             validated `after` numerical views
 results/comparison/article/            canonical paired tables and provenance
@@ -107,6 +113,7 @@ the statistical definitions and complete output inventory.
 ```bash
 python scripts/sync_swell_inputs.py
 python scripts/article_figures/generate_corrected_article.py
+python scripts/article_figures/generate_corrected_article_table.py
 ```
 
 This writes 16 PNG/PDF pairs under `figures/corrected/article/` and the
@@ -114,6 +121,12 @@ supporting tables, hashes and provenance under
 `results/corrected/article/reproduction/`. The generator refuses inputs whose
 size or SHA-256 differs from the pinned swell files and verifies that every PNG
 has the published figure's pixel dimensions.
+
+The table command writes the verbatim published source and corrected LaTeX,
+standalone LaTeX and Markdown forms under `tables/`, plus full-precision CSV
+statistics and a hash manifest under `results/corrected/article/reproduction/`.
+It uses the article's exact population unit: all lifecycle-period mean rows are
+pooled, rather than first reducing each cyclone to one value.
 
 Materialize the already-computed ORIGINAL and CORRECTED table views without
 recalculating scientific quantities:

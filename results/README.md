@@ -11,6 +11,9 @@ are recalculated.
 `corrected/article/reproduction/` is separate: it contains the freshly
 recalculated tables, assignments, four-cluster products, figure manifest and
 provenance for the 16 corrected figures that retain the publication layout.
+It also contains the full-precision Table 1 statistics and their dedicated
+input/output hash manifest; presentation-ready table sources live under
+`tables/`.
 
 ## `comparison/article/`
 

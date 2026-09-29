@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{booktabs}
+\usepackage{caption}
+\pagestyle{empty}
+\begin{document}
+\begin{table}[!htbp]
+\centering
+\caption[Summary Statistics of Lorenz Energetics Components]{Summary Statistics of Lorenz Energetics Components, computed as averages across the entire cyclone lifecycle: mean, median, standard deviation (std), 25th percentile (Q25), 75th percentile (Q75), interquantile range (IQR), and range. The IQR measures the range within which the central 50\% of the values fall, while the range is computed as the difference between the maximum and minimum values. The units for the energy terms ($A_Z$, $A_E$, $K_Z$, and $K_E$) are $10^5 \, J \, m^{-2}$ and $W \, m^{-2}$ for the remaining terms.}
+\label{tab:lec_stats}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Term & Mean & Median & Std Dev & Q25 & Q75 & IQR & Range \\
+\midrule
+Az & 5.48 & 4.60 & 3.66 & 2.73 & 7.43 & 4.69 & 33.24 \\
+Ae & 1.67 & 1.29 & 1.23 & 0.79 & 2.16 & 1.37 & 10.93 \\
+Kz & 28.70 & 26.42 & 15.06 & 17.45 & 37.27 & 19.82 & 114.55 \\
+Ke & 3.94 & 3.14 & 2.73 & 2.05 & 4.99 & 2.95 & 24.81 \\
+Cz & 0.14 & 0.17 & 4.84 & -2.26 & 2.63 & 4.89 & 86.70 \\
+Ca & 2.98 & 1.54 & 4.76 & 0.10 & 4.74 & 4.65 & 56.54 \\
+Ck & -1.15 & -0.03 & 9.06 & -3.25 & 2.35 & 5.60 & 173.16 \\
+Ce & 4.10 & 2.68 & 5.08 & 0.72 & 6.27 & 5.55 & 54.74 \\
+BAz & 3.11 & 1.79 & 7.25 & -0.79 & 6.13 & 6.92 & 94.25 \\
+BAe & 0.68 & 0.17 & 4.55 & -1.15 & 2.17 & 3.31 & 75.72 \\
+BKz & -7.18 & -5.16 & 30.95 & -22.73 & 7.81 & 30.53 & 412.42 \\
+BKe & 0.66 & 0.15 & 8.73 & -2.72 & 3.53 & 6.25 & 146.05 \\
+$B\Phi Z$ & 8.92 & 6.85 & 25.23 & -4.74 & 21.94 & 26.68 & 298.87 \\
+$B\Phi E$ & -1.98 & -1.11 & 5.59 & -4.41 & 1.05 & 5.46 & 71.79 \\
+Gz & -0.41 & -0.21 & 2.65 & -1.51 & 0.76 & 2.27 & 47.54 \\
+Ge & 1.13 & 0.58 & 3.28 & -0.28 & 2.28 & 2.56 & 54.50 \\
+$\frac{\partial A_z}{\partial t}$ & -0.24 & -0.22 & 4.37 & -2.16 & 1.49 & 3.65 & 102.03 \\
+$\frac{\partial A_e}{\partial t}$ & -0.27 & -0.11 & 2.01 & -0.89 & 0.50 & 1.39 & 48.19 \\
+$\frac{\partial K_z}{\partial t}$ & 0.83 & 0.31 & 13.09 & -5.73 & 7.25 & 12.98 & 251.24 \\
+$\frac{\partial K_e}{\partial t}$ & 0.32 & 0.18 & 3.37 & -1.16 & 1.76 & 2.92 & 61.50 \\
+RGz & -0.24 & 0.20 & 6.29 & -2.59 & 2.60 & 5.19 & 128.75 \\
+RKz & 9.03 & 6.04 & 38.93 & -10.82 & 28.67 & 39.49 & 508.65 \\
+RGe & 0.18 & 0.17 & 3.97 & -1.16 & 1.87 & 3.03 & 73.50 \\
+RKe & -5.59 & -3.37 & 9.13 & -8.99 & -0.15 & 8.84 & 109.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{document}

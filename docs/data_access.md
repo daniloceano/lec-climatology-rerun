@@ -33,8 +33,10 @@ The verified files are stored below
 download is accepted only if both byte size and SHA-256 match the pinned
 values. Missing or mismatched inputs stop the workflow immediately.
 
-The final article-style corrected figures can then be regenerated with:
+The final article-style corrected figures and table can then be regenerated
+with:
 
 ```bash
 python scripts/article_figures/generate_corrected_article.py
+python scripts/article_figures/generate_corrected_article_table.py
 ```
