@@ -27,6 +27,7 @@ from sklearn.preprocessing import StandardScaler
 
 from scripts.article_figures import common as c
 from scripts.article_figures.legacy_source import load_definitions
+from scripts.article_figures import density_color_scale as colors
 from scripts.article_figures.phase_eofs import read_phase_product, load_pinned_phase_inputs
 from scripts.article_figures import generate_corrected_article as render
 
@@ -311,6 +312,7 @@ def render_validated_densities(root, tracks, assignments, clusters, figures, scr
         directory=scratch/f'density_{suffix}'; directory.mkdir(parents=True,exist_ok=True)
         subset=tracks if sign else tracks[tracks.track_id.isin(clusters.track_id)]
         months=int(subset.date.dt.to_period('M').nunique())
+        maxima={}
         for k in range(1,5):
             ids=(assignments.loc[assignments.sign.eq(sign)&assignments.dominant_eof.eq(k),'track_id'] if sign else clusters.loc[clusters.cluster.eq(k),'track_id'])
             values,lon,lat=(eof_fn if sign else cluster_fn)(tracks[tracks.track_id.isin(ids)],months)
@@ -319,13 +321,18 @@ def render_validated_densities(root, tracks, assignments, clusters, figures, scr
             xr.DataArray(values,coords={'lon':lon,'lat':lat},dims=['lat','lon'],name=name).to_netcdf(directory/filename)
             xx,yy=np.meshgrid(lon,lat)
             pd.DataFrame(dict(lon=xx.ravel(),lat=yy.ravel(),density=values.ravel())).to_csv(evidence.output/f'density_{suffix}_{k}.csv.gz',index=False,float_format='%.17g',compression={'method':'gzip','mtime':0})
-            summary.append(dict(figure=number,group=k,months=months,n=len(ids),maximum=float(values.max()),assignment_ids_sha256=ids_digest(ids)))
+            maximum=float(values.max())
+            maxima[k]=maximum
+            levels=colors.density_levels(maximum,colors.interval_count(number,k))
+            summary.append(dict(figure=number,group=k,months=months,n=len(ids),maximum=maximum,
+                                vmax=f'{levels[-1]:.2f}',interval_count=len(levels)-1,
+                                levels=json.dumps(levels.tolist()),assignment_ids_sha256=ids_digest(ids)))
         panel=scratch/f'panel_{suffix}'
         if sign:
-            eof_renderer.generate_density_panel(str(directory),str(panel),suffix)
+            colors.render_eof_panel(directory,panel,suffix,maxima,eof_renderer)
             source=panel/f'density_panel_{suffix}.png'
         else:
-            cluster_renderer.generate_density_panel(str(directory),str(panel))
+            colors.render_cluster_panel(directory,panel,maxima,cluster_renderer)
             source=panel/'density_panel.png'
         shutil.copy2(source,figures/render.FIGURE_NAMES[number])
     evidence.table('density_metadata.csv',pd.DataFrame(summary))
@@ -350,16 +357,20 @@ def render_12(root, tables, output, scratch):
 
 
 def match_published_dimensions(png: Path, original: Path) -> None:
-    """Trim only a 1–2 pixel outer raster edge from the legacy renderer."""
+    """Center-crop or white-pad small tight-bbox changes around the same map."""
     with Image.open(original) as published, Image.open(png) as candidate:
         dx = candidate.width - published.width
         dy = candidate.height - published.height
         if dx == dy == 0:
             return
-        if not (0 <= dx <= 2 and 0 <= dy <= 2):
+        if abs(dx) > 20 or abs(dy) > 20 or abs(dx)/published.width > .02 or abs(dy)/published.height > .02:
             raise GateFailure(f'layout differs for {png}: {candidate.size} != {published.size}')
-        left, top = dx // 2, dy // 2
-        candidate.crop((left, top, left + published.width, top + published.height)).save(png)
+        left, top = max(dx, 0)//2, max(dy, 0)//2
+        cropped = candidate.convert('RGB').crop((left, top, left + min(candidate.width,published.width),
+                                                 top + min(candidate.height,published.height)))
+        canvas = Image.new('RGB', published.size, 'white')
+        canvas.paste(cropped, (max(-dx, 0)//2, max(-dy, 0)//2))
+        canvas.save(png)
 
 
 def corrected_stage(legacy,corrected,tracks,root,bundle):
@@ -461,7 +472,7 @@ def finalize_provenance():
         raise GateFailure('cannot finalize incomplete downstream products')
     sources=dict(gate['sources'])
     sources.update(json.loads((CORRECTED/'manifest.json').read_text())['sources'])
-    for name in ['reproduce_downstream.py','common.py','legacy_source.py','generate_corrected_article.py','phase_eofs.py']:
+    for name in ['reproduce_downstream.py','density_color_scale.py','common.py','legacy_source.py','generate_corrected_article.py','phase_eofs.py']:
         path=ROOT/'scripts/article_figures'/name
         sources[str(path)]=c.sha256_file(path)
     outputs={str(p.relative_to(ROOT)):c.sha256_file(p) for directory in [GATE,CORRECTED] for p in directory.iterdir() if p.is_file() and p.name!='provenance.json'}
@@ -486,7 +497,7 @@ def finalize_provenance():
                   historical_environment='data: sklearn 1.4.2, pyEOF 0.0.0; package source and conda history hashed',
                   compatibility='sklearn 1.7.1 reproduces all 679 archived cluster labels modulo label permutation',
                   PDF_format='one-page raster PDF exported from publication-style PNG; not vector',
-                  limitations=['EOF3 positive density exceeds original top contour (13.188339 > 9); original blank over-range region preserved without clipping or changing levels',
+                  limitations=['Density color limits are rounded to two decimals from each panel maximum; visual values above the rounded limit are capped only for plotting, while saved density fields remain unmodified',
                                'Cluster matching margins are recorded; Hungarian assignment does not establish physical equivalence',
                                'Canonical phase products and Figures 5–8 remain frozen'])
     (CORRECTED/'provenance.json').write_text(json.dumps(document,indent=2)+'\n')

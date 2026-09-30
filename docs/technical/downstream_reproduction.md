@@ -108,11 +108,17 @@ bandwidth 0,05 rad, ball_tree, grade 64×128, R=6369,345 km,
 densidade = exp(logKDE) × n_rows × 10⁶/R² / num_time.
 Unidade: posições de trajetória por 10⁶ km² por mês. Denominador: **505 meses**
 comuns, inclusive caudas em janeiro de 2021, em ambas as versões.
-Extensão original [−90,180,−15,−90], mesmos boxes e contour levels, sem clipping.
+Extensão original [−90,180,−15,−90] e mesmos boxes. Os campos numéricos de
+densidade não são truncados.
 
-Na Figure 9 EOF3(+), máximo 13,188339 > último contorno 9: o script original deixa
-a área acima desse nível sem preenchimento. Esse comportamento foi mantido e
-explicitamente registrado, em vez de truncar o campo ou alterar níveis.
+Os limites superiores das barras de cor das Figures 9, 10 e 13 agora usam o
+máximo de cada campo, arredondado a duas casas. Mantêm-se 13 intervalos para
+os EOFs das Figures 9–10, exceto EOF4(+) com 10, e oito para cada grupo da
+Figure 13. Os limites internos seguem passos de 0,5, 1 ou 2 quando isso cabe
+no número original de intervalos; nos demais casos são uniformes. Somente o
+valor mostrado acima do máximo arredondado é limitado visualmente; os campos
+salvos em CSV/NetCDF retêm a precisão integral. O EOF3(+) da Figure 9 passa
+de máximo 13,188339 para `vmax=13,19`, sem a antiga região branca.
 Outputs: `fig_09_eof_positive_density` e `fig_10_eof_negative_density` (.png/.pdf)
 no novo diretório de candidatos.
 
@@ -236,7 +242,7 @@ normalização log original; tabela `figure15_phase_means.csv`.
 | Exposição temporal | assumir período fixo idêntico para todos os mapas | EOFs: 505 meses; clusters: meses da união dos intensos, 396 → 375 |
 | PCs normalizados | SD=1 | pcs(s=2), SD=λ; unidade e escala não intercambiáveis na dominância |
 | n_init omitido | assumir default 10 | ambiente histórico 1.4.2 usa auto=1 e reproduz arquivo |
-| Contornos de Figure 9 | preencher/truncar valores além do máximo | área over-range fica branca pelo renderer original |
+| Contornos de Figure 9 | renderer original com máximo fixo | o renderer atual usa o máximo observado e mantém o número de intervalos |
 
 A tabela é documentação para a futura Correction; nenhum LaTeX foi editado.
 
@@ -248,7 +254,7 @@ Comando:
 python -m pytest tests/test_downstream_reproduction.py tests/test_phase_eof_matching.py tests/test_total_eof_downstream.py tests/test_article_figures.py -q
 ```
 
-Resultado final após a promoção: **49 passed, 0 failed, 2 xfailed, 0 warnings**.
+Resultado final após o ajuste das escalas: **50 passed, 0 failed, 2 xfailed, 0 warnings**.
 Os dois xfails documentam exclusivamente produtos antigos congelados: threshold
 por row na comparison antiga e orientação antiga dos total EOFs. Não são falhas
 dos candidatos novos. Regeneração produziu três warnings herdados: um
@@ -304,8 +310,7 @@ Nenhuma pendência computacional bloqueante nas Figures 9–16 candidatas.
 A correspondência física dos clusters/modos com correlações moderadas é uma
 limitação interpretativa quantificada, não uma nova decisão metodológica.
 A atualização textual/captions no repositório do Corrigendum permanece fora do escopo.
-O pequeno vazio de contorno em EOF3(+) é um comportamento original preservado,
-explicitamente conhecido na candidata.
+O antigo vazio de contorno em EOF3(+) foi resolvido pelo limite derivado dos dados.
 
 ### 17. Git state
 
@@ -324,7 +329,7 @@ após o merge.
 Figures 9–16 estão prontas como candidatas científicas à Correction.
 O gate legacy passou, e os corrected seguem os mesmos algoritmos.
 Figures 5–8 permanecem congeladas; Figures 9–16 antigas foram substituídas.
-Figure 9 conserva o over-range branco do renderer original, documentado.
+Figures 9, 10 e 13 exibem o máximo medido em cada barra de cor.
 Não interpretar Hungarian como comprovação de identidade física.
 Próximo passo mínimo: usar estes candidatos e corrigir as descrições textuais
 no repositório do Corrigendum, mantendo esta proveniência.

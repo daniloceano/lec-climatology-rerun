@@ -166,6 +166,8 @@ def test_saved_figure16_values_are_exactly_canonical():
 
 
 def test_density_preserves_original_temporal_policy_and_unclipped_values():
+    from scripts.article_figures import density_color_scale as color
+
     metadata=read_product('density_metadata.csv')
     assert set(metadata.query('figure in [9,10]').months)=={505}
     assert metadata.query('figure == 13').months.nunique()==1
@@ -177,6 +179,23 @@ def test_density_preserves_original_temporal_policy_and_unclipped_values():
             assert field.density.ge(0).all()
             expected=metadata.query('figure == @number and group == @k').maximum.item()
             assert field.density.max()==pytest.approx(expected,abs=1e-12)
+            row=metadata.query('figure == @number and group == @k').iloc[0]
+            levels=np.array(json.loads(row.levels))
+            assert row.interval_count==color.interval_count(number,k)==len(levels)-1
+            assert np.all(np.diff(levels)>0)
+            assert levels[-1]==round(expected,2)
+            assert row.vmax==pytest.approx(levels[-1])
+
+
+def test_density_level_spacing_prefers_half_unit_when_interval_count_allows():
+    from scripts.article_figures.density_color_scale import density_levels
+
+    preferred=density_levels(13.188339,13)
+    assert len(preferred)==14 and preferred[-1]==13.19
+    assert set(np.diff(preferred)[1:-1])=={1.0}
+    compact=density_levels(3.4127068,10)
+    assert len(compact)==11 and compact[-1]==3.41
+    assert np.all(np.diff(compact)>0)
 
 
 def test_phase_products_and_preexisting_figures_remain_frozen():
