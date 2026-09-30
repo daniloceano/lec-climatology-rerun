@@ -1,5 +1,8 @@
 # Phase EOF matching audit — 2026-09-29
 
+> Historical pre-fix diagnostic. The authorized correction and current status are
+> documented in [phase_eof_matching_correction.md](phase_eof_matching_correction.md).
+
 ## Status: stopped at the diagnostic gate
 
 The requested expectation is contradicted by the pinned inputs. No production code,

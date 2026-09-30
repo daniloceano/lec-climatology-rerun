@@ -1,0 +1,57 @@
+{
+  "corrected_phase_scores": "results/corrected/article/reproduction/eof_scores_by_phase.csv",
+  "csv_precision": "8 significant digits, matching existing article tables",
+  "frozen_output_count": 155,
+  "method": "independent_eof_by_phase / align_eofs; separate eight-mode assignment per phase",
+  "outputs": {
+    "figures/comparison/article/fig_05_eof1_lec_published_corrected.pdf": "a718e00b7f9d10d61a55a85127e963587d4907749f473554b2b5e402972b7d9b",
+    "figures/comparison/article/fig_05_eof1_lec_published_corrected.png": "de225cef54e585af748fc79986f1d69147336524dafe4e04b7cc9a0b127cf652",
+    "figures/comparison/article/fig_06_eof2_lec_published_corrected.pdf": "be48fb46105bab026668afe6d880022d4f31d7d34e0f52e9e0436365ef3948a9",
+    "figures/comparison/article/fig_06_eof2_lec_published_corrected.png": "349acaf0ce60361056d1eed6aa335b5eb60a0381950c94cab5646548c6343823",
+    "figures/comparison/article/fig_07_eof3_lec_published_corrected.pdf": "dbb0f3c26b47013ecedb74db55c5f5e1fd3637971d2ef3dff4a5ac2ed190973e",
+    "figures/comparison/article/fig_07_eof3_lec_published_corrected.png": "1e3e4489a2e891ea9c2ab351223c5b1031bd41190192f8c004a31b7958209262",
+    "figures/comparison/article/fig_08_eof4_lec_published_corrected.pdf": "7e415633521d1b064f8e4369232a6895f504c2448aed744b0f07e7e0b94e479b",
+    "figures/comparison/article/fig_08_eof4_lec_published_corrected.png": "0ed0bbed6eabbb48c0002571023476a9cc6d278b9d6a4e87e0ea161c9cfadb79",
+    "figures/corrected/article/fig_05_eof1_lec.pdf": "03988d2ed3d9215ea0d101408d81782c94288a621a9b0c60634a847fff1d1712",
+    "figures/corrected/article/fig_05_eof1_lec.png": "4d94808dcdd93813c19cd8ad7672ec0d57aa093172ca5c77edf8fcc2d1a50f4c",
+    "figures/corrected/article/fig_06_eof2_lec.pdf": "d439301b1f510b44d10d5d0d9b0b58f222a583f4582b11785bcba7d714b6d644",
+    "figures/corrected/article/fig_06_eof2_lec.png": "7853b75b50cd9c175723d57e0c8e7fc083fd8ef41d4f9589c975c1f66f9a7629",
+    "figures/corrected/article/fig_07_eof3_lec.pdf": "d003020e7be84eea154b1acfd84abcf0801b24ae6559220a685d7978908b888a",
+    "figures/corrected/article/fig_07_eof3_lec.png": "b036239887193f4d3fd9e0c3492cb018a122ec07b56facf1069984da7a466201",
+    "figures/corrected/article/fig_08_eof4_lec.pdf": "030a00e11be380a1c523aa735d817c8714a022e9305ab108e141c2c2822a84d2",
+    "figures/corrected/article/fig_08_eof4_lec.png": "b44485e9655934e3d498bc0307eee087499a64469b660ddda2f4c7c49a9ee29d",
+    "results/comparison/article/figure_manifest.csv": "a1a292d54ea2a036efcda4292349ba94aae5029b7335107c263862456b51a64a",
+    "results/comparison/article/phase_eof_matched/consistency.csv": "8c6b74629d449a707bf6fb6df374c92c0aec39908c47b9920f198b7392e44c85",
+    "results/comparison/article/phase_eof_matched/frozen_outputs.json": "a37b517a233eaf831599c865febc8206b3bea4cf573ec2efe560337406fc3a9e",
+    "results/comparison/article/phase_eof_matched/loadings.csv": "d312825a939e2784e502211160f0fb0ed88f2ac13972fe45b8c1912fa1048b7e",
+    "results/comparison/article/phase_eof_matched/variance.csv": "a3ed67ff3f57d48600f1aaa1899a055947218ee7bc33c279bee94a1f4ec6f52f",
+    "results/corrected/article/reproduction/eof_loadings_by_phase.csv": "01bad0319dab8269609c9d5fb755977cf0a293dd8086d9a4247f75e6021ed71d",
+    "results/corrected/article/reproduction/eof_loadings_by_phase_raw.csv": "3f7808432f58fce6188bbd7e47e0c3440be26703b1a74873cd4d51b8ba7afe2b",
+    "results/corrected/article/reproduction/eof_scores_by_phase.csv": "c2d76992b09c18436693e4d68e7f0fd0c47027f784f0a905df6f40bded805276",
+    "results/corrected/article/reproduction/eof_variance_by_phase.csv": "b5273b35cd5cdb936cf43f351f8ff884cd5995b815d63da6192612505d2bc4ea",
+    "results/corrected/article/reproduction/eof_variance_by_phase_raw.csv": "33bfc9f8f0c9030ba13ab1dd734f6ef428d02c129934a504a490ac42d3085e31",
+    "results/corrected/article/reproduction/figure_manifest.csv": "c6779ca0d8b5ed3ccfd8d23e2e53074db9170eb35de83f1c324f396a924959df",
+    "results/corrected/article/reproduction/provenance.json": "d70d27cd1d7d0fcc676b380f427f2a99382283c642c3edf3680d323f94fb6072"
+  },
+  "raw_identity": "raw_rank",
+  "reference_identity": "reference_eof",
+  "sign_alignment": "multiplier applied jointly to raw loadings and PCs",
+  "source_code_sha256": {
+    "scripts/article_figures/common.py": "198e555eace7881f10e2e5dc4dc3ea4d09ae1fdfa19f059bf92b6b86855bff65",
+    "scripts/article_figures/generate_article_comparison.py": "88f54b3e27e717c44680d526b2bc0fc71029cf20f19477f44b004b4cf1c69910",
+    "scripts/article_figures/generate_comparison.py": "1e81b21b9166d5f77815fecff7fc58741832b106edf16976f19aad2afe7ca5f2",
+    "scripts/article_figures/generate_corrected_article.py": "6c864d97f8a8edc8510ccc19f154bad5a863ebcf6efb9e3b9383e139f3ca4787",
+    "scripts/article_figures/phase_eofs.py": "5ae2c1d717c387d3141725f275203ac85209fbd891b93d55547977b2bb529aab",
+    "scripts/article_figures/regenerate_phase_eofs.py": "ebe7f2695ad61df589cace447833e011abdccb2f27d800820d0e1e838466fabb"
+  },
+  "sources": {
+    "after": {
+      "path": "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/data/external/swell/paper_energy_patterns/energy_cache_corrected.parquet",
+      "sha256": "c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3"
+    },
+    "before": {
+      "path": "/Users/danilocoutodesouza/Documents/Programs_and_scripts/paper_energy_patterns/data/energy_cache.parquet",
+      "sha256": "7a24617e56595737075a8f9975dd0018069196292eab32fd8f5ba2a49e25a16d"
+    }
+  }
+}

@@ -171,24 +171,28 @@ def fig04(stats: pd.DataFrame, stem: Path) -> None:
 
 
 def _eof_series(loadings: pd.DataFrame, version: str, phase: str, mode: int) -> pd.Series:
+    # The paired-control compatibility schema also uses eof as reference ID.
+    identity = "reference_eof" if "reference_eof" in loadings else "eof"
     return loadings[
         (loadings["version"] == version)
         & (loadings["scope"] == phase)
-        & (loadings["eof"] == mode)
+        & (loadings[identity] == mode)
     ].set_index("term")["loading"]
 
 
 def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Path) -> None:
+    identity = "reference_eof" if "reference_eof" in variance else "eof"
     compact = mode in (2, 3, 4)
     gridspec_kw = {"wspace": -0.06} if compact else None
     figure, axes = plt.subplots(2, 2, figsize=(8.4, 9.2), gridspec_kw=gridspec_kw)
     for ax, phase, tag in zip(axes.flat, PHASES, "ABCD"):
         before_var = variance[
-            (variance["scope"] == phase) & (variance["eof"] == mode) & (variance["version"] == "before")
+            (variance["scope"] == phase) & (variance[identity] == mode) & (variance["version"] == "before")
         ]["explained_variance_pct"].iloc[0]
         after_row = variance[
-            (variance["scope"] == phase) & (variance["eof"] == mode) & (variance["version"] == "after")
+            (variance["scope"] == phase) & (variance[identity] == mode) & (variance["version"] == "after")
         ].iloc[0]
+        raw_rank = int(after_row.get("raw_rank", after_row.get("matched_rank", mode)))
         draw_cycle_comparison(
             ax,
             _eof_series(loadings, "before", phase, mode),
@@ -196,7 +200,8 @@ def fig_eof(mode: int, loadings: pd.DataFrame, variance: pd.DataFrame, stem: Pat
             title=(
                 f"({tag}) EOF {mode}\n"
                 f"{phase}\n"
-                f"{before_var:.1f}% → {after_row['explained_variance_pct']:.1f}%"
+                f"{before_var:.2f}% → {after_row['explained_variance_pct']:.2f}%"
+                + (f"\nafter: raw {raw_rank}" if raw_rank != mode else "")
             ),
             scale="eof",
             title_fontsize=8.2,

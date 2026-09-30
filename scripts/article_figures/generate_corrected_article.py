@@ -47,6 +47,9 @@ from scripts.article_figures.common import (  # noqa: E402
     total_eof,
 )
 from scripts.article_figures.legacy_source import load_definitions  # noqa: E402
+from scripts.article_figures.phase_eofs import (  # noqa: E402
+    load_pinned_phase_inputs, matched_phase_eofs, read_phase_product, write_phase_product,
+)
 
 
 DEFAULT_CONFIG = REPOSITORY / "config" / "data_sources.toml"
@@ -242,8 +245,6 @@ def render_phase_and_eof_diagrams(
     scratch: Path,
 ) -> tuple[object, object]:
     lec_std = load_definitions(legacy_root / "plot_LEC_std.py", skip_imports={"pdfs"})
-    lec_eof = load_definitions(legacy_root / "plot_LEC_eofs.py")
-    patch_eof_box_renderer(lec_eof)
 
     mean = stats.pivot(index="phase", columns="term", values="mean").reindex(PHASES)
     std = stats.pivot(index="phase", columns="term", values="std").reindex(PHASES)
@@ -255,15 +256,35 @@ def render_phase_and_eof_diagrams(
         grid=(2, 2), label_y=0.55,
     )
 
+    render_eof_diagrams(legacy_root, loadings, variance, figures, scratch)
+    return lec_std, mean
+
+
+def render_eof_diagrams(
+    legacy_root: Path, loadings: pd.DataFrame, variance: pd.DataFrame,
+    figures: Path, scratch: Path,
+) -> None:
+    """Figures 5–8 only; input identities must already be reference-matched.
+
+    Frozen publication renderer receives a temporary zero-based variance view.
+    Raw ranks/signs remain explicit in the source tables and figure manifest.
+    """
+    for frame in (loadings, variance):
+        if not {"reference_eof", "raw_rank", "sign_alignment"}.issubset(frame.columns) or "eof" in frame:
+            raise ValueError("Figures 5–8 require reference-matched EOF tables")
+        if not frame.version.eq("after").all():
+            raise ValueError("corrected-only renderer requires the after view")
+    lec_eof = load_definitions(legacy_root / "plot_LEC_eofs.py")
+    patch_eof_box_renderer(lec_eof)
     eof_dir = scratch / "eof"
     eof_dir.mkdir(parents=True, exist_ok=True)
-    variance_table = variance.pivot(index="scope", columns="eof", values="explained_variance_pct")
+    variance_table = variance.pivot(index="scope", columns="reference_eof", values="explained_variance_pct")
     # The frozen renderer uses zero-based EOF column labels internally even
     # though its displayed titles and output filenames are one-based.
     variance_table.columns = variance_table.columns.astype(int) - 1
     for mode in range(1, 5):
         table = (
-            loadings[loadings["eof"] == mode]
+            loadings[loadings["reference_eof"] == mode]
             .pivot(index="scope", columns="term", values="loading")
             .reindex(PHASES)
         )
@@ -273,7 +294,6 @@ def render_phase_and_eof_diagrams(
             images, figures / FIGURE_NAMES[mode + 4], figsize=(10, 10),
             grid=(2, 2), label_y=0.60,
         )
-    return lec_std, mean
 
 
 def compute_haversine_density(tracks: pd.DataFrame, months: int):
@@ -614,9 +634,11 @@ def render_syntheses(
     )
 
 
-def validate_layout(figures: Path, originals: Path) -> list[dict]:
+def validate_layout(figures: Path, originals: Path, numbers=None) -> list[dict]:
     rows = []
     for number, filename in FIGURE_NAMES.items():
+        if numbers is not None and number not in numbers:
+            continue
         corrected = figures / filename
         original = originals / filename
         if not corrected.is_file() or not original.is_file():
@@ -682,7 +704,13 @@ def main() -> int:
     raw = raw_corrected_cache(cache_path)
     primary, tracks = load_inputs(cache_path, tracks_path)
     stats = phase_statistics(primary)
-    loadings, variance, phase_scores = eof_by_phase(primary)
+    raw_phase_loadings, raw_phase_variance, _ = eof_by_phase(primary)
+    legacy, corrected, _ = load_pinned_phase_inputs(REPOSITORY, cache_path)
+    loadings, variance, phase_scores = matched_phase_eofs(legacy, corrected)
+    write_phase_product(REPOSITORY, loadings, variance)
+    loadings, variance = read_phase_product(REPOSITORY)
+    loadings = loadings[loadings.version.eq("after")].copy()
+    variance = variance[variance.version.eq("after")].copy()
     total_loadings, total_variance, total_scores = total_eof(raw)
     assignments = assign_published_eof_extremes(total_scores, n_modes=8, keep_modes=4)
     clusters, cluster_centers, cluster_metadata = article_clusters(total_scores, tracks)
@@ -709,7 +737,8 @@ def main() -> int:
         cluster_stats = render_cluster_statistics(
             clusters, tracks, first, figures / FIGURE_NAMES[14]
         )
-        render_syntheses(legacy_root, phase_means, loadings, figures, scratch)
+        # Figure 16 deliberately retains its raw-phase definition.
+        render_syntheses(legacy_root, phase_means, raw_phase_loadings, figures, scratch)
 
     manifest = validate_layout(figures, originals)
     pd.DataFrame(manifest).to_csv(results / "figure_manifest.csv", index=False)
@@ -717,6 +746,12 @@ def main() -> int:
     loadings.to_csv(results / "eof_loadings_by_phase.csv", index=False, float_format="%.8g")
     variance.to_csv(results / "eof_variance_by_phase.csv", index=False, float_format="%.8g")
     phase_scores.to_csv(results / "eof_scores_by_phase.csv", index=False, float_format="%.8g")
+    raw_phase_loadings.rename(columns={"eof": "raw_rank"}).to_csv(
+        results / "eof_loadings_by_phase_raw.csv", index=False, float_format="%.8g"
+    )
+    raw_phase_variance.rename(columns={"eof": "raw_rank"}).to_csv(
+        results / "eof_variance_by_phase_raw.csv", index=False, float_format="%.8g"
+    )
     total_loadings.to_csv(results / "eof_loadings_total.csv", index=False, float_format="%.8g")
     total_variance.to_csv(results / "eof_variance_total.csv", index=False, float_format="%.8g")
     total_scores.to_csv(results / "eof_scores_total.csv", index=False, float_format="%.8g")
@@ -730,6 +765,8 @@ def main() -> int:
 
     provenance = {
         "workflow": "corrected article reproduction with frozen publication layout",
+        "phase_eofs": "Figures 5–8 use results/comparison/article/phase_eof_matched; reference_eof is the published identity, raw_rank is the corrected eigenvalue rank",
+        "figure_16_phase_eofs": "raw phase loadings, preserved independently from Figures 5–8 matching",
         "repository_commit_before_generation": git_head(),
         "corrected_cache": config["inputs"]["corrected_cache"],
         "tracks": config["inputs"]["tracks"],
