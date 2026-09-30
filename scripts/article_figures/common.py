@@ -370,31 +370,54 @@ def independent_eof_by_phase(
     legacy: pd.DataFrame,
     corrected: pd.DataFrame,
     n_modes: int = 8,
-) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Fit phase EOFs to the full, independent before and after populations."""
+    *,
+    return_details: bool = False,
+):
+    """Fit and match independent decompositions within each primary phase.
+
+    ``eof`` in the compatibility tables always means reference identity.
+    With ``return_details``, also return corrected reference-PC scores and
+    explicit per-version raw ranks/signs. Total-lifecycle EOFs are separate.
+    """
     loading_rows: list[dict] = []
     variance_rows: list[dict] = []
+    score_parts: list[pd.DataFrame] = []
+    mapping_rows: list[dict] = []
     for phase in PHASES:
         left = legacy[legacy["phase"] == phase].set_index("track_id").sort_index()
         right = corrected[corrected["phase"] == phase].set_index("track_id").sort_index()
-        _, legacy_loadings, _, legacy_variance = compute_eof(left, EOF_TERMS, n_modes)
-        _, corrected_loadings, corrected_scores, corrected_variance = compute_eof(
+        left_index, legacy_loadings, _, legacy_variance = compute_eof(left, EOF_TERMS, n_modes)
+        right_index, corrected_loadings, corrected_scores, corrected_variance = compute_eof(
             right, EOF_TERMS, n_modes
         )
-        corrected_loadings, _, corrected_variance, ranks, correlations = align_eofs(
+        raw_loadings = corrected_loadings
+        corrected_loadings, corrected_scores, corrected_variance, ranks, correlations = align_eofs(
             legacy_loadings, corrected_loadings, corrected_scores, corrected_variance
         )
+        # Recover only the orientation metadata; assignment remains exclusively
+        # in align_eofs. A raw sign flip changes this flag, not the final pattern.
+        signs = np.where(np.sum(corrected_loadings * raw_loadings[ranks - 1], axis=1) < 0, -1, 1)
+        if return_details:
+            scores = pd.DataFrame(corrected_scores, columns=[f"reference_PC{i + 1}" for i in range(n_modes)])
+            scores.insert(0, "track_id", right_index.to_numpy(dtype="int64"))
+            scores.insert(0, "scope", phase)
+            score_parts.append(scores)
         for mode in range(n_modes):
             for version, n_rows, variance_value, rank, correlation in (
-                ("before", len(left), legacy_variance[mode], mode + 1, 1.0),
+                ("before", len(left_index), legacy_variance[mode], mode + 1, 1.0),
                 (
                     "after",
-                    len(right),
+                    len(right_index),
                     corrected_variance[mode],
                     int(ranks[mode]),
                     float(correlations[mode]),
                 ),
             ):
+                mapping_rows.append({
+                    "scope": phase, "reference_eof": mode + 1, "version": version,
+                    "raw_rank": rank,
+                    "sign_alignment": 1 if version == "before" else int(signs[mode]),
+                })
                 variance_rows.append(
                     {
                         "scope": phase,
@@ -425,7 +448,10 @@ def independent_eof_by_phase(
                         },
                     ]
                 )
-    return pd.DataFrame(loading_rows), pd.DataFrame(variance_rows)
+    result = pd.DataFrame(loading_rows), pd.DataFrame(variance_rows)
+    if return_details:
+        return (*result, pd.concat(score_parts, ignore_index=True), pd.DataFrame(mapping_rows))
+    return result
 
 
 def independent_total_eof(

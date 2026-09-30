@@ -1,0 +1,17 @@
+phase,published_eof,corrected_raw_rank,max_abs_loading_difference,explained_variance_difference_pct,loadings_equal,variance_equal
+incipient,1,1,0,0,True,True
+incipient,2,3,1.10357105,3.475735,False,False
+incipient,3,2,1.03591786,-3.475735,False,False
+incipient,4,4,0,0,True,True
+intensification,1,1,0,0,True,True
+intensification,2,2,0,0,True,True
+intensification,3,4,1.13537485,1.0754381,False,False
+intensification,4,3,1.13537485,-1.0754381,False,False
+mature,1,1,0,0,True,True
+mature,2,2,0,0,True,True
+mature,3,3,0,0,True,True
+mature,4,4,0,0,True,True
+decay,1,1,0,0,True,True
+decay,2,2,0,0,True,True
+decay,3,3,0,0,True,True
+decay,4,4,0,0,True,True

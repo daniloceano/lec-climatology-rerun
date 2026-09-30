@@ -23,7 +23,6 @@ from scripts.article_figures.common import (  # noqa: E402
     PHASES,
     assign_published_eof_extremes,
     first_track_rows,
-    independent_eof_by_phase,
     independent_intense_pc_clusters,
     independent_total_eof,
     load_article_comparison_inputs,
@@ -31,6 +30,9 @@ from scripts.article_figures.common import (  # noqa: E402
     primary_phase_rows,
     sha256_file,
     write_json,
+)
+from scripts.article_figures.phase_eofs import (  # noqa: E402
+    compatibility_tables, matched_phase_eofs, read_phase_product, write_phase_product,
 )
 from scripts.article_figures.generate import (  # noqa: E402
     add_region_boxes,
@@ -358,7 +360,9 @@ def main() -> int:
         ],
         ignore_index=True,
     )
-    phase_loadings, phase_variance = independent_eof_by_phase(legacy_primary, corrected_primary)
+    phase_loadings, phase_variance, _ = matched_phase_eofs(legacy, corrected)
+    write_phase_product(root, phase_loadings, phase_variance)
+    phase_loadings, phase_variance = read_phase_product(root)
     total_loadings, total_variance, total_scores = independent_total_eof(legacy, corrected)
 
     extreme_parts = []
@@ -431,8 +435,9 @@ def main() -> int:
         )
 
     stats.to_csv(results_dir / "phase_statistics.csv", index=False, float_format="%.8g")
-    phase_loadings.to_csv(results_dir / "eof_loadings_by_phase.csv", index=False, float_format="%.8g")
-    phase_variance.to_csv(results_dir / "eof_variance_by_phase.csv", index=False, float_format="%.8g")
+    legacy_phase_loadings, legacy_phase_variance = compatibility_tables(phase_loadings, phase_variance)
+    legacy_phase_loadings.to_csv(results_dir / "eof_loadings_by_phase.csv", index=False, float_format="%.8g")
+    legacy_phase_variance.to_csv(results_dir / "eof_variance_by_phase.csv", index=False, float_format="%.8g")
     total_loadings.to_csv(results_dir / "eof_loadings_total.csv", index=False, float_format="%.8g")
     total_variance.to_csv(results_dir / "eof_variance_total.csv", index=False, float_format="%.8g")
     total_scores.to_csv(results_dir / "eof_scores_total.csv", index=False, float_format="%.8g")
