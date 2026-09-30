@@ -18,6 +18,8 @@ import pandas as pd  # noqa: E402
 
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 
+from scripts.article_figures.downstream_guards import require_resolved_figure16
+
 from scripts.article_figures.common import (  # noqa: E402
     EOF_TERMS,
     PHASES,
@@ -105,6 +107,8 @@ def fig12(
     all_intense_stem: Path,
     clusters_stem: Path,
 ) -> None:
+    from scripts.article_figures.downstream_guards import require_validated_downstream
+    require_validated_downstream()
     before = assignments[assignments["version"] == "before"]
     after = assignments[assignments["version"] == "after"]
     before_ids = set(before["track_id"].astype(int))
@@ -149,6 +153,8 @@ def fig12(
 
 
 def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
+    from scripts.article_figures.downstream_guards import require_validated_downstream
+    require_validated_downstream()
     items = []
     for version in ("before", "after"):
         for cluster in range(1, 6):
@@ -185,6 +191,8 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
 
 
 def _cluster_row(axes, label: str, assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame):
+    from scripts.article_figures.downstream_guards import require_validated_downstream
+    require_validated_downstream()
     maximum = tracks.groupby("track_id")["vor42"].max().rename("max_vor42")
     merged = assignments.merge(first[["track_id", "region", "season"]], on="track_id", how="left")
     merged = merged.merge(maximum, on="track_id", how="left")
@@ -236,6 +244,8 @@ def _cluster_row(axes, label: str, assignments: pd.DataFrame, tracks: pd.DataFra
 
 
 def fig14(assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame, stem: Path) -> pd.DataFrame:
+    from scripts.article_figures.downstream_guards import require_validated_downstream
+    require_validated_downstream()
     figure, axes = plt.subplots(2, 4, figsize=(13.0, 6.2))
     before = assignments[assignments["version"] == "before"].drop(columns="version")
     after = assignments[assignments["version"] == "after"].drop(columns="version")
@@ -256,6 +266,7 @@ def fig16(
     assignments: pd.DataFrame,
     stem: Path,
 ) -> None:
+    require_resolved_figure16()
     before_ids = set(
         assignments.loc[
             (assignments["version"] == "before")
@@ -340,6 +351,7 @@ def main() -> int:
         help="reuse already generated Figures 1-13 after validating their files",
     )
     args = parser.parse_args()
+    require_resolved_figure16()
 
     root = args.output_root.resolve()
     figures_dir = root / "figures" / FIGURES_NAME

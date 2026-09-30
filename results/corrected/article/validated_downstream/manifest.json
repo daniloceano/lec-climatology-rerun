@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "item": "corrected intense selection",
+      "passed": true,
+      "evidence": {
+        "n": 603,
+        "threshold": 10.353024000000001,
+        "population": 6789,
+        "ids_sha256": "b2c863c274de933061bc7591621af1731e00b4cddbc872fd1fe31c2741ee7324"
+      }
+    }
+  ],
+  "sources": {
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/original/article/reproduction_gate/manifest.json": "2c3f8c4a363929adaddd3a5917b5da5ae7880e4ab6770c8babf0190567c724a8",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/phase_eof_matched/loadings.csv": "d312825a939e2784e502211160f0fb0ed88f2ac13972fe45b8c1912fa1048b7e",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/src_energetic_eof/export_density_eof.py": "5ea23cbe13b889ef6e4b0e3bedcff568c2aa837112254a07040de78b9dd79c65",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_export_density_clusters.py": "16ed4aa5f5b8049f3a9cafc7245609c7c71ad12861c2a09e1793e471b12cb597",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/map_density_eof.py": "d8726c3127e6228a5d8979805826c9a927601d00223bf8e03b65dd4a72c13f7a",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/map_density_intense.py": "5a1815ed9d35b0dfdf53bccbfbd49e036651b6ecd537c881f5d56b34c0ea7481",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cyclone_statistics_q10_q90.py": "959329da519d524327113bb93fdd1e42377f42fc35dcdc12a75ad8fcd60c6468",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_plot_lec_centroids.py": "8d30cc9f292339eb6ee4c71844cc0de64017439f440b535e97cbbbff7be90681",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cluster_statistics.py": "dc77715e78455b535db100e4e0b03c0b9d22beb88cdda70b7ae43d35d10e684e",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_v6.py": "3f6adf6c64bfbcf701f71330e68e18ffe21cf2de6dba312183c7f3085ffa8577",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_eofs.py": "b80608a16223d7654e3c55ee9025f6a8cb82c8a3f8e0be77c8b76c1ad2a0404b"
+  },
+  "sklearn_version": "1.7.1",
+  "repo_commit": "213a6397b70dca5bd68d8345f6d34c742b83652b",
+  "wrapper_sha256": "b645aa9eff668ef628fd289b2a41fac2c055e0f4611f929068969427c7aad734",
+  "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a"
+}

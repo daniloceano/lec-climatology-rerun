@@ -1,0 +1,232 @@
+{
+  "HEAD": "213a6397b70dca5bd68d8345f6d34c742b83652b",
+  "archived_cluster_count": 4,
+  "article_comparison": {
+    "after_cyclones": 3820,
+    "after_rows": 15829,
+    "before_cyclones": 6789,
+    "before_rows": 25000,
+    "common_IDs": 3820,
+    "periods": "all archived, equal period weighting within cyclone"
+  },
+  "branch": "main",
+  "checks_blocked": 5,
+  "checks_failed": 7,
+  "checks_passed": 107,
+  "corrected_only_metadata": {
+    "clusters": 4,
+    "corrected_intense_cyclones": 603,
+    "features": [
+      "PC1",
+      "PC2",
+      "PC3",
+      "PC4",
+      "PC5",
+      "PC6",
+      "PC7",
+      "PC8"
+    ],
+    "inertia": 3666.2954571155797,
+    "maximum_vorticity_quantile": 0.9,
+    "maximum_vorticity_threshold": 10.353024000000001,
+    "method": "article PC clustering: StandardScaler + KMeans",
+    "n_init": 10,
+    "random_state": 42
+  },
+  "current_vs_published_reference_sign": [
+    1,
+    -1,
+    -1,
+    1,
+    -1,
+    -1,
+    1,
+    1
+  ],
+  "inputs": {
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/eofs.csv": {
+      "preexisting_pin": false,
+      "sha256": "7f7b64439204d2313a469a3be326802063a0acea39857bcc20910cc359c1c15b"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs.csv": {
+      "preexisting_pin": false,
+      "sha256": "4fbf266355358f6f856cf48a68daeb0805df391229b90f43cc5c25b938d42ec9"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs_with_dominant_eof_q10.csv": {
+      "preexisting_pin": false,
+      "sha256": "d596196d2ad0e12a118ad6a312c487bbedb45c7c4011da35e87d9114d5da8e3c"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs_with_dominant_eof_q90.csv": {
+      "preexisting_pin": false,
+      "sha256": "afd1010e7e651734ff71741f8175d470ed522b6e28072d84d66cb9c37c37d54d"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/tracks_SAt_filtered/tracks_SAt_filtered_with_periods.csv": {
+      "preexisting_pin": false,
+      "sha256": "ef46d37751ec66db5fd566ed9909695818da774b53a3e562dd7606a9ca0acfe7"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic@3dc622ed0efb03cdf5ef0bf9a4a78a57ceef365d:src_energetic_eof/attribute_track_ids_to_eof_extremes.py": {
+      "preexisting_pin": true,
+      "sha256": "b778754f98cacb68d833cfded32a9dd2bd3f7178093b062625b18869363c4519"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic@3dc622ed0efb03cdf5ef0bf9a4a78a57ceef365d:src_energetic_eof/eof_analysis_with_track_id.py": {
+      "preexisting_pin": true,
+      "sha256": "b22e2c4f7099e3fee31ad54cf8e2a0af23bfbf96066e437589c0e4f661ff89dd"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/data/external/swell/paper_energy_patterns/energy_cache_corrected.parquet": {
+      "preexisting_pin": true,
+      "sha256": "c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/data/external/swell/paper_energy_patterns/tracks_SAt_filtered_with_energetics_processed.csv": {
+      "preexisting_pin": true,
+      "sha256": "552a7a0f1218450834c6d34addbec6bc6dda18e1f2a3f21d663a71bccc636b1d"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/figures/original/article/fig_16_eof_synthesis.png": {
+      "preexisting_pin": false,
+      "sha256": "6cf2260b76abb146429d35a9dee1159a57704c6e7a540c234c066a86cc4081f2"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/eof_extreme_assignments.csv": {
+      "preexisting_pin": false,
+      "sha256": "daedbca4463526af9b304af765467c6d8a724062dab10e422bad36224292593a"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/eof_loadings_total.csv": {
+      "preexisting_pin": false,
+      "sha256": "557359521a83403246fbfd99bf5f3d867cf5278eefb260d2542194a80bce8a14"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/eof_scores_total.csv": {
+      "preexisting_pin": false,
+      "sha256": "9252da8d42ce9dfb73cac6bb456e2cee7f76e709d5ecf6b181ecac7e7ee3b2b8"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/eof_variance_total.csv": {
+      "preexisting_pin": false,
+      "sha256": "d1e5caeae64b04d760a4e8c14866beed7413bc4fe1d973e7b7a6582d3dff50c4"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/figure_manifest.csv": {
+      "preexisting_pin": false,
+      "sha256": "a1a292d54ea2a036efcda4292349ba94aae5029b7335107c263862456b51a64a"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/intense_pc_cluster_assignments.csv": {
+      "preexisting_pin": false,
+      "sha256": "7ff438f2c1e18f289d0378ac3bfbf4c50d4b087f30d2e16ceddbef9f5fcfb4ab"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/intense_pc_cluster_centers.csv": {
+      "preexisting_pin": false,
+      "sha256": "efac0610072e3305cf617366095db09462cec313d532b32b5faed7a82d985a7c"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/intense_pc_cluster_metadata.json": {
+      "preexisting_pin": false,
+      "sha256": "d866a90d9a3d809c511f5d60b839b758ac54ed064f77a055b655cf3ac2052c55"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/intense_pc_cluster_statistics.csv": {
+      "preexisting_pin": false,
+      "sha256": "294a871d94b87a157c88409a6680f7a6e18f4668b637309bd2a817777cf58abd"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/reproduction/eof_extreme_assignments.csv": {
+      "preexisting_pin": false,
+      "sha256": "a2a0a81f5a7539defd04ed21b5279e2c8a3c2fc14a0ca34e9720345d5f713740"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/reproduction/figure_manifest.csv": {
+      "preexisting_pin": false,
+      "sha256": "c6779ca0d8b5ed3ccfd8d23e2e53074db9170eb35de83f1c324f396a924959df"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/reproduction/intense_pc_cluster_assignments.csv": {
+      "preexisting_pin": false,
+      "sha256": "d00d83045df0d62644b71b995a23adf8d853103b8938380547f674300e3634de"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/reproduction/intense_pc_cluster_metadata.json": {
+      "preexisting_pin": false,
+      "sha256": "8e462feb9d6bdfe47cafedd17811ca0b8b34b1ec4f6ecf1eae28e384547ab700"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/reproduction/intense_pc_cluster_statistics.csv": {
+      "preexisting_pin": false,
+      "sha256": "f9dbd5644e992f53507371e9b5f1d4839d6b9436874736ece954ecee7f330ba3"
+    },
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/paper_energy_patterns/data/energy_cache.parquet": {
+      "preexisting_pin": true,
+      "sha256": "7a24617e56595737075a8f9975dd0018069196292eab32fd8f5ba2a49e25a16d"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cyclone_statistics_q10_q90.py": {
+      "preexisting_pin": false,
+      "sha256": "959329da519d524327113bb93fdd1e42377f42fc35dcdc12a75ad8fcd60c6468"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_plot_lec_centroids.py": {
+      "preexisting_pin": false,
+      "sha256": "8d30cc9f292339eb6ee4c71844cc0de64017439f440b535e97cbbbff7be90681"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eofs_kmeans_pcs.py": {
+      "preexisting_pin": false,
+      "sha256": "9b8ae4c41dca6be103a35897e48056f390dc0eb61e4574c075551830cc53a9f9"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/figures/eof_clusters_intense/pcs_with_clusters.csv": {
+      "preexisting_pin": false,
+      "sha256": "56ed140bf59425b2fa0e95d9176cd6ebe48725c45701b7a8ea12591e2f756923"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/plot_LEC_panel_clusters.py": {
+      "preexisting_pin": false,
+      "sha256": "d4cff23e65f480e1fc5e4a9f88a001f57fd7e36c2f2561a9a48e435159405fb4"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/EOFs_panel.png": {
+      "preexisting_pin": false,
+      "sha256": "6cf2260b76abb146429d35a9dee1159a57704c6e7a540c234c066a86cc4081f2"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/panel_LEC_clusters.png": {
+      "preexisting_pin": false,
+      "sha256": "18463dc135aa8f36be3e562a79c9f97f8bb01d3d5805eaa99f2c0669de3180d1"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/sn-article_rev2.tex": {
+      "preexisting_pin": false,
+      "sha256": "6849f3e789277dad83fb9141a425ce5bac0d03863aa52699a74d72ef3cdfbb5a"
+    },
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_eofs.py": {
+      "preexisting_pin": false,
+      "sha256": "b80608a16223d7654e3c55ee9025f6a8cb82c8a3f8e0be77c8b76c1ad2a0404b"
+    }
+  },
+  "method": "No maps, figures or clustering refitted. Small EOF eigendecompositions independently recomputed; stored assignments and centers audited.",
+  "outputs": {
+    "results/comparison/article/total_eof_audit/archived_cluster_counts.csv": "75ce4d3846436fdbd3bc3faf8e78283087010eb2e07e951b831719293be57ba3",
+    "results/comparison/article/total_eof_audit/cluster_centroid_differences.csv": "95304fb52db0899690f6b8303c517524cb4e41dab262183d868852221784e0ce",
+    "results/comparison/article/total_eof_audit/cluster_distance_matrix.csv": "935a268b1c21091e0621003ca3dcd8426c3c7e92a4f1e23cf890e220e350204a",
+    "results/comparison/article/total_eof_audit/cluster_feature_scales.csv": "c795a407af05904025085484e83fc6314e307c4966c2a6210a08520b38a21483",
+    "results/comparison/article/total_eof_audit/cluster_mapping.csv": "eec36c457e2762b54922a82fd0a55cd372928074016a965de482b0343e0f375c",
+    "results/comparison/article/total_eof_audit/cluster_statistics_audit.csv": "088b598eefe4d4412f42517d91219f56689366ddf317d04ab895aff52d75af03",
+    "results/comparison/article/total_eof_audit/consistency_checks.csv": "5167c75d90e4ac1b7b41c4cbd3c494deaedc46154da59d3027c51c184025b658",
+    "results/comparison/article/total_eof_audit/figure11_changes.csv": "a1aa8132a26f09980a25f966ca0413327e27a17e2e3382fd395129af43f56f40",
+    "results/comparison/article/total_eof_audit/figure11_composition.csv": "73c3b5bbf7c85a6d06532401313733bd96b01b290ca06860e38bf878b0e042d4",
+    "results/comparison/article/total_eof_audit/figure12_14_membership_checks.csv": "3c2c44d00d011ce14d1fec7894c792788cd3c2ebd32c9d4c12f8f5e5a2389665",
+    "results/comparison/article/total_eof_audit/figure12_lec_statistics.csv": "9d21983fce49905f3a6825056e6f66eb58e8b63da684b688e153844a14012ea4",
+    "results/comparison/article/total_eof_audit/figure13_density_membership.csv": "c3251375847597fe09e1f31c5200d5a5a0c0e38641f00c14a5f55e2849e5565d",
+    "results/comparison/article/total_eof_audit/intense_selection_audit.csv": "9ba954efbb874e010e501ba0044a0b583fb79c1d4858ead826ce7654bebd42fd",
+    "results/comparison/article/total_eof_audit/legacy_assignment_sensitivity.csv": "119ef276b51fb19d84a5213dc1a33c5eff80a9293afc852dc6fcdc5053f8561b",
+    "results/comparison/article/total_eof_audit/paired_control_extreme_counts.csv": "d3b0fde4b2f5069a16343c0faddd3e9b09cb2b5946991efc43775952d9be7c30",
+    "results/comparison/article/total_eof_audit/paired_control_total_variance.csv": "0596fb50b4ffe6559cdd74a07cf88046239911d2104afa54ac0ddcb2142f963e",
+    "results/comparison/article/total_eof_audit/pc_density_membership.csv": "766ce110754df42c4ae82026fe4cd34625e620885155a96d87b0ab244d7d9bc6",
+    "results/comparison/article/total_eof_audit/pc_extreme_counts.csv": "ece48cf35f76ff560eaab93c23d2cc7bc00161ea13141c9867404ddfe93050a8",
+    "results/comparison/article/total_eof_audit/pc_extreme_overlap.csv": "00b37bf963c20038fe7fda8ae06842eb8a3a00d1f78a1e40dd96cbd4bb735d98",
+    "results/comparison/article/total_eof_audit/pc_membership_changes.csv": "db91917f0d779239494e76b0b85b899457fb7b88ee0c6be119f68e30f9176216",
+    "results/comparison/article/total_eof_audit/pc_thresholds.csv": "393241ab64fbaccc09bdf5b3dd897cf9b674ff5f70fd330edf80a4fb89b80651",
+    "results/comparison/article/total_eof_audit/population_periods.csv": "f60441666fcd03b0e1df068d90477c91a16d08d13acd3ede9c0caef90c06651f",
+    "results/comparison/article/total_eof_audit/total_eof_mapping.csv": "1bf271d36d573043ec6213c074d2641cbd68e0e1a01705ea373bfcdb8f6dc4be"
+  },
+  "paired_control": {
+    "cyclones_per_version": 3820,
+    "extremes": "screen four PCs, separate recomputed reference; not literal article",
+    "periods": "four primary phases only",
+    "rows_per_version": 15280
+  },
+  "source_code_sha256": {
+    "scripts/article_figures/audit_total_eof_downstream.py": "43a8b42cae79fcc4a30be50e732c1ca835ef07c91508870a509ce8b265c73fc1",
+    "scripts/article_figures/common.py": "198e555eace7881f10e2e5dc4dc3ea4d09ae1fdfa19f059bf92b6b86855bff65",
+    "scripts/article_figures/downstream_guards.py": "1629ee8eedf21b70f08ab5920a74439fc6a52fd3219af80c544244c314db0ade",
+    "scripts/article_figures/generate_article_comparison.py": "935b6b6300999362c2f345836f504e1f5b82d94e393a57ee582c7b095b085906",
+    "scripts/article_figures/generate_comparison.py": "bbe82a529db4282f54beb099ff0620361f97a7212039e5c218c23ae1f5bf661a",
+    "scripts/article_figures/generate_corrected_article.py": "d2c1e14cdff3cff0b8502c59c917daafc6846b569929ad19c7cc349f8f631dd7"
+  },
+  "tracks": {
+    "cyclones": 6789,
+    "earliest": "1979-01-01 00:00:00",
+    "latest": "2021-01-07 00:00:00",
+    "months": 505,
+    "rows": 631009
+  },
+  "warning": "Reference in current outputs means recomputed legacy, not verified published identity/orientation; no scientific corrections or artifact replacement authorized by this audit."
+}

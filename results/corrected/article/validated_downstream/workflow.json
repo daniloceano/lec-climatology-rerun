@@ -1,0 +1,27 @@
+{
+  "K": 4,
+  "PCs": [
+    "PC1",
+    "PC2",
+    "PC3",
+    "PC4",
+    "PC5",
+    "PC6",
+    "PC7",
+    "PC8"
+  ],
+  "scaler": "StandardScaler fit separately on intense subset",
+  "random_state": 42,
+  "n_init": "auto",
+  "effective_n_init": 1,
+  "algorithm": "lloyd",
+  "init": "k-means++",
+  "max_iter": 300,
+  "tol": 0.0001,
+  "sklearn_version": "1.7.1",
+  "threshold": 10.353024000000001,
+  "threshold_population": 6789,
+  "row_order": "archived legacy PC row order restricted to corrected IDs",
+  "cluster_matching": "Hungarian Euclidean distance between centers in each intense-subset standardized matched-PC coordinate system; no claim of physical equivalence",
+  "legacy_manifest_sha256": "2c3f8c4a363929adaddd3a5917b5da5ae7880e4ab6770c8babf0190567c724a8"
+}

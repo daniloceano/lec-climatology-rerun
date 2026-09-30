@@ -17,3 +17,5 @@ dependencies:
   - requests>=2.31
   - cdsapi>=0.6.1
   - pytest>=7
+  - scikit-learn=1.7.1
+  - tqdm>=4

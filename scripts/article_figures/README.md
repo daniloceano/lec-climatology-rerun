@@ -178,3 +178,16 @@ inspect a full Poppler rendering of the report.
 historical/helper modules because the canonical generator imports several of
 their plotting primitives. Do not use their command-line entry points for a
 paper product.
+
+## Validated downstream candidates (2026-09-30)
+
+Use `python -m scripts.article_figures.reproduce_downstream` for Figures 9–16.
+It first validates the legacy PC scale, archived memberships, four clusters,
+Figure 12 annotations, original density grids and original statistics. Any gate
+failure prevents corrected generation. `--legacy-only` runs just that gate.
+New PNG/PDF candidates are in `figures/corrected/article/validated_downstream/`;
+new numerical products and provenance are in
+`results/corrected/article/validated_downstream/`. Existing figures, tables and
+canonical Figures 5–8 stay frozen. The older generators remain blocked because
+they still implement superseded downstream definitions. See
+[the reproduction report](../../docs/technical/downstream_reproduction.md).

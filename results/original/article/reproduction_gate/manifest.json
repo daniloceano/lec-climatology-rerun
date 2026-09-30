@@ -1,0 +1,264 @@
+{
+  "checks": [
+    {
+      "item": "PCs legacy",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 2.219779915435538e-12,
+        "convention": "pcs(s=2), lambda=24*EV*N/(N-1)",
+        "n": 6789
+      }
+    },
+    {
+      "item": "EOF loadings legacy",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 1.0566547636869927e-13
+      }
+    },
+    {
+      "item": "EOF +/- assignments",
+      "passed": true,
+      "evidence": {
+        "symmetric_difference": 0,
+        "rows": 5409
+      }
+    },
+    {
+      "item": "intense selection",
+      "passed": true,
+      "evidence": {
+        "threshold": 10.353024000000001,
+        "n": 679,
+        "threshold_population": 6789
+      }
+    },
+    {
+      "item": "4-cluster assignments",
+      "passed": true,
+      "evidence": {
+        "mismatches": 0,
+        "n_init_10_mismatches": 311,
+        "n_init": "auto",
+        "effective_n_init": 1,
+        "environment_evidence": "/Users/danilocoutodesouza/anaconda3/envs/data/conda-meta/history",
+        "label_map": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        }
+      }
+    },
+    {
+      "item": "cluster centroids",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 4.2321701698710967e-13
+      }
+    },
+    {
+      "item": "Figure 12 logic",
+      "passed": true,
+      "evidence": {
+        "annotation_pairs": 80,
+        "max_rounding_error": 0.004998123515347785,
+        "panel_A": "all systems, equal phase means and mean phase SD",
+        "panels_BE": "centroid @ EOF(s=2) + per-cyclone climatology; member SD"
+      }
+    },
+    {
+      "item": "Figure 13 density cluster 1",
+      "passed": true,
+      "evidence": {
+        "cluster": 1,
+        "months": 396,
+        "track_rows": 26276,
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "item": "Figure 13 density cluster 2",
+      "passed": true,
+      "evidence": {
+        "cluster": 2,
+        "months": 396,
+        "track_rows": 17768,
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "item": "Figure 13 density cluster 3",
+      "passed": true,
+      "evidence": {
+        "cluster": 3,
+        "months": 396,
+        "track_rows": 10394,
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "item": "Figure 13 density cluster 4",
+      "passed": true,
+      "evidence": {
+        "cluster": 4,
+        "months": 396,
+        "track_rows": 55618,
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "item": "Figure 13 logic",
+      "passed": true,
+      "evidence": {
+        "months": 396,
+        "bandwidth": 0.05,
+        "metric": "haversine",
+        "unit": "track positions / 10^6 km^2 / month"
+      }
+    },
+    {
+      "item": "Figure 14 logic",
+      "passed": true,
+      "evidence": {
+        "counts": [
+          166,
+          118,
+          75,
+          320
+        ],
+        "comparison": "verbatim original preprocessing, same archived IDs; genesis and season percentages"
+      }
+    },
+    {
+      "item": "Figure 16 logic",
+      "passed": true,
+      "evidence": {
+        "source": "draw_lec_eofs.py: create_individual_eof_dataframes; draw_lec_v6 selects four primary phases",
+        "object": "phase EOF loadings"
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q90 EOF1",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 4.657607632907457e-12,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q90 EOF2",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 9.947598300641403e-13,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q90 EOF3",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 5.497824417943775e-13,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q90 EOF4",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 4.4497738826976274e-13,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q10 EOF1",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 3.984368390774762e-12,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q10 EOF2",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 9.316991622654314e-13,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q10 EOF3",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 1.2150280781497713e-12,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figures 9\u201310 q10 EOF4",
+      "passed": true,
+      "evidence": {
+        "max_absolute_error": 7.647216193618078e-13,
+        "months": 505
+      }
+    },
+    {
+      "item": "Figure 11 logic",
+      "passed": true,
+      "evidence": {
+        "comparison": "verbatim original preprocessing",
+        "metadata": "region from original tracks, season of first stored occurrence",
+        "rows": 56
+      }
+    }
+  ],
+  "sources": {
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/paper_energy_patterns/data/energy_cache.parquet": "7a24617e56595737075a8f9975dd0018069196292eab32fd8f5ba2a49e25a16d",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/data/external/swell/paper_energy_patterns/energy_cache_corrected.parquet": "c5efb8242e83aaa85ebd39cc12d5630fc0f70608775a67d32821dc0097d8d4d3",
+    "/Users/danilocoutodesouza/anaconda3/envs/data/lib/python3.12/site-packages/pyEOF/pyEOF.py": "3438a9266014b5724e8408bf4cbad90dbf47c2441bbb6a5db4b40ab92f87bc2f",
+    "/Users/danilocoutodesouza/anaconda3/envs/data/conda-meta/history": "2ca4dff3074c13da1e48da9b7cda9864c50495ee4b611c5976075af2a8a01aed",
+    "/Users/danilocoutodesouza/anaconda3/envs/data/lib/python3.12/site-packages/sklearn/cluster/_kmeans.py": "b50a0e2620fa4a44e07baf3addf3293ffa49379a844f9b6aaa3ef95036c6d08a",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/src_energetic_eof/eof_analysis_with_track_id.py": "b22e2c4f7099e3fee31ad54cf8e2a0af23bfbf96066e437589c0e4f661ff89dd",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/src_energetic_eof/attribute_track_ids_to_eof_extremes.py": "b778754f98cacb68d833cfded32a9dd2bd3f7178093b062625b18869363c4519",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eofs_kmeans_pcs.py": "9b8ae4c41dca6be103a35897e48056f390dc0eb61e4574c075551830cc53a9f9",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/plot_LEC_std.py": "d3c76cab1786a9ed44515b2d0109dc764d02494586c12f0b0f6889e019a58ab5",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_plot_lec_centroids.py": "8d30cc9f292339eb6ee4c71844cc0de64017439f440b535e97cbbbff7be90681",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/plot_LEC_panel_clusters.py": "d4cff23e65f480e1fc5e4a9f88a001f57fd7e36c2f2561a9a48e435159405fb4",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cyclone_statistics_q10_q90.py": "959329da519d524327113bb93fdd1e42377f42fc35dcdc12a75ad8fcd60c6468",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/map_density_eof.py": "d8726c3127e6228a5d8979805826c9a927601d00223bf8e03b65dd4a72c13f7a",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/map_density_intense.py": "5a1815ed9d35b0dfdf53bccbfbd49e036651b6ecd537c881f5d56b34c0ea7481",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_v6.py": "3f6adf6c64bfbcf701f71330e68e18ffe21cf2de6dba312183c7f3085ffa8577",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/tracks_SAt_filtered/tracks_SAt_filtered_with_periods.csv": "ef46d37751ec66db5fd566ed9909695818da774b53a3e562dd7606a9ca0acfe7",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/eofs.csv": "7f7b64439204d2313a469a3be326802063a0acea39857bcc20910cc359c1c15b",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs.csv": "4fbf266355358f6f856cf48a68daeb0805df391229b90f43cc5c25b938d42ec9",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs_with_dominant_eof_q90.csv": "afd1010e7e651734ff71741f8175d470ed522b6e28072d84d66cb9c37c37d54d",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/pcs_with_dominant_eof_q10.csv": "d596196d2ad0e12a118ad6a312c487bbedb45c7c4011da35e87d9114d5da8e3c",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/figures/eof_clusters_intense/pcs_with_clusters.csv": "56ed140bf59425b2fa0e95d9176cd6ebe48725c45701b7a8ea12591e2f756923",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/figures/eof_clusters_intense/cluster_centroids.csv": "25f98638be5634d357845722d6ca24421b1e9c14c8c88c540bd1cf73737256ab",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/tests/fixtures/figure12_published_annotations.csv": "afad67a7433e5c52e22b7da6273c1fcba74802d4bffa3484e2dfe1574ec95f6b",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_export_density_clusters.py": "16ed4aa5f5b8049f3a9cafc7245609c7c71ad12861c2a09e1793e471b12cb597",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/track_density_clusters/track_density_cluster_1.nc": "d06214af8a94f908f3f4e95983b267f21abaf8526426c3583301c00b768aeb83",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/track_density_clusters/track_density_cluster_2.nc": "1eafdf1b0f2853790f58a479c1723193f664ff944267cb549dd5f612e1ac2386",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/track_density_clusters/track_density_cluster_3.nc": "d2657235e2762f3fe15604e9e1953a5fc46c3a8336ed35211bb5749455965028",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/track_density_clusters/track_density_cluster_4.nc": "50123c61a51cc735ec7e4da7007cb1118dcd4e7b01f45817e4f8231a8192aad9",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cluster_statistics.py": "dc77715e78455b535db100e4e0b03c0b9d22beb88cdda70b7ae43d35d10e684e",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_eofs.py": "b80608a16223d7654e3c55ee9025f6a8cb82c8a3f8e0be77c8b76c1ad2a0404b",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/incipient/eofs.csv": "af7a630dae905d8ee0aa4ba6db51fbf9f4ba9be1962c1fbf24ddbc0020dd537e",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/intensification/eofs.csv": "dfeea6c215a5e564df6d1d655dbe4bf645e0ab58580c9f2193279a30d3495714",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/mature/eofs.csv": "b4178893ac805a5f73406d089f4e36f08545c67ab60f5438c9decb8c329d2f2a",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/decay/eofs.csv": "0e47a1d36ec02e65bfffe61cf6956ffc3a558e1440a05240ed9eee23fd56bcf3",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/src_energetic_eof/export_density_eof.py": "5ea23cbe13b889ef6e4b0e3bedcff568c2aa837112254a07040de78b9dd79c65",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q90/SAt_track_density_eof_1.0.nc": "03367b075d50e54ff177eef0c3cf01ec3cf67f6e4ed2a1a11a4d68f0e7f39559",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q90/SAt_track_density_eof_2.0.nc": "61e232d4fc8f3cbdf4ca602c3be6d00d9294415d07cd0becf796ec3a48cefdad",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q90/SAt_track_density_eof_3.0.nc": "7d5dff76ff67de16e97a8dbfddb07620b5e0811dcccdf41b2a250d55188288a5",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q90/SAt_track_density_eof_4.0.nc": "1ef3f2b4b107383412c30e620f1099a32fda398c38787c8dc5e4fb7bc5e32236",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q10/SAt_track_density_eof_1.0.nc": "0b61acda7b2a3e6b48751c0a97352cc00eacf95e7d1baa8f482e005ba7f163d4",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q10/SAt_track_density_eof_2.0.nc": "fd9725b773df14c7ff6553e8214d7e2cbe39e4fb89c70b6b7455ef4cb3ae018a",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q10/SAt_track_density_eof_3.0.nc": "fba823be27099f1238bb7b7fb1a86033b94efa88f6022d60d4b9ce77119139b2",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total/track_density_q10/SAt_track_density_eof_4.0.nc": "7b32c09c83e3aa68f7fbfb837a4bc7fcd7e57fd05a8f9098e02f59eb48290da7"
+  },
+  "sklearn_version": "1.7.1",
+  "repo_commit": "213a6397b70dca5bd68d8345f6d34c742b83652b",
+  "wrapper_sha256": "b645aa9eff668ef628fd289b2a41fac2c055e0f4611f929068969427c7aad734",
+  "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a"
+}

@@ -12,3 +12,7 @@ reportlab>=4
 requests>=2.31
 cdsapi>=0.6.1
 pytest>=7
+
+# Downstream reproduction: verified against sklearn 1.4.2 archived groups
+scikit-learn==1.7.1
+tqdm>=4

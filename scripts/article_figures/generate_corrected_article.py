@@ -29,6 +29,8 @@ from sklearn.preprocessing import StandardScaler  # noqa: E402
 REPOSITORY = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY))
 
+from scripts.article_figures.downstream_guards import require_resolved_figure16
+
 from scripts.article_figures.common import (  # noqa: E402
     BOUNDARY_TERMS,
     CONVERSION_TERMS,
@@ -604,6 +606,7 @@ def render_syntheses(
     figures: Path,
     scratch: Path,
 ) -> None:
+    require_resolved_figure16()
     draw = load_definitions(legacy_root / "tests_draw_lec" / "draw_lec_v6.py")
     total_dir = scratch / "synthesis"
     draw.plot_lorenzcycletoolkit(phase_means, str(total_dir), normalization_type="log")
@@ -685,6 +688,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     args = parser.parse_args()
+    require_resolved_figure16()
     config = read_config(args.config)
 
     cache_path = resolve_repo_path(config["inputs"]["corrected_cache"]["local"])

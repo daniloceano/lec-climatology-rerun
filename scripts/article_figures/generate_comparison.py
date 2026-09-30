@@ -18,6 +18,8 @@ import pandas as pd  # noqa: E402
 
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 
+from scripts.article_figures.downstream_guards import require_resolved_figure16
+
 from scripts.article_figures.common import (  # noqa: E402
     BOUNDARY_TERMS,
     CONVERSION_TERMS,
@@ -402,6 +404,7 @@ def fig15(stats: pd.DataFrame, stem: Path) -> None:
 
 
 def fig16(mode: int, loadings: pd.DataFrame, stem: Path) -> None:
+    require_resolved_figure16()
     figure, axes = plt.subplots(1, 2, figsize=(10.8, 6.2), gridspec_kw={"wspace": -0.18})
     for ax, version, title in zip(axes, ("before", "after"), ("Before - legacy", "After - corrected")):
         series = [(phase, _eof_series(loadings, version, phase, mode), PHASE_COLORS[phase]) for phase in PHASES]
@@ -453,6 +456,7 @@ def main() -> int:
     parser.add_argument("--tracks", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, default=Path.cwd())
     args = parser.parse_args()
+    require_resolved_figure16()
     root = args.output_root.resolve()
     figures_dir = root / "figures" / "comparison" / "paired_control" / "article_style"
     results_dir = root / "results" / "comparison" / "paired_control" / "article_style"

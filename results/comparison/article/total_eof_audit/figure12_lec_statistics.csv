@@ -1,0 +1,433 @@
+workflow,version,group,term,n,mean,std
+comparison,after,all_intense,Az,1486,591446.753997,237835.765287
+comparison,after,all_intense,Ae,1486,198346.738329,81605.4200308
+comparison,after,all_intense,Kz,1486,3300943.53422,1202414.1517
+comparison,after,all_intense,Ke,1486,500700.511241,194326.523573
+comparison,after,all_intense,Cz,1486,-0.849520061059,3.18049904705
+comparison,after,all_intense,Ca,1486,4.50510303056,3.41672549771
+comparison,after,all_intense,Ck,1486,-2.17711728949,7.79634193874
+comparison,after,all_intense,Ce,1486,5.69241534288,3.34701964072
+comparison,after,all_intense,BAz,1486,3.04985637818,4.83360990058
+comparison,after,all_intense,BAe,1486,0.877448944557,3.08879395472
+comparison,after,all_intense,BKz,1486,-10.7560298916,19.9735019969
+comparison,after,all_intense,BKe,1486,0.97542300984,6.48096791267
+comparison,after,all_intense,BΦZ,1486,13.7607412862,17.2587432511
+comparison,after,all_intense,BΦE,1486,-3.19489209641,4.27399064869
+comparison,after,all_intense,Gz,1486,-0.764373335959,1.6699689406
+comparison,after,all_intense,Ge,1486,1.65112657643,2.06249238357
+comparison,after,all_intense,∂Az/∂t (finite diff.),1486,-0.629804906901,1.9313962744
+comparison,after,all_intense,∂Ae/∂t (finite diff.),1486,-0.396074816146,0.878129460388
+comparison,after,all_intense,∂Kz/∂t (finite diff.),1486,0.0283774828049,5.95172357946
+comparison,after,all_intense,∂Ke/∂t (finite diff.),1486,0.342924201979,1.46509005486
+comparison,after,all_intense,RGz,1486,-0.0240783155835,3.60035500677
+comparison,after,all_intense,RKz,1486,13.811044725,25.8052147662
+comparison,after,all_intense,RGe,1486,-0.0862114483759,2.81211310747
+comparison,after,all_intense,RKe,1486,-8.50203144024,6.37213687901
+comparison,after,1,Az,647,548579.966157,215771.158135
+comparison,after,1,Ae,647,149070.961907,45292.9747907
+comparison,after,1,Kz,647,2922773.93268,1061964.3603
+comparison,after,1,Ke,647,408156.220638,121422.722418
+comparison,after,1,Cz,647,-0.127775412112,2.22840110529
+comparison,after,1,Ca,647,2.93495559845,2.0091691511
+comparison,after,1,Ck,647,-1.05517476849,4.31488045552
+comparison,after,1,Ce,647,3.64599066568,1.81494185461
+comparison,after,1,BAz,647,3.06613650021,3.46230788869
+comparison,after,1,BAe,647,0.1415556913,1.77930330838
+comparison,after,1,BKz,647,-2.57063365365,15.8126987262
+comparison,after,1,BKe,647,1.05201971934,3.59061765616
+comparison,after,1,BΦZ,647,6.20492695556,13.0053621143
+comparison,after,1,BΦE,647,-1.86438408893,2.85004463385
+comparison,after,1,Gz,647,-0.523504511493,1.35837931337
+comparison,after,1,Ge,647,1.00584644046,1.24145539084
+comparison,after,1,∂Az/∂t (finite diff.),647,-0.633473926043,1.72360685428
+comparison,after,1,∂Ae/∂t (finite diff.),647,-0.29918939894,0.555115434482
+comparison,after,1,∂Kz/∂t (finite diff.),647,-0.918235415159,4.86692505575
+comparison,after,1,∂Ke/∂t (finite diff.),647,0.0657837856638,0.957667405513
+comparison,after,1,RGz,647,-0.892430239924,3.24322812374
+comparison,after,1,RKz,647,2.8353484191,19.2710481131
+comparison,after,1,RGe,647,0.270289976998,1.59609048077
+comparison,after,1,RKe,647,-5.68740136785,4.15830257357
+comparison,after,2,Az,266,603658.919501,232661.709755
+comparison,after,2,Ae,266,213625.594116,72748.2252776
+comparison,after,2,Kz,266,3718529.88947,1241229.95072
+comparison,after,2,Ke,266,504826.466266,160134.482651
+comparison,after,2,Cz,266,-4.2097402262,3.20417921405
+comparison,after,2,Ca,266,4.81613061093,3.05850541662
+comparison,after,2,Ck,266,0.626428191202,5.63636113541
+comparison,after,2,Ce,266,8.53259877053,3.50304664126
+comparison,after,2,BAz,266,0.466327625603,4.3923619377
+comparison,after,2,BAe,266,2.49441067575,2.51435776903
+comparison,after,2,BKz,266,-14.1013849115,20.1926113241
+comparison,after,2,BKe,266,0.868338407614,4.58429401713
+comparison,after,2,BΦZ,266,21.1983695306,16.2772793473
+comparison,after,2,BΦE,266,-3.6284376734,4.60915981837
+comparison,after,2,Gz,266,-1.46204856041,1.85509189616
+comparison,after,2,Ge,266,3.59813217097,2.00170024015
+comparison,after,2,∂Az/∂t (finite diff.),266,0.234035942948,1.8483275893
+comparison,after,2,∂Ae/∂t (finite diff.),266,-0.423884315564,0.805032445885
+comparison,after,2,∂Kz/∂t (finite diff.),266,3.88884524663,5.88130548237
+comparison,after,2,∂Ke/∂t (finite diff.),266,-0.0692862071949,1.20436145383
+comparison,after,2,RGz,266,0.37409870207,3.29986871693
+comparison,after,2,RKz,266,21.5735421931,25.2528798081
+comparison,after,2,RGe,266,0.798173168285,2.64883807071
+comparison,after,2,RKe,266,-8.84379519414,6.3549533056
+comparison,after,3,Az,229,723217.829456,289517.214543
+comparison,after,3,Ae,229,241197.306327,84123.2621856
+comparison,after,3,Kz,229,4310860.9674,1181575.34
+comparison,after,3,Ke,229,451573.832363,159486.970467
+comparison,after,3,Cz,229,-0.12676861824,3.42343508674
+comparison,after,3,Ca,229,5.23595045215,3.34066188644
+comparison,after,3,Ck,229,-3.75094781535,5.82556826253
+comparison,after,3,Ce,229,5.78709332339,2.90931969041
+comparison,after,3,BAz,229,2.39291216972,5.57973344552
+comparison,after,3,BAe,229,3.47730003359,3.16614541364
+comparison,after,3,BKz,229,-22.4328348342,20.6784460337
+comparison,after,3,BKe,229,-0.318781483739,4.2509134302
+comparison,after,3,BΦZ,229,22.2750323839,17.6859596612
+comparison,after,3,BΦE,229,-3.66980947464,3.89733193474
+comparison,after,3,Gz,229,-0.733413038363,1.71842053285
+comparison,after,3,Ge,229,0.33693445647,1.92027075849
+comparison,after,3,∂Az/∂t (finite diff.),229,-0.55099975066,1.91910216363
+comparison,after,3,∂Ae/∂t (finite diff.),229,-1.07455427053,1.25944765965
+comparison,after,3,∂Kz/∂t (finite diff.),229,-0.826109743483,7.16234501723
+comparison,after,3,∂Ke/∂t (finite diff.),229,-0.136589808809,1.23347740796
+comparison,after,3,RGz,229,2.16526991353,3.90956380671
+comparison,after,3,RKz,229,25.4844415243,26.8203342732
+comparison,after,3,RGe,229,-4.00071143288,2.82980866408
+comparison,after,3,RKe,229,-9.35584946382,6.15967608316
+comparison,after,4,Az,206,624756.79362,216198.959017
+comparison,after,4,Ae,206,269455.252046,85397.5852096
+comparison,after,4,Kz,206,3104092.72588,892297.614144
+comparison,after,4,Ke,206,695386.164801,197794.292293
+comparison,after,4,Cz,206,0.0324515168897,2.90539158491
+comparison,after,4,Ca,206,8.85123655494,3.54752205309
+comparison,after,4,Ck,206,-13.6200976068,7.39012711982
+comparison,after,4,Ce,206,7.64213328446,3.09480583629
+comparison,after,4,BAz,206,7.20420836827,5.63402038243
+comparison,after,4,BAe,206,-2.22516565643,3.11763571767
+comparison,after,4,BKz,206,-19.2268229503,19.5891686666
+comparison,after,4,BKe,206,-5.29994676743,7.05272207319
+comparison,after,4,BΦZ,206,24.3320837882,15.1426926157
+comparison,after,4,BΦE,206,-8.11728057465,3.46598883436
+comparison,after,4,Gz,206,-1.03981700949,1.90642375892
+comparison,after,4,Ge,206,2.01131200546,2.07137845255
+comparison,after,4,∂Az/∂t (finite diff.),206,-1.08134094053,1.98023382249
+comparison,after,4,∂Ae/∂t (finite diff.),206,-0.168984732136,0.908177323544
+comparison,after,4,∂Kz/∂t (finite diff.),206,-0.0498094185463,5.5640037436
+comparison,after,4,∂Ke/∂t (finite diff.),206,1.34553301472,1.75085846021
+comparison,after,4,RGz,206,0.598138763032,3.23064784207
+comparison,after,4,RKz,206,32.7646596217,22.6676639089
+comparison,after,4,RGe,206,0.847077653803,2.40307260495
+comparison,after,4,RKe,206,-14.6167511091,6.08077600379
+comparison,after,5,Az,138,500496.980562,177399.265612
+comparison,after,5,Ae,138,222666.432594,79975.6233658
+comparison,after,5,Kz,138,2887015.5344,953522.049751
+comparison,after,5,Ke,138,717536.864962,201159.050079
+comparison,after,5,Cz,138,-0.272320419059,2.73413289872
+comparison,after,5,Ca,138,3.56658481771,3.1611675603
+comparison,after,5,Ck,138,6.85202203536,8.188574765
+comparison,after,5,Ce,138,6.74476911748,3.38461570883
+comparison,after,5,BAz,138,2.84209639996,4.51872471818
+comparison,after,5,BAe,138,1.52805635596,3.34632635248
+comparison,after,5,BKz,138,-10.662661984,19.9191821265
+comparison,after,5,BKe,138,12.3379261714,7.56493878814
+comparison,after,5,BΦZ,138,4.93996985253,17.6166709808
+comparison,after,5,BΦE,138,-0.461177974842,4.72140305148
+comparison,after,5,Gz,138,-0.189076460079,1.68836777731
+comparison,after,5,Ge,138,2.56666684392,2.29820567043
+comparison,after,5,∂Az/∂t (finite diff.),138,-1.73442641796,2.19673338544
+comparison,after,5,∂Ae/∂t (finite diff.),138,-0.00981612295594,0.857122762051
+comparison,after,5,∂Kz/∂t (finite diff.),138,-1.44004138455,6.09082117823
+comparison,after,5,∂Ke/∂t (finite diff.),138,1.7358887762,2.11525343499
+comparison,after,5,RGz,138,-1.28225841926,3.83833653751
+comparison,after,5,RKz,138,2.6429189831,26.2280179108
+comparison,after,5,RGe,138,1.64031182085,2.47412082465
+comparison,after,5,RKe,138,-10.4947844773,7.93220301437
+comparison,before,all_intense,Az,1744,586818.641246,241756.350506
+comparison,before,all_intense,Ae,1744,197573.248363,81067.5927695
+comparison,before,all_intense,Kz,1744,3283118.69534,1209670.54677
+comparison,before,all_intense,Ke,1744,503331.921225,196222.596661
+comparison,before,all_intense,Cz,1744,-0.775556693065,3.15758386126
+comparison,before,all_intense,Ca,1744,1.47904749567,1.17943928086
+comparison,before,all_intense,Ck,1744,-5.94835736193,8.45611255041
+comparison,before,all_intense,Ce,1744,5.60010716596,3.41277869198
+comparison,before,all_intense,BAz,1744,3.05878544108,4.85404829806
+comparison,before,all_intense,BAe,1744,0.77165279866,3.08742584986
+comparison,before,all_intense,BKz,1744,-11.0405397451,20.4583207653
+comparison,before,all_intense,BKe,1744,0.921912828826,6.51173388831
+comparison,before,all_intense,BΦZ,1744,97.9059731393,83.3445254048
+comparison,before,all_intense,BΦE,1744,64.0608535203,75.7513435826
+comparison,before,all_intense,Gz,1744,-0.750540757836,1.62161525122
+comparison,before,all_intense,Ge,1744,1.64072468652,2.0618393128
+comparison,before,all_intense,∂Az/∂t (finite diff.),1744,-0.597209358321,1.88551577566
+comparison,before,all_intense,∂Ae/∂t (finite diff.),1744,-0.395279521323,0.873349638124
+comparison,before,all_intense,∂Kz/∂t (finite diff.),1744,-0.0396344401265,6.0773554173
+comparison,before,all_intense,∂Ke/∂t (finite diff.),1744,0.277117177293,1.47339087824
+comparison,before,all_intense,RGz,1744,-2.95250399679,4.0737651194
+comparison,before,all_intense,RKz,1744,17.72481936,27.6278502077
+comparison,before,all_intense,RGe,1744,2.9541273503,3.47475357051
+comparison,before,all_intense,RKe,1744,-12.1932601794,8.15927424688
+comparison,before,1,Az,662,444695.94369,147624.752807
+comparison,before,1,Ae,662,156710.886261,52038.0427238
+comparison,before,1,Kz,662,2544158.00352,748678.227129
+comparison,before,1,Ke,662,441663.737605,135062.339112
+comparison,before,1,Cz,662,-0.00132249376315,2.28561284751
+comparison,before,1,Ca,662,0.907632645269,0.592339893585
+comparison,before,1,Ck,662,-4.10366785467,4.7900948236
+comparison,before,1,Ce,662,4.21405570726,2.41734232634
+comparison,before,1,BAz,662,1.85878100882,2.70733228195
+comparison,before,1,BAe,662,0.561755963477,1.79262980696
+comparison,before,1,BKz,662,-7.61916614906,12.3232988724
+comparison,before,1,BKe,662,0.403900842206,3.26339759415
+comparison,before,1,BΦZ,662,72.6895827184,55.4118152823
+comparison,before,1,BΦE,662,50.2287394984,52.7198162703
+comparison,before,1,Gz,662,-0.0599702246247,1.13883128009
+comparison,before,1,Ge,662,1.62459607909,1.61270937276
+comparison,before,1,∂Az/∂t (finite diff.),662,-0.386452401047,1.41392118358
+comparison,before,1,∂Ae/∂t (finite diff.),662,-0.311795659051,0.603925881755
+comparison,before,1,∂Kz/∂t (finite diff.),662,-0.181953921614,4.18992512247
+comparison,before,1,∂Ke/∂t (finite diff.),662,0.0930140307798,1.02693014096
+comparison,before,1,RGz,662,-1.33892325836,2.35010880707
+comparison,before,1,RKz,662,11.5422025759,16.1647145287
+comparison,before,1,RGe,662,2.43287143947,2.21117907518
+comparison,before,1,RKe,662,-8.62861037336,4.84124323692
+comparison,before,2,Az,332,773404.445554,218919.378927
+comparison,before,2,Ae,332,170177.623365,55194.7533629
+comparison,before,2,Kz,332,3934856.33224,1014645.23707
+comparison,before,2,Ke,332,388191.374327,116074.044642
+comparison,before,2,Cz,332,-1.351960839,3.22311110478
+comparison,before,2,Ca,332,1.33393927813,0.818072793641
+comparison,before,2,Ck,332,-4.2105337311,5.18213654742
+comparison,before,2,Ce,332,4.42016099982,2.28715977321
+comparison,before,2,BAz,332,4.75863676492,4.65378951188
+comparison,before,2,BAe,332,0.671903286911,1.97755782876
+comparison,before,2,BKz,332,2.02138509534,19.6399716509
+comparison,before,2,BKe,332,0.739783513663,3.71937651757
+comparison,before,2,BΦZ,332,67.4420595146,64.0002378525
+comparison,before,2,BΦE,332,29.0571373546,64.1184552998
+comparison,before,2,Gz,332,-1.69199550974,1.50690226856
+comparison,before,2,Ge,332,0.779732864425,1.47338137593
+comparison,before,2,∂Az/∂t (finite diff.),332,-0.963184427097,2.15347266796
+comparison,before,2,∂Ae/∂t (finite diff.),332,-0.243982157116,0.663505191554
+comparison,before,2,∂Kz/∂t (finite diff.),332,-1.42437678137,6.60325831347
+comparison,before,2,∂Ke/∂t (finite diff.),332,0.210016176754,1.07098263798
+comparison,before,2,RGz,332,-5.73984275288,4.06681491002
+comparison,before,2,RKz,332,2.11673269339,24.6929888895
+comparison,before,2,RGe,332,2.17033627766,2.26757103353
+comparison,before,2,RKe,332,-9.16046206783,5.53576219415
+comparison,before,3,Az,290,706843.741014,266855.29248
+comparison,before,3,Ae,290,240758.302432,80424.0673674
+comparison,before,3,Kz,290,4587712.40161,1155730.54457
+comparison,before,3,Ke,290,449295.202808,137080.208412
+comparison,before,3,Cz,290,-2.19755422598,3.92821802447
+comparison,before,3,Ca,290,1.52472343141,0.953162394362
+comparison,before,3,Ck,290,-6.55581409797,6.36996837236
+comparison,before,3,Ce,290,7.07356527154,3.37856078683
+comparison,before,3,BAz,290,0.316888841884,5.24230668923
+comparison,before,3,BAe,290,4.14613355355,3.25678868107
+comparison,before,3,BKz,290,-20.1964544544,20.6835613732
+comparison,before,3,BKe,290,-0.856455144882,4.33084938137
+comparison,before,3,BΦZ,290,198.67153306,73.1871244393
+comparison,before,3,BΦE,290,149.142825874,68.9930710898
+comparison,before,3,Gz,290,-0.873306774617,1.69910211779
+comparison,before,3,Ge,290,1.54667843894,2.40763106487
+comparison,before,3,∂Az/∂t (finite diff.),290,-0.294354924524,1.98933898104
+comparison,before,3,∂Ae/∂t (finite diff.),290,-0.927878302182,1.18011181045
+comparison,before,3,∂Kz/∂t (finite diff.),290,0.753623068336,7.93648435352
+comparison,before,3,∂Ke/∂t (finite diff.),290,-0.304622331474,1.17781568043
+comparison,before,3,RGz,290,-1.28407456097,4.01781708
+comparison,before,3,RKz,290,29.7034458467,26.8990203788
+comparison,before,3,RGe,290,0.474829984395,3.34258330186
+comparison,before,3,RKe,290,-13.0775465561,6.85562632103
+comparison,before,4,Az,248,645058.194889,218509.201771
+comparison,before,4,Ae,248,276363.224074,90373.0039135
+comparison,before,4,Kz,248,3223484.55759,977749.849025
+comparison,before,4,Ke,248,708848.058617,195283.745592
+comparison,before,4,Cz,248,-0.807230848895,3.4397838783
+comparison,before,4,Ca,248,3.31872422887,1.21494411818
+comparison,before,4,Ck,248,-18.7795792196,8.03821699859
+comparison,before,4,Ce,248,8.49905020845,3.94515430233
+comparison,before,4,BAz,248,7.37940612778,5.57672057265
+comparison,before,4,BAe,248,-2.4385738864,3.20027245611
+comparison,before,4,BKz,248,-25.0801927765,20.8437747857
+comparison,before,4,BKe,248,-4.72590690911,7.17302739977
+comparison,before,4,BΦZ,248,135.85359527,71.4313369698
+comparison,before,4,BΦE,248,85.6920705183,66.5403633924
+comparison,before,4,Gz,248,-1.41212781329,1.84522892089
+comparison,before,4,Ge,248,2.39609608224,2.62656855791
+comparison,before,4,∂Az/∂t (finite diff.),248,-0.625266887437,2.08303572016
+comparison,before,4,∂Ae/∂t (finite diff.),248,-0.143408830961,0.946432541502
+comparison,before,4,∂Kz/∂t (finite diff.),248,1.83570663804,6.73064977168
+comparison,before,4,∂Ke/∂t (finite diff.),248,1.0912060101,1.84522958851
+comparison,before,4,RGz,248,-5.49317963525,4.07627928346
+comparison,before,4,RKz,248,46.502709483,25.3932137043
+comparison,before,4,RGe,248,7.47549103502,3.19591682884
+comparison,before,4,RKe,248,-21.4615165088,8.44212871398
+comparison,before,5,Az,212,506101.898396,193488.019367
+comparison,before,5,Ae,212,216831.038712,77167.1447822
+comparison,before,5,Kz,212,2855157.25137,927007.740628
+comparison,before,5,Ke,212,709717.041012,200390.913083
+comparison,before,5,Cz,212,-0.308303807675,3.05130609953
+comparison,before,5,Ca,212,1.27606026925,1.13586814816
+comparison,before,5,Ck,212,1.41090478385,9.03347378151
+comparison,before,5,Ce,212,6.36929333416,3.76458137515
+comparison,before,5,BAz,212,2.84033439441,4.7186972222
+comparison,before,5,BAe,212,0.722621391913,2.84677452698
+comparison,before,5,BKz,212,-13.2313847931,25.0030898073
+comparison,before,5,BKe,212,11.8642565796,6.80111745301
+comparison,before,5,BΦZ,212,42.1241199166,76.1436393382
+comparison,before,5,BΦE,212,20.3805679137,74.8231756662
+comparison,before,5,Gz,212,-0.490724629219,1.63207736115
+comparison,before,5,Ge,212,2.28444038801,2.29840535187
+comparison,before,5,∂Az/∂t (finite diff.),212,-1.06365700672,2.15288854243
+comparison,before,5,∂Ae/∂t (finite diff.),212,-0.458993325572,0.992523170686
+comparison,before,5,∂Kz/∂t (finite diff.),212,-0.705574585404,5.82035005031
+comparison,before,5,∂Ke/∂t (finite diff.),212,0.800533413976,2.30461339258
+comparison,before,5,RGz,212,-2.93623493956,4.52498665134
+comparison,before,5,RKz,212,11.4232092315,32.7208913598
+comparison,before,5,RGe,212,3.91161834743,3.7255716657
+comparison,before,5,RKe,212,-16.0221117159,10.4659985769
+corrected_only,after,all_intense,Az,603,618453.423687,217161.567733
+corrected_only,after,all_intense,Ae,603,215854.334078,81386.2582668
+corrected_only,after,all_intense,Kz,603,3528950.17657,1150647.4113
+corrected_only,after,all_intense,Ke,603,556472.948609,186794.455897
+corrected_only,after,all_intense,Cz,603,-1.36480832674,3.51211982769
+corrected_only,after,all_intense,Ca,603,5.47107015407,3.50909041959
+corrected_only,after,all_intense,Ck,603,-3.08350213008,8.37963419287
+corrected_only,after,all_intense,Ce,603,6.86441658596,3.42486642838
+corrected_only,after,all_intense,BAz,603,3.07261061465,4.78343231072
+corrected_only,after,all_intense,BAe,603,1.13710733439,3.0653948797
+corrected_only,after,all_intense,BKz,603,-14.9296571576,19.2055115135
+corrected_only,after,all_intense,BKe,603,0.878521527883,6.5528846821
+corrected_only,after,all_intense,BΦZ,603,18.9890928262,16.9083059511
+corrected_only,after,all_intense,BΦE,603,-4.03846854918,4.78224481066
+corrected_only,after,all_intense,Gz,603,-0.843361876151,1.88722209003
+corrected_only,after,all_intense,Ge,603,2.20582967668,1.98607243748
+corrected_only,after,all_intense,∂Az/∂t (finite diff.),603,-0.632132849355,1.87687223381
+corrected_only,after,all_intense,∂Ae/∂t (finite diff.),603,-0.429560831633,0.791135863574
+corrected_only,after,all_intense,∂Kz/∂t (finite diff.),603,0.111718584173,5.55000730284
+corrected_only,after,all_intense,∂Ke/∂t (finite diff.),603,0.285773021252,1.48358015522
+corrected_only,after,all_intense,RGz,603,0.40151836332,3.5064255264
+corrected_only,after,all_intense,RKz,603,19.4896861986,25.1819540768
+corrected_only,after,all_intense,RGe,603,-0.173321734137,2.71657707542
+corrected_only,after,all_intense,RKe,603,-10.5406672227,6.73629027318
+corrected_only,after,1,Az,112,718116.798673,243015.079435
+corrected_only,after,1,Ae,112,247689.555301,83191.6245992
+corrected_only,after,1,Kz,112,4475405.25137,1161678.4752
+corrected_only,after,1,Ke,112,506932.890252,141033.552325
+corrected_only,after,1,Cz,112,-5.63113719182,3.17664948722
+corrected_only,after,1,Ca,112,6.50673623211,3.435714278
+corrected_only,after,1,Ck,112,-2.08086718224,6.06100372244
+corrected_only,after,1,Ce,112,9.40871424676,3.57668757989
+corrected_only,after,1,BAz,112,-0.0457608494264,5.02419946782
+corrected_only,after,1,BAe,112,4.12423622072,3.07626488453
+corrected_only,after,1,BKz,112,-16.1455679314,20.0810384821
+corrected_only,after,1,BKe,112,-0.749304240847,3.94139139244
+corrected_only,after,1,BΦZ,112,27.2830396966,16.9398023253
+corrected_only,after,1,BΦE,112,-5.37000381464,5.03057986839
+corrected_only,after,1,Gz,112,-2.08797276272,1.82943285554
+corrected_only,after,1,Ge,112,2.99075173751,2.12063033806
+corrected_only,after,1,∂Az/∂t (finite diff.),112,0.213774156573,1.77530510348
+corrected_only,after,1,∂Ae/∂t (finite diff.),112,-0.633594094713,0.957430877802
+corrected_only,after,1,∂Kz/∂t (finite diff.),112,3.62416452415,6.19702783697
+corrected_only,after,1,∂Ke/∂t (finite diff.),112,-0.386614302716,1.01790395777
+corrected_only,after,1,RGz,112,1.13513404629,3.54332988593
+corrected_only,after,1,RKz,112,27.4817368296,25.3408156797
+corrected_only,after,1,RGe,112,-1.85585230079,3.09546286484
+corrected_only,after,1,RKe,112,-11.1268914909,6.26474103246
+corrected_only,after,2,Az,131,612866.462581,201589.285183
+corrected_only,after,2,Ae,131,275466.795562,88722.7072841
+corrected_only,after,2,Kz,131,3359388.43922,885980.176588
+corrected_only,after,2,Ke,131,677425.896036,163887.751056
+corrected_only,after,2,Cz,131,-0.0492687796966,2.89099379223
+corrected_only,after,2,Ca,131,8.38190170516,3.66259555694
+corrected_only,after,2,Ck,131,-13.137413649,6.2713445881
+corrected_only,after,2,Ce,131,7.890930775,2.88643916939
+corrected_only,after,2,BAz,131,5.57050170335,4.70899794536
+corrected_only,after,2,BAe,131,-0.859880126006,3.03699441911
+corrected_only,after,2,BKz,131,-24.0257661845,18.7616286653
+corrected_only,after,2,BKe,131,-4.70593222069,5.76227795362
+corrected_only,after,2,BΦZ,131,28.4402517192,14.4969318439
+corrected_only,after,2,BΦE,131,-8.05839207211,3.63689788932
+corrected_only,after,2,Gz,131,-0.726812855378,1.95989543431
+corrected_only,after,2,Ge,131,2.22626527257,2.01407824843
+corrected_only,after,2,∂Az/∂t (finite diff.),131,-1.02763963275,1.77170879965
+corrected_only,after,2,∂Ae/∂t (finite diff.),131,-0.485864160758,0.850738040984
+corrected_only,after,2,∂Kz/∂t (finite diff.),131,-0.197287261888,5.31849715644
+corrected_only,after,2,∂Ke/∂t (finite diff.),131,0.961195561691,1.64504196441
+corrected_only,after,2,RGz,131,1.73449158937,3.1453026067
+corrected_only,after,2,RKz,131,37.0151613513,22.1843922147
+corrected_only,after,2,RGe,131,-0.116954964917,2.44200575633
+corrected_only,after,2,RKe,131,-15.3612166416,6.43842641975
+corrected_only,after,3,Az,264,606245.800838,213144.745321
+corrected_only,after,3,Ae,264,169349.974762,49884.8503791
+corrected_only,after,3,Kz,264,3432019.82848,1133010.98281
+corrected_only,after,3,Ke,264,448196.902637,118196.127343
+corrected_only,after,3,Cz,264,-0.0338096044072,2.54750638666
+corrected_only,after,3,Ca,264,3.65676400681,2.08726267434
+corrected_only,after,3,Ck,264,-1.22897225992,4.97346518295
+corrected_only,after,3,Ce,264,4.53858669452,1.74696608702
+corrected_only,after,3,BAz,264,3.02803106561,3.93687864803
+corrected_only,after,3,BAe,264,0.91763029438,2.07316042327
+corrected_only,after,3,BKz,264,-8.60054047966,16.4043583295
+corrected_only,after,3,BKe,264,0.996511473159,3.07204623185
+corrected_only,after,3,BΦZ,264,12.1453365767,13.5074940686
+corrected_only,after,3,BΦE,264,-1.90966194914,3.31541444065
+corrected_only,after,3,Gz,264,-0.282019676337,1.42402717734
+corrected_only,after,3,Ge,264,1.34503274035,1.36616623197
+corrected_only,after,3,∂Az/∂t (finite diff.),264,-0.481828901953,1.6443034507
+corrected_only,after,3,∂Ae/∂t (finite diff.),264,-0.386476317327,0.635144352407
+corrected_only,after,3,∂Kz/∂t (finite diff.),264,-1.092437623,4.98463186046
+corrected_only,after,3,∂Ke/∂t (finite diff.),264,-0.160481611779,0.987832683621
+corrected_only,after,3,RGz,264,0.113094434842,3.26695750983
+corrected_only,after,3,RKz,264,8.77088472098,19.8599986789
+corrected_only,after,3,RGe,264,-0.422283924,2.14939536774
+corrected_only,after,3,RKe,264,-6.92455203938,4.08941333186
+corrected_only,after,4,Az,96,543374.323048,174906.565971
+corrected_only,after,4,Ae,96,225254.059372,63495.3994724
+corrected_only,after,4,Kz,96,2922692.16732,831784.97932
+corrected_only,after,4,Ke,96,746978.433609,173535.361399
+corrected_only,after,4,Cz,96,-1.84283447745,2.82339350183
+corrected_only,after,4,Ca,96,5.2800627472,3.41867369272
+corrected_only,after,4,Ck,96,4.36620004801,8.5750286802
+corrected_only,after,4,Ce,96,8.89133736268,3.3560217413
+corrected_only,after,4,BAz,96,3.42472386783,4.69570127021
+corrected_only,after,4,BAe,96,0.980741299047,2.79111515654
+corrected_only,after,4,BKz,96,-18.5037666762,19.9863812399
+corrected_only,after,4,BKe,96,10.073631753,7.12632343003
+corrected_only,after,4,BΦZ,96,15.2362572574,18.3030626376
+corrected_only,after,4,BΦE,96,-2.8537082489,5.3326719317
+corrected_only,after,4,Gz,96,-1.09404774257,2.23704549365
+corrected_only,after,4,Ge,96,3.62939277372,2.04674339916
+corrected_only,after,4,∂Az/∂t (finite diff.),96,-1.49265824679,2.23362519833
+corrected_only,after,4,∂Ae/∂t (finite diff.),96,-0.233173854514,0.830875438524
+corrected_only,after,4,∂Kz/∂t (finite diff.),96,-0.253041215288,4.89755264268
+corrected_only,after,4,∂Ke/∂t (finite diff.),96,1.37575479841,1.84827868127
+corrected_only,after,4,RGz,96,-1.48015384487,3.6418401974
+corrected_only,after,4,RKz,96,15.7273598904,25.8896198311
+corrected_only,after,4,RGe,96,2.39735946191,2.10393531732
+corrected_only,after,4,RKe,96,-13.2230142692,7.9128513861
+corrected_only,after,figure12a_all_systems,Az,3820,548531.046519,275399.195981
+corrected_only,after,figure12a_all_systems,Ae,3820,166760.522943,86852.8282639
+corrected_only,after,figure12a_all_systems,Kz,3820,2876740.26582,1281593.48559
+corrected_only,after,figure12a_all_systems,Ke,3820,392516.913162,199734.246161
+corrected_only,after,figure12a_all_systems,Cz,3820,0.133745295547,3.19360203338
+corrected_only,after,figure12a_all_systems,Ca,3820,2.96778126165,3.44385507279
+corrected_only,after,figure12a_all_systems,Ck,3820,-1.12179222499,6.41342596566
+corrected_only,after,figure12a_all_systems,Ce,3820,4.11274995539,3.52116603897
+corrected_only,after,figure12a_all_systems,BAz,3820,3.12464233136,5.15232740542
+corrected_only,after,figure12a_all_systems,BAe,3820,0.694582482874,2.87775815873
+corrected_only,after,figure12a_all_systems,BKz,3820,-7.14885748376,22.0448375731
+corrected_only,after,figure12a_all_systems,BKe,3820,0.657883430503,5.7461387572
+corrected_only,after,figure12a_all_systems,BΦZ,3820,8.90774795804,18.1412336545
+corrected_only,after,figure12a_all_systems,BΦE,3820,-1.96252904045,3.72001424833
+corrected_only,after,figure12a_all_systems,Gz,3820,-0.415581028801,1.67000726893
+corrected_only,after,figure12a_all_systems,Ge,3820,1.12969034789,2.00334369155
+corrected_only,after,figure12a_all_systems,∂Az/∂t (finite diff.),3820,-0.243576668098,2.20423745315
+corrected_only,after,figure12a_all_systems,∂Ae/∂t (finite diff.),3820,-0.276371751135,0.901563520209
+corrected_only,after,figure12a_all_systems,∂Kz/∂t (finite diff.),3820,0.853112615201,6.95264855932
+corrected_only,after,figure12a_all_systems,∂Ke/∂t (finite diff.),3820,0.327974676538,1.39229153449
+corrected_only,after,figure12a_all_systems,RGz,3820,-0.266692442262,3.94860313442
+corrected_only,after,figure12a_all_systems,RKz,3820,8.99001702841,26.9812804697
+corrected_only,after,figure12a_all_systems,RGe,3820,0.174014459724,2.49989616423
+corrected_only,after,figure12a_all_systems,RKe,3820,-5.56445093434,6.18720757469

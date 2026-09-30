@@ -1,0 +1,10 @@
+{
+  "python": "/Users/danilocoutodesouza/anaconda3/envs/data/bin/python",
+  "sklearn_version": "1.4.2",
+  "input": "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/figures/eof_clusters_intense/pcs_with_clusters.csv",
+  "method": "KMeans(n_clusters=4, random_state=42).fit(StandardScaler().fit_transform(archived PCs))",
+  "n_init": "auto",
+  "effective_n_init": 1,
+  "label_mismatches_without_permutation": 0,
+  "systems": 679
+}

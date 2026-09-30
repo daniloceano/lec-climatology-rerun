@@ -1,0 +1,6 @@
+reference_cluster,corrected_raw_cluster,matched_label,distance,n_before,n_after,nearest_raw_cluster,row_alternative_margin,global_assignment_gap_if_pair_forbidden,identity
+1,1,1,0.594617799815,662,647,1,1.21735613185,0.012058742937,current recomputed legacy cluster; not verified published cluster
+2,2,2,2.432421184,332,266,1,-1.32391353001,0.012058742937,current recomputed legacy cluster; not verified published cluster
+3,3,3,1.39701229788,290,229,3,0.745687526615,1.19846776489,current recomputed legacy cluster; not verified published cluster
+4,4,4,0.469342599324,248,206,4,1.96109380379,2.53707987687,current recomputed legacy cluster; not verified published cluster
+5,5,5,1.63348735241,212,138,5,0.688993823351,1.52514514616,current recomputed legacy cluster; not verified published cluster
