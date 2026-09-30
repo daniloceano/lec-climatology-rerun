@@ -1,18 +1,22 @@
 # Corrected article figures
 
-The 16 PNG/PDF pairs reproduce the layout of the final article figures with
-the validated corrected 3,820-cyclone rerun. Figures 3–16 were recalculated;
-Figures 1 and 2 are byte-identical to the publication because the track
-reference and conceptual LEC diagram do not depend on corrected LEC values.
+Figures 9–16 in this directory are the validated correction candidates. They
+reproduce the archived article scripts with corrected LEC/EOF results, published
+EOF identity matching, `pyEOF.pcs(s=2)` scaling, and four intense-cyclone clusters.
+The legacy reproduction gate must pass before regeneration.
 
-Every corrected PNG has the same pixel dimensions and panel composition as its
-counterpart under `figures/original/article/`. Hashes, numerical tables and
-generation provenance are stored under
-`results/corrected/article/reproduction/`.
+Figures 5–8 and their canonical matched phase EOF inputs remain frozen. Figures
+1–4 remain as previously generated. Numerical products, the legacy gate and
+provenance are in `results/corrected/article/validated_downstream/` and
+`results/original/article/reproduction_gate/`. Before/after image diagnostics
+are in `figures/comparison/article/`.
 
-Regenerate with:
+Regenerate Figures 9–16 with:
 
 ```bash
-python scripts/sync_swell_inputs.py
-python scripts/article_figures/generate_corrected_article.py
+python -m scripts.article_figures.reproduce_downstream
+python -m scripts.article_figures.build_validated_comparison
 ```
+
+See `docs/technical/downstream_reproduction.md` for the scientific validation
+and `results/corrected/article/validated_downstream/provenance.json` for hashes.

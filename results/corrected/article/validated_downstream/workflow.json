@@ -23,5 +23,5 @@
   "threshold_population": 6789,
   "row_order": "archived legacy PC row order restricted to corrected IDs",
   "cluster_matching": "Hungarian Euclidean distance between centers in each intense-subset standardized matched-PC coordinate system; no claim of physical equivalence",
-  "legacy_manifest_sha256": "2c3f8c4a363929adaddd3a5917b5da5ae7880e4ab6770c8babf0190567c724a8"
+  "legacy_manifest_sha256": "7ea7427bfc5b8d3677257ce3a611d032401b95347f47ca6bc4305077d1b43600"
 }

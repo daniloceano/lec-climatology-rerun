@@ -1,5 +1,10 @@
 # Figures 5–8: phase EOF identity correction
 
+Historical scope note (2026-09-30): the Figure 16 statements below describe
+the state before the validated downstream reproduction. Current Figure 16 uses
+the frozen matched phase EOF inputs from Figures 5–8; see
+[`downstream_reproduction.md`](../technical/downstream_reproduction.md).
+
 ## Methodological gate: confirmed
 
 This supersedes the stopped status of `eof_matching_audit_2026-09-29.md`.

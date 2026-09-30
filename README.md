@@ -13,8 +13,7 @@ per-cyclone outputs and execution state remain outside Git.
 
 The authoritative article comparison is:
 
-- [final PDF](docs/comparison/article_before_after_report.pdf);
-- [Markdown report](docs/comparison/article_before_after_report.md);
+- [current Markdown report](docs/comparison/article_before_after_report.md);
 - [paper figures](figures/comparison/article/);
 - [numerical results and provenance](results/comparison/article/).
 
@@ -183,8 +182,8 @@ CI pipeline or packaging layer.
   results.
 - Never overwrite archived legacy data or the validated corrected run-root.
 - Version small final tables, figures, manifests, hashes and reports.
-- Treat `docs/comparison/article_before_after_report.pdf` as the canonical
-  shareable artifact.
+- Treat `docs/comparison/article_before_after_report.md` and its linked
+  figures as current. The older assembled PDF is historical.
 - Run `git pull --ff-only` before new work and review `git status` before
   committing generated products.
 

@@ -3,20 +3,21 @@
 Data: 2026-09-30. A decisão do autor nesta rodada resolve as ambiguidades da
 [auditoria anterior](total_eof_downstream_audit.md): quatro clusters, Figure 12A
 com todos os sistemas e Figure 16 com loadings por fase. Não há decisões científicas
-pendentes sobre esses pontos. O manuscrito e todos os arquivos anteriores de
-figuras/resultados foram preservados. A proveniência científica registra o commit-base
+pendentes sobre esses pontos. O manuscrito, os originais e as Figures 5–8 foram
+preservados. As Figures 9–16 em `corrected` e `comparison` foram substituídas
+pelas versões validadas. A proveniência científica registra o commit-base
 da reprodução; a integração Git posterior não altera os valores calculados.
 
 Comando: `python -m scripts.article_figures.reproduce_downstream`.
 Somente gate: adicionar `--legacy-only`. O script interrompe a execução na primeira
 falha de reprodução; a etapa corrected só começa depois de todos os gates.
 
-Os **novos** candidatos estão em `figures/corrected/article/validated_downstream/`,
-com tabelas em `results/corrected/article/validated_downstream/`. O subdiretório
-é deliberado: os produtos antigos estão congelados por testes de Figures 5–8.
-Nada foi sobrescrito para contornar esses testes. Resultados legacy novos estão
+Os **novos** candidatos estão em `figures/corrected/article/`,
+com tabelas em `results/corrected/article/validated_downstream/`. As Figures 9–16 antigas nessa pasta foram substituídas por estes candidatos.
+Figures 5–8 e seus inputs canônicos permanecem congelados. Resultados legacy novos estão
 em `results/original/article/reproduction_gate/`; são evidências de reprodução,
-não substitutos dos arquivos originais. A comparison antiga permanece histórica.
+não substitutos dos arquivos originais. Os painéis antigos da comparison foram
+substituídos pelos pares publicado/corrigido correspondentes.
 
 ## RESUMO PARA ORQUESTRAÇÃO
 
@@ -247,20 +248,21 @@ Comando:
 python -m pytest tests/test_downstream_reproduction.py tests/test_phase_eof_matching.py tests/test_total_eof_downstream.py tests/test_article_figures.py -q
 ```
 
-Resultado final: **48 passed, 0 failed, 2 xfailed, 0 warnings**.
+Resultado final após a promoção: **49 passed, 0 failed, 2 xfailed, 0 warnings**.
 Os dois xfails documentam exclusivamente produtos antigos congelados: threshold
 por row na comparison antiga e orientação antiga dos total EOFs. Não são falhas
 dos candidatos novos. Regeneração produziu três warnings herdados: um
 SettingWithCopyWarning no script original e dois FutureWarnings de seaborn sobre
 palette sem hue. Nenhum afetou os valores. `git diff --check` limpo.
-Hashes de **182 arquivos protegidos** (Figures 5–8, seus CSVs/manifests,
-produtos preexistentes e teste phase EOF) conferidos; nenhuma mudança. O teste antigo de cinco clusters foi substituído
+Hashes dos arquivos protegidos (Figures 5–8, seus CSVs/manifests e
+produtos originais) conferidos após a promoção.
+A promoção substitui explicitamente os produtos antigos 9–16 e atualiza seus manifests. O teste antigo de cinco clusters foi substituído
 por proteção que exige bloqueio dos entry points obsoletos. Nenhum teste phase EOF
 foi alterado.
 
 ### 14. Outputs gerados
 
-Diretório: `figures/corrected/article/validated_downstream/`.
+Diretório: `figures/corrected/article/`.
 
 - Figure 9: `fig_09_eof_positive_density.png` e `fig_09_eof_positive_density.pdf`.
 - Figure 10: `fig_10_eof_negative_density.png` e `fig_10_eof_negative_density.pdf`.
@@ -273,8 +275,8 @@ Diretório: `figures/corrected/article/validated_downstream/`.
 
 Cada PNG e PDF está hashado em `figure_manifest.csv` e `provenance.json`.
 PDFs são raster de uma página, exportados dos PNGs; não se promete PDF vetorial.
-Todas as oito imagens foram inspecionadas visualmente. Não foi necessário gerar
-novas figuras comparison nesta rodada.
+Todas as oito imagens foram inspecionadas visualmente. A etapa de comparação agora produz oito painéis antes/depois derivados das imagens
+publicadas e corrigidas validadas, em `figures/comparison/article/`.
 
 ### 15. Arquivos alterados
 
@@ -289,7 +291,7 @@ novas figuras comparison nesta rodada.
 - Dependências: scikit-learn 1.7.1 e tqdm declarados em requirements/environment.
 - Novos resultados: `results/original/article/reproduction_gate/`,
   `results/corrected/article/validated_downstream/`.
-- Novas figuras: diretório acima, 16 arquivos + README.
+- Novas figuras: diretório acima, 16 arquivos; e oito pares de comparação.
 - Documentação: este relatório e `scripts/article_figures/README.md`.
 - `generate_comparison.py` e `generate_corrected_article.py` já estavam modificados
   ao iniciar; suas alterações locais anteriores foram preservadas integralmente.
@@ -321,7 +323,7 @@ após o merge.
 
 Figures 9–16 estão prontas como candidatas científicas à Correction.
 O gate legacy passou, e os corrected seguem os mesmos algoritmos.
-Figures 5–8 e todos os produtos anteriores permanecem congelados.
+Figures 5–8 permanecem congeladas; Figures 9–16 antigas foram substituídas.
 Figure 9 conserva o over-range branco do renderer original, documentado.
 Não interpretar Hungarian como comprovação de identidade física.
 Próximo passo mínimo: usar estes candidatos e corrigir as descrições textuais

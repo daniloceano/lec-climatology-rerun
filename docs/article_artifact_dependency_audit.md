@@ -10,22 +10,21 @@ are the verbatim final-submission PNGs under `figures/original/article/`.
 | 3 term distributions | `combined_ridge.png` | All LEC terms by phase | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_03_term_pdfs_published_corrected.*` | Corrected numerical rows also live under `results/corrected/article/`. |
 | 4 phase-mean LEC | `panel_LEC_mean_phases.png` | Phase means and standard deviations | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_04_phase_mean_lec_published_corrected.*` | Uses corrected `Ca`, `Ck`, pressure work and residuals. |
 | 5–8 phase EOFs | `panel_LEC_EOF1.png` … `panel_LEC_EOF4.png` | Phase LEC EOF loadings and variance | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_05_*` … `fig_08_*` | EOFs independently fitted, matched and sign-aligned. |
-| 9–10 PC-extreme density | `density_panel_q90.png`, `density_panel_q10.png` | Total-lifecycle EOF scores and tracks | Indirectly | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_09_*`, `fig_10_*` | Track fields are unchanged; membership depends on corrected EOF scores. |
-| 11 PC-extreme composition | `panel_2x2_q90_vs_q10.png` | EOF-extreme assignments, genesis and season | Indirectly | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_11_*` | Metadata are unchanged; selected systems can change. |
-| 12 intense LEC/groups | `panel_LEC_clusters.png` | Intensity filter, PCs, clusters and LEC means | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_12a_*`, `fig_12b_*` | Current workflow uses five PC-space groups; the obsolete four-group corrected set is not reused. |
-| 13 group density | `density_panel.png` | Cluster assignments and tracks | Indirectly | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_13_*` | Membership depends on corrected PCs/clusters. |
-| 14 group characteristics | `cluster_analysis_panel.png` | Cluster assignments, intensity, season and genesis | Indirectly | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_14_*` | Metadata remain unchanged but group membership changes. |
-| 15 phase synthesis | `LEC_total_v6.png` | Phase LEC means | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_15_*` | Direct corrected-LEC dependency. |
-| 16 EOF-group LEC | `EOFs_panel.png` | Positive EOF-group assignments and mean LEC | Yes | REGENERATE | `generate_article_comparison.py` | `figures/comparison/article/fig_16a_*` … `fig_16d_*` | Current validated definition differs from the legacy EOF-loading synthesis. |
+| 9–10 PC-extreme density | `density_panel_q90.png`, `density_panel_q10.png` | Total-lifecycle EOF scores and tracks | Indirectly | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_09_*`, `fig_10_*`; `figures/comparison/article/fig_09_*`, `fig_10_*` | Track fields are unchanged; membership depends on corrected EOF scores. |
+| 11 PC-extreme composition | `panel_2x2_q90_vs_q10.png` | EOF-extreme assignments, genesis and season | Indirectly | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_11_*`; `figures/comparison/article/fig_11_*` | Metadata are unchanged; selected systems can change. |
+| 12 intense LEC/groups | `panel_LEC_clusters.png` | Intensity filter, PCs, clusters and LEC means | Yes | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_12_*`; `figures/comparison/article/fig_12_*` | Validated publication layout contains all intense systems and four groups. |
+| 13 group density | `density_panel.png` | Cluster assignments and tracks | Indirectly | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_13_*`; `figures/comparison/article/fig_13_*` | Membership depends on corrected PCs/clusters. |
+| 14 group characteristics | `cluster_analysis_panel.png` | Cluster assignments, intensity, season and genesis | Indirectly | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_14_*`; `figures/comparison/article/fig_14_*` | Metadata remain unchanged but group membership changes. |
+| 15 phase synthesis | `LEC_total_v6.png` | Phase LEC means | Yes | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_15_*`; `figures/comparison/article/fig_15_*` | Direct corrected-LEC dependency. |
+| 16 EOF synthesis | `EOFs_panel.png` | Frozen matched phase EOF loadings from Figures 5–8 | Yes | REGENERATE | `reproduce_downstream.py`; `build_validated_comparison.py` | `figures/corrected/article/fig_16_*`; `figures/comparison/article/fig_16_*` | Validated publication layout uses phase/EOF loadings. |
 | Table 1 LEC summary statistics | `sn-article_rev2.tex`; `summary_statistics.py` | All lifecycle-period mean rows for the 24 LEC terms | Yes | REGENERATE | `generate_corrected_article_table.py` | `tables/corrected/article/table_01_lec_summary_statistics.tex`; full precision under `results/corrected/article/reproduction/` | Preserves the published layout and pooling rule; 25,000 legacy rows become 15,829 corrected rows. |
 
-Standalone corrected Figures 3–16 are now regenerated by
-`generate_corrected_article.py` under `figures/corrected/article/`. This suite
-answers a different presentation need from the canonical comparison: it keeps
-the article's exact 16-file layout and four-cluster definition while replacing
-LEC-dependent quantities with corrected data. Its fresh numerical products and
-hashes are under `results/corrected/article/reproduction/`; the lossless
-comparison views remain directly under `results/corrected/article/`.
+Validated corrected Figures 9–16 are regenerated by
+`reproduce_downstream.py` under `figures/corrected/article/`. This keeps the
+article's 16-file layout and four-cluster definition. Numerical products and
+hashes for these eight figures are under
+`results/corrected/article/validated_downstream/`; visual before/after panels
+are under `figures/comparison/article/`.
 
 The corrected Table 1 is handled separately because it is a manuscript LaTeX
 artifact rather than a plotted figure. Its original extraction and corrected

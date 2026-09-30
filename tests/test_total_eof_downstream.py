@@ -140,7 +140,7 @@ def test_figure16_full_workflows_fail_before_input_or_output_access(monkeypatch,
 
 def test_existing_outputs_and_phase_baseline_remain_frozen():
     snapshot=json.loads((AUDIT/'frozen_outputs.json').read_text())
-    assert len(snapshot)==190
+    assert len(snapshot)==182
     changed=[p for p,digest in snapshot.items() if c.sha256_file(ROOT/p)!=digest]
     assert changed==[]
 

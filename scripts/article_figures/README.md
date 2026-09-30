@@ -1,4 +1,4 @@
-# Canonical article artifact workflow
+# Article artifact workflow
 
 This directory reconstructs Figures 1-16 of *Lorenz Energy Cycle Climatology
 for the Southwestern Atlantic Cyclones* as a literal published-versus-corrected
@@ -16,11 +16,11 @@ the mean of every archived period for each cyclone and the correlation matrix
 of the 24 published LEC terms. Corrected EOFs are fitted independently, then
 matched and sign-aligned to legacy loading patterns.
 
-PC extremes are screened across PCs 1-8 and retained when their dominant mode
-is EOF 1-4. Intense systems use the pointwise 90th-percentile vorticity
-criterion and five K-means groups fitted to the first eight aligned
-total-lifecycle PC scores. Figure 16 contains mean LECs of positive EOF cyclone
-groups.
+PC extremes are screened across PCs 1–8 and retained when their dominant mode
+is EOF 1–4. The validated downstream workflow uses a common track-level
+90th-percentile maximum-vorticity threshold and four K-means groups fitted to
+the first eight aligned total-lifecycle PC scores. Figure 16 contains the
+article's phase/EOF-loading synthesis.
 
 Because the populations differ, the canonical report combines correction and
 population effects. The separate `scripts/lec_rerun_comparison/` workflow is
@@ -43,19 +43,19 @@ four-cluster intense-system analysis. It reuses the frozen manuscript drawing
 functions while supplying the corrected cache and authoritative track table.
 Figures 1–2 remain unchanged; Figures 3–16 are recalculated.
 
-Figures 5–8 now use **published/reference identity**, shared with the article
-comparison. Figure 16 deliberately retains its separate raw-phase definition;
-do not pass the matched Figure 5–8 tables to its synthesis renderer.
+Figures 5–8 use **published/reference identity**, shared with the article
+comparison. Figure 16 uses their frozen matched phase EOF inputs.
 
 ```bash
 python scripts/sync_swell_inputs.py
-python scripts/article_figures/generate_corrected_article.py
+python -m scripts.article_figures.reproduce_downstream
+python -m scripts.article_figures.build_validated_comparison
 ```
 
-Inputs and access locations come from `config/data_sources.toml`. Outputs are
-written to `figures/corrected/article/` and
-`results/corrected/article/reproduction/`. This is intentionally distinct from
-the five-group before/after comparison described below.
+Inputs and access locations come from `config/data_sources.toml`. Current
+Figures 9–16 are written to `figures/corrected/article/`, with scientific
+products in `results/corrected/article/validated_downstream/`. Earlier
+Figures 1–8 retain their existing products.
 
 ### Regenerate only Figures 5–8
 
@@ -91,8 +91,8 @@ The existing comparison and materialized view CSVs retain `eof` **only as a
 compatibility alias for reference identity** and `matched_rank` for raw rank;
 their numerical contents are unchanged. The corrected reproduction CSVs now use
 the explicit schema above. Its phase score columns are `reference_PC1` through
-`reference_PC8`. The `_raw.csv` phase tables retain the input convention of the
-frozen Figure 16; they must not feed Figures 5–8.
+`reference_PC8`. The `_raw.csv` phase tables retain raw-rank values for audit;
+Figures 5–8 and the validated Figure 16 use the matched phase product.
 
 For incipient, reference EOF 2 → raw 3 → **10.548160122%**, and reference EOF 3
 → raw 2 → **14.023895264%**. These are regression expectations, not hard-coded
@@ -120,7 +120,10 @@ statistics. Outputs are under `tables/original/article/`,
 The standalone `.tex` file is provided for independent compilation and visual
 inspection.
 
-## Run
+## Historical comparison generator (superseded for Figures 9–16)
+
+The commands below document the old 20-panel workflow. Use the validated
+downstream commands at the end of this file for current Figures 9–16.
 
 ```bash
 python scripts/article_figures/generate_article_comparison.py \
@@ -137,13 +140,13 @@ Use `--resume-after-13` only when the existing Figure 1-13 PNG/PDF pairs were
 created from the same inputs; the command validates their presence before
 continuing.
 
-## Outputs
+## Historical outputs
 
 ```text
-figures/comparison/article/                                  20 PNG + 20 vector PDF files
+figures/comparison/article/                    historical 20-panel layout
 results/comparison/article/                     tables, assignments and hashes
 docs/comparison/article_before_after_report.md
-docs/comparison/article_before_after_report.pdf
+docs/comparison/article_before_after_report.pdf  (historical)
 ```
 
 The comparison CSVs can be separated without numerical recomputation with
@@ -155,7 +158,7 @@ The figure manifest records SHA-256 hashes for each PNG/PDF pair. Provenance
 records both input hashes, population sizes, source/toolkit commits and EOF
 variance landmarks.
 
-## Figure layout
+## Historical figure layout (superseded for Figures 9–16)
 
 - Figure 3: archived distributions above, corrected distributions below.
 - Figures 4-8 and 12: dark legacy arrows/values and red corrected values.
@@ -179,15 +182,15 @@ historical/helper modules because the canonical generator imports several of
 their plotting primitives. Do not use their command-line entry points for a
 paper product.
 
-## Validated downstream candidates (2026-09-30)
+## Validated downstream figures (2026-09-30)
 
 Use `python -m scripts.article_figures.reproduce_downstream` for Figures 9–16.
 It first validates the legacy PC scale, archived memberships, four clusters,
 Figure 12 annotations, original density grids and original statistics. Any gate
 failure prevents corrected generation. `--legacy-only` runs just that gate.
-New PNG/PDF candidates are in `figures/corrected/article/validated_downstream/`;
+Current PNG/PDF files are in `figures/corrected/article/`;
 new numerical products and provenance are in
-`results/corrected/article/validated_downstream/`. Existing figures, tables and
-canonical Figures 5–8 stay frozen. The older generators remain blocked because
+`results/corrected/article/validated_downstream/`. Canonical Figures 5–8 stay frozen; the prior Figures 9–16 are replaced. Build the before/after panels with `python -m scripts.article_figures.build_validated_comparison`.
+The older generators remain blocked because
 they still implement superseded downstream definitions. See
 [the reproduction report](../../docs/technical/downstream_reproduction.md).

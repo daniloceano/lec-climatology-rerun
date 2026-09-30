@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 import sklearn
 import xarray as xr
+from PIL import Image
 from scipy.optimize import linear_sum_assignment
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
@@ -348,6 +349,19 @@ def render_12(root, tables, output, scratch):
     render.assemble_panel(images,output,figsize=(15,10),grid=(2,3),label_y=.55,cluster_panel=True)
 
 
+def match_published_dimensions(png: Path, original: Path) -> None:
+    """Trim only a 1–2 pixel outer raster edge from the legacy renderer."""
+    with Image.open(original) as published, Image.open(png) as candidate:
+        dx = candidate.width - published.width
+        dy = candidate.height - published.height
+        if dx == dy == 0:
+            return
+        if not (0 <= dx <= 2 and 0 <= dy <= 2):
+            raise GateFailure(f'layout differs for {png}: {candidate.size} != {published.size}')
+        left, top = dx // 2, dy // 2
+        candidate.crop((left, top, left + published.width, top + published.height)).save(png)
+
+
 def corrected_stage(legacy,corrected,tracks,root,bundle):
     ref,old_scores,old_mapping,old_clusters,old_centers,old_standardized,first=bundle
     evidence=Evidence(CORRECTED)
@@ -403,7 +417,7 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
             group=clusters.loc[clusters.cluster.eq(k),'track_id']
             membership_rows.append(dict(figure=number,cluster=k,n=len(group),ids_sha256=ids_digest(group)))
     evidence.table('figure_cluster_memberships.csv',pd.DataFrame(membership_rows))
-    figures=ROOT/'figures/corrected/article/validated_downstream'
+    figures=ROOT/'figures/corrected/article'
     figures.mkdir(parents=True,exist_ok=True)
     scratch=ROOT/'tmp/validated_downstream';scratch.mkdir(parents=True,exist_ok=True)
     render_validated_densities(root,tracks,assignments,clusters,figures,scratch,evidence)
@@ -426,7 +440,9 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
     manifest=[]
     references={9:'map_density_eof.py',10:'map_density_eof.py',11:'eof_cyclone_statistics_q10_q90.py',12:'eof_plot_lec_centroids.py',13:'eof_export_density_clusters.py',14:'eof_cluster_statistics.py',15:'tests_draw_lec/draw_lec_v6.py',16:'tests_draw_lec/draw_lec_eofs.py'}
     for number in range(9,17):
-        png=figures/render.FIGURE_NAMES[number];pdf=render.save_raster_pdf(png)
+        png=figures/render.FIGURE_NAMES[number]
+        match_published_dimensions(png, ROOT/'figures/original/article'/render.FIGURE_NAMES[number])
+        pdf=render.save_raster_pdf(png)
         manifest.append(dict(figure=number,script_original=str(evidence.source(root/references[number])),wrapper=str(Path(__file__).resolve()),png=str(png.relative_to(ROOT)),pdf=str(pdf.relative_to(ROOT)),png_sha256=c.sha256_file(png),pdf_sha256=c.sha256_file(pdf)))
     evidence.table('figure_manifest.csv',pd.DataFrame(manifest))
     evidence.save()
@@ -437,7 +453,7 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
 
 
 def finalize_provenance():
-    """Hash the complete new run without altering any frozen baseline manifest."""
+    """Hash the complete corrected run and its source inputs."""
     gate=json.loads((GATE/'manifest.json').read_text())
     workflow=json.loads((CORRECTED/'workflow.json').read_text())
     figure_manifest=pd.read_csv(CORRECTED/'figure_manifest.csv')
@@ -472,7 +488,7 @@ def finalize_provenance():
                   PDF_format='one-page raster PDF exported from publication-style PNG; not vector',
                   limitations=['EOF3 positive density exceeds original top contour (13.188339 > 9); original blank over-range region preserved without clipping or changing levels',
                                'Cluster matching margins are recorded; Hungarian assignment does not establish physical equivalence',
-                               'Phase products 5–8 and all preexisting figures/results remain frozen'])
+                               'Canonical phase products and Figures 5–8 remain frozen'])
     (CORRECTED/'provenance.json').write_text(json.dumps(document,indent=2)+'\n')
 
 

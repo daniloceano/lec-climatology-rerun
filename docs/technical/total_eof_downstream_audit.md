@@ -1,5 +1,9 @@
 # Auditoria de total-lifecycle EOFs e produtos downstream
 
+Registro histórico: as pendências e o diagnóstico abaixo precedem a reprodução
+validada. O estado atual das Figures 9–16 está em
+[`downstream_reproduction.md`](downstream_reproduction.md).
+
 Data: 2026-09-30. Diagnóstico concluído; **os produtos atuais não são substitutos
 cientificamente validados do artigo**. A consistência interna de uma permutação
 não demonstra que a referência, escala dos PCs, população ou definição da figura

@@ -13,9 +13,9 @@ This report separates the literal article comparison from the controlled paired 
 
 - Published total EOF 1-4 variance reproduced from the legacy cache: **28.304%, 11.018%, 10.925%, 8.188%**.
 - Primary legacy rows: **22,464**; primary corrected rows: **15,280**.
-- Intense systems entering clustering: **1,744 before** and **1,486 after**.
-- Five K-means groups are fitted to the first eight total-lifecycle PC scores and corrected groups are matched to legacy centroids.
-- Figure 16 shows mean LECs of cyclones assigned to the positive EOF groups, not EOF loading diagrams.
+- The validated intense-system selection contains **679 legacy** and **603 corrected** cyclones under the common track-level threshold.
+- Four K-means groups are fitted to the first eight total-lifecycle PC scores; corrected groups are centroid-matched to legacy groups.
+- Figure 16 reproduces the article's phase/EOF-loading synthesis using the frozen matched phase EOF inputs from Figures 5–8.
 
 ## Figures
 
@@ -71,43 +71,37 @@ This report separates the literal article comparison from the controlled paired 
 
 ![Figure 9](../../figures/comparison/article/fig_09_eof_positive_density_published_corrected.png)
 
-*Positive total-lifecycle PC-extreme track densities: published population above and corrected population below.*
+*Positive total-lifecycle PC-extreme track densities: published on the left and corrected on the right.*
 
 ### Figure 10
 
 ![Figure 10](../../figures/comparison/article/fig_10_eof_negative_density_published_corrected.png)
 
-*Negative total-lifecycle PC-extreme track densities: published population above and corrected population below.*
+*Negative total-lifecycle PC-extreme track densities: published on the left and corrected on the right.*
 
 ### Figure 11
 
 ![Figure 11](../../figures/comparison/article/fig_11_eof_genesis_season_published_corrected.png)
 
-*Genesis-region and seasonal composition of total-lifecycle PC extremes, published above and corrected below.*
+*Genesis-region and seasonal composition of total-lifecycle PC extremes, published on the left and corrected on the right.*
 
-### Figure 12a
+### Figure 12
 
-![Figure 12a](../../figures/comparison/article/fig_12a_all_intense_lec_published_corrected.png)
+![Figure 12](../../figures/comparison/article/fig_12_intense_clusters_lec_published_corrected.png)
 
-*Mean LEC of all intense cyclones in the published and corrected populations.*
-
-### Figure 12b
-
-![Figure 12b](../../figures/comparison/article/fig_12b_five_intense_clusters_lec_published_corrected.png)
-
-*Five intense-cyclone groups obtained from the first eight total-lifecycle PCs; corrected groups are centroid-matched to published groups.*
+*Mean LEC of all intense cyclones and four intense-cyclone groups, published on the left and corrected on the right.*
 
 ### Figure 13
 
-![Figure 13](../../figures/comparison/article/fig_13_five_intense_groups_density_published_corrected.png)
+![Figure 13](../../figures/comparison/article/fig_13_intense_groups_density_published_corrected.png)
 
-*Track densities of the five intense-cyclone PC groups, published above and corrected below.*
+*Track densities of the four intense-cyclone PC groups, published on the left and corrected on the right.*
 
 ### Figure 14
 
-![Figure 14](../../figures/comparison/article/fig_14_five_intense_groups_characteristics_published_corrected.png)
+![Figure 14](../../figures/comparison/article/fig_14_intense_groups_characteristics_published_corrected.png)
 
-*Counts, maximum intensity, seasonality and genesis regions for the five intense-cyclone PC groups.*
+*Counts, maximum intensity, seasonality and genesis regions for the four intense-cyclone PC groups.*
 
 ### Figure 15
 
@@ -115,26 +109,8 @@ This report separates the literal article comparison from the controlled paired 
 
 *Primary-phase LEC synthesis, with the published population on the left and corrected population on the right.*
 
-### Figure 16a
+### Figure 16
 
-![Figure 16a](../../figures/comparison/article/fig_16a_eof1_positive_group_lec_published_corrected.png)
+![Figure 16](../../figures/comparison/article/fig_16_eof_synthesis_published_corrected.png)
 
-*Mean LEC of cyclones assigned to the positive EOF 1 extreme, published on the left and corrected on the right.*
-
-### Figure 16b
-
-![Figure 16b](../../figures/comparison/article/fig_16b_eof2_positive_group_lec_published_corrected.png)
-
-*Mean LEC of cyclones assigned to the positive EOF 2 extreme, published on the left and corrected on the right.*
-
-### Figure 16c
-
-![Figure 16c](../../figures/comparison/article/fig_16c_eof3_positive_group_lec_published_corrected.png)
-
-*Mean LEC of cyclones assigned to the positive EOF 3 extreme, published on the left and corrected on the right.*
-
-### Figure 16d
-
-![Figure 16d](../../figures/comparison/article/fig_16d_eof4_positive_group_lec_published_corrected.png)
-
-*Mean LEC of cyclones assigned to the positive EOF 4 extreme, published on the left and corrected on the right.*
+*Phase/EOF-loading synthesis in the article layout, published on the left and corrected on the right.*

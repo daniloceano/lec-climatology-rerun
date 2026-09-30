@@ -83,6 +83,28 @@ def read_product(name):
     return pd.read_csv(r.CORRECTED/name,float_precision='round_trip')
 
 
+def test_validated_figures_are_canonical_and_comparisons_match_sources():
+    from scripts.article_figures import build_validated_comparison as comparison
+
+    corrected=pd.read_csv(r.CORRECTED/'figure_manifest.csv').set_index('figure')
+    panels=pd.read_csv(comparison.RESULTS/'validated_downstream/figure_manifest.csv').set_index('figure_label')
+    assert sorted(corrected.index)==list(range(9,17))
+    assert sorted(panels.index)==list(range(9,17))
+    for number in range(9,17):
+        row=corrected.loc[number]
+        panel=panels.loc[number]
+        assert row.png.startswith('figures/corrected/article/fig_')
+        assert c.sha256_file(ROOT/row.png)==row.png_sha256
+        assert c.sha256_file(ROOT/row.pdf)==row.pdf_sha256
+        assert panel.corrected_png==row.png
+        assert panel.corrected_png_sha256==row.png_sha256
+        for path_col,hash_col in [('png','png_sha256'),('pdf','pdf_sha256'),('published_png','published_png_sha256')]:
+            assert c.sha256_file(ROOT/panel[path_col])==panel[hash_col]
+    assert not (ROOT/'figures/corrected/article/validated_downstream').exists()
+    obsolete=('fig_12a_','fig_12b_','fig_13_five_','fig_14_five_','fig_16a_','fig_16b_','fig_16c_','fig_16d_')
+    assert not any(path.name.startswith(obsolete) for path in comparison.COMPARISON.glob('fig_*'))
+
+
 def test_archived_assignments_and_intense_IDs_are_reproduced():
     config=json.loads((r.GATE/'manifest.json').read_text())
     archive=ROOT.parent/'energetic_patterns_cyclones_south_atlantic/csv_eofs_energetics_with_track/Total'
