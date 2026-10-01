@@ -1,6 +1,0 @@
-definition,variable,threshold,operator,quantile,threshold_population_n,n_before,n_after,threshold_equal_cyclones
-current_comparison_track_rows,vor42,8.29278,>,0.9,631009,1744,1486,0
-published_script_all_track_maxima,vor42,10.353024,>=,0.9,6789,679,603,0
-TeX_strict_all_track_maxima,vor42,10.353024,>,0.9,6789,679,603,0
-sensitivity_legacy_EOF_maxima,vor42,10.353024,>,0.9,6789,679,603,0
-sensitivity_corrected_EOF_maxima,vor42,11.138933,>,0.9,3820,432,382,0

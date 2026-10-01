@@ -1,7 +1,6 @@
 {
-  "corrected_phase_scores": "results/corrected/article/reproduction/eof_scores_by_phase.csv",
+  "corrected_phase_scores": "results/corrected/article/eof_scores_by_phase.csv",
   "csv_precision": "8 significant digits, matching existing article tables",
-  "frozen_output_count": 147,
   "method": "independent_eof_by_phase / align_eofs; separate eight-mode assignment per phase",
   "outputs": {
     "figures/comparison/article/fig_05_eof1_lec_published_corrected.pdf": "a718e00b7f9d10d61a55a85127e963587d4907749f473554b2b5e402972b7d9b",
@@ -20,18 +19,10 @@
     "figures/corrected/article/fig_07_eof3_lec.png": "b036239887193f4d3fd9e0c3492cb018a122ec07b56facf1069984da7a466201",
     "figures/corrected/article/fig_08_eof4_lec.pdf": "030a00e11be380a1c523aa735d817c8714a022e9305ab108e141c2c2822a84d2",
     "figures/corrected/article/fig_08_eof4_lec.png": "b44485e9655934e3d498bc0307eee087499a64469b660ddda2f4c7c49a9ee29d",
-    "results/comparison/article/figure_manifest.csv": "440e0128d5d4d1e388fb12ff77ba0acb68b0633587c880da02880167656a5203",
     "results/comparison/article/phase_eof_matched/consistency.csv": "8c6b74629d449a707bf6fb6df374c92c0aec39908c47b9920f198b7392e44c85",
-    "results/comparison/article/phase_eof_matched/frozen_outputs.json": "8959df94ca7ce64222602297dee3c19bd793fca6dc825ab1f0ee29acde7c61dc",
     "results/comparison/article/phase_eof_matched/loadings.csv": "d312825a939e2784e502211160f0fb0ed88f2ac13972fe45b8c1912fa1048b7e",
     "results/comparison/article/phase_eof_matched/variance.csv": "a3ed67ff3f57d48600f1aaa1899a055947218ee7bc33c279bee94a1f4ec6f52f",
-    "results/corrected/article/reproduction/eof_loadings_by_phase.csv": "01bad0319dab8269609c9d5fb755977cf0a293dd8086d9a4247f75e6021ed71d",
-    "results/corrected/article/reproduction/eof_loadings_by_phase_raw.csv": "3f7808432f58fce6188bbd7e47e0c3440be26703b1a74873cd4d51b8ba7afe2b",
-    "results/corrected/article/reproduction/eof_scores_by_phase.csv": "c2d76992b09c18436693e4d68e7f0fd0c47027f784f0a905df6f40bded805276",
-    "results/corrected/article/reproduction/eof_variance_by_phase.csv": "b5273b35cd5cdb936cf43f351f8ff884cd5995b815d63da6192612505d2bc4ea",
-    "results/corrected/article/reproduction/eof_variance_by_phase_raw.csv": "33bfc9f8f0c9030ba13ab1dd734f6ef428d02c129934a504a490ac42d3085e31",
-    "results/corrected/article/reproduction/figure_manifest.csv": "af613d97ba2eb0c7660e2bf46d6c1c87a30855f90698d0053aa57ee210ee9c5b",
-    "results/corrected/article/reproduction/provenance.json": "d70d27cd1d7d0fcc676b380f427f2a99382283c642c3edf3680d323f94fb6072"
+    "results/corrected/article/eof_scores_by_phase.csv": "c2d76992b09c18436693e4d68e7f0fd0c47027f784f0a905df6f40bded805276"
   },
   "raw_identity": "raw_rank",
   "reference_identity": "reference_eof",

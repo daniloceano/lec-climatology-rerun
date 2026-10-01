@@ -19,7 +19,7 @@ ORIGINAL = ROOT / 'figures/original/article'
 CORRECTED = ROOT / 'figures/corrected/article'
 COMPARISON = ROOT / 'figures/comparison/article'
 RESULTS = ROOT / 'results/comparison/article'
-VALIDATED = ROOT / 'results/corrected/article/validated_downstream'
+VALIDATED = ROOT / 'results/corrected/article'
 
 
 def make_pair(original: Path, corrected: Path, output: Path) -> Path:
@@ -50,8 +50,8 @@ def main() -> int:
     validated = json.loads((VALIDATED / 'provenance.json').read_text())
     if validated['status'] != 'VALIDATED_CORRECTED_CANDIDATES':
         raise ValueError('corrected Figures 9–16 have not passed the legacy gate')
-    corrected_manifest = pd.read_csv(VALIDATED / 'figure_manifest.csv').set_index('figure')
-    published_manifest = pd.read_csv(ROOT / 'results/corrected/article/reproduction/figure_manifest.csv').set_index('figure')
+    corrected_manifest = pd.read_csv(VALIDATED / 'figure_manifest_09_16.csv').set_index('figure')
+    published_manifest = pd.read_csv(VALIDATED / 'figure_manifest.csv').set_index('figure')
     if sorted(corrected_manifest.index) != list(range(9, 17)):
         raise ValueError('corrected Figure 9–16 manifest is incomplete')
     rows = []
@@ -85,15 +85,25 @@ def main() -> int:
     old = old[old.figure_label.astype(str).isin([str(n) for n in range(1, 9)])]
     final = pd.concat([old, pd.DataFrame(rows)], ignore_index=True)
     final.to_csv(RESULTS / 'figure_manifest.csv', index=False)
-    out = RESULTS / 'validated_downstream'
-    out.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(rows).to_csv(out / 'figure_manifest.csv', index=False)
-    provenance = dict(status='DERIVED_FROM_VALIDATED_WORKFLOWS',
+    provenance_path = RESULTS / 'provenance.json'
+    provenance = json.loads(provenance_path.read_text())
+    provenance.update(status='DERIVED_FROM_VALIDATED_WORKFLOWS', clusters=4,
+                      figure_files=16,
+                      workflow='published article versus validated corrected article',
                       method='Pillow side-by-side montage; no scientific recalculation',
+                      source_results={'original': 'results/original/article',
+                                      'corrected': 'results/corrected/article'},
                       corrected_provenance_sha256=sha256_file(VALIDATED / 'provenance.json'),
-                      corrected_manifest_sha256=sha256_file(VALIDATED / 'figure_manifest.csv'),
-                      figures=rows)
-    (out / 'provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
+                      corrected_manifest_sha256=sha256_file(VALIDATED / 'figure_manifest_09_16.csv'),
+                      figure_manifest_sha256=sha256_file(RESULTS / 'figure_manifest.csv'),
+                      numeric_outputs={str(path.relative_to(ROOT)): sha256_file(path)
+                                       for name in ('eof_scores_total.csv','eof_extreme_assignments.csv',
+                                                    'eof_loadings_total.csv','eof_variance_total.csv',
+                                                    'cluster_assignments.csv','cluster_centers.csv',
+                                                    'figure14_statistics.csv')
+                                       for path in [RESULTS / name]},
+                      figures_09_16=rows)
+    provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')
     return 0
 
 

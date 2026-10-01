@@ -123,7 +123,7 @@ def test_swell_source_registry_pins_paths_and_hashes_without_a_secret():
 def test_corrected_article_manifest_matches_all_published_dimensions():
     repository = Path(__file__).resolve().parents[1]
     manifest = pd.read_csv(
-        repository / "results" / "corrected" / "article" / "reproduction" / "figure_manifest.csv"
+        repository / "results" / "corrected" / "article" / "figure_manifest.csv"
     )
     assert manifest["figure"].tolist() == list(range(1, 17))
     assert manifest["layout_dimensions_match_article"].all()
@@ -163,7 +163,7 @@ def test_corrected_article_table_preserves_layout_and_uses_corrected_values():
     assert len(labels(corrected_rows)) == 24
 
     statistics = pd.read_csv(
-        repository / "results" / "corrected" / "article" / "reproduction"
+        repository / "results" / "corrected" / "article"
         / "table_01_lec_summary_statistics.csv"
     )
     assert statistics["term"].tolist() == EOF_TERMS
@@ -178,7 +178,7 @@ def test_corrected_article_table_preserves_layout_and_uses_corrected_values():
 def test_corrected_article_table_manifest_hashes_every_output():
     repository = Path(__file__).resolve().parents[1]
     manifest_path = (
-        repository / "results" / "corrected" / "article" / "reproduction"
+        repository / "results" / "corrected" / "article"
         / "table_01_manifest.json"
     )
     manifest = json.loads(manifest_path.read_text())

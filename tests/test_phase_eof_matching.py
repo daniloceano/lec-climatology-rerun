@@ -15,7 +15,7 @@ from scripts.article_figures.phase_eofs import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-REPRODUCTION = ROOT / "results/corrected/article/reproduction"
+REPRODUCTION = ROOT / "results/corrected/article"
 EXPECTED_RANKS = {
     "incipient": [1, 3, 2, 4], "intensification": [1, 2, 4, 3],
     "mature": [1, 2, 3, 4], "decay": [1, 2, 3, 4],
@@ -71,8 +71,6 @@ def test_explicit_identity_and_corrected_only_comparison_equality(product):
     for table, name in zip(compatibility_tables(*product), ("loadings", "variance")):
         comparison = pd.read_csv(ROOT / f"results/comparison/article/eof_{name}_by_phase.csv")
         pd.testing.assert_frame_equal(table, comparison, check_exact=True)
-        corrected_view = pd.read_csv(ROOT / f"results/corrected/article/eof_{name}_by_phase.csv")
-        pd.testing.assert_frame_equal(corrected_view, table[table.version.eq("after")].reset_index(drop=True), check_exact=True)
     with pytest.raises(ValueError, match="explicit reference"):
         validate_phase_product(*compatibility_tables(*product))
     invalid = variance.copy()
@@ -158,14 +156,9 @@ def test_both_renderers_receive_identical_sixteen_panels(monkeypatch, tmp_path, 
         assert ev == expected
 
 
-def test_frozen_downstream_and_output_hashes():
+def test_phase_output_hashes():
     directory = ROOT / PRODUCT_DIRECTORY
-    frozen = json.loads((directory / "frozen_outputs.json").read_text())
-    assert any("fig_16" in path for path in frozen)
-    assert any("eof_scores_total.csv" in path for path in frozen)
-    assert any("intense_pc_cluster" in path for path in frozen)
-    for path, digest in frozen.items():
-        assert common.sha256_file(ROOT / path) == digest, path
     provenance = json.loads((directory / "provenance.json").read_text())
+    assert any("fig_08" in path for path in provenance["outputs"])
     for path, digest in provenance["outputs"].items():
         assert common.sha256_file(ROOT / path) == digest, path

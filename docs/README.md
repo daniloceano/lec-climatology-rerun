@@ -5,7 +5,6 @@
 | Artifact | Purpose |
 |---|---|
 | `comparison/article_before_after_report.md` | Current report with links to every validated comparison figure |
-| `comparison/article_before_after_report.pdf` | Historical assembled PDF from the superseded five-group figure set |
 | `article_figure_manifest.csv` | Published-to-original/corrected/comparison mapping |
 | `article_artifact_dependency_audit.md` | Per-figure recomputation decision |
 | `original_workflow_inventory.md` | Legacy script/input/output audit |

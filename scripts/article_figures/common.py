@@ -808,8 +808,8 @@ def independent_intense_pc_clusters(
     n_pcs: int = 8,
 ):
     """Cluster intense systems on the first eight aligned total-lifecycle PCs."""
-    from scripts.article_figures.downstream_guards import require_validated_downstream
-    require_validated_downstream()
+    from scripts.article_figures.downstream_guards import require_corrected_article_results
+    require_corrected_article_results()
     threshold = float(tracks["vor42"].quantile(0.90))
     intense_ids = set(tracks.loc[tracks["vor42"] > threshold, "track_id"].astype(int).unique())
     pc_columns = [f"PC{i}" for i in range(1, n_pcs + 1)]

@@ -1,7 +1,7 @@
 """Prevent superseded renderers from emitting scientific replacements."""
 
 
-def require_validated_downstream() -> None:
+def require_corrected_article_results() -> None:
     raise ValueError(
         "BLOCKED superseded five-cluster workflow: use "
         "python -m scripts.article_figures.reproduce_downstream. "

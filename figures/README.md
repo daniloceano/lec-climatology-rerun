@@ -32,5 +32,4 @@ Technical diagnostics on the same 3,820 cyclones before and after correction.
 They support the paired-control report and are not paper figures.
 
 The article-layout corrected suite preserves the publication's four-cluster
-definition. The older PDF report from the five-group comparison is historical;
-the Markdown report above points to the current figures.
+definition. The Markdown report above points to the current figures.

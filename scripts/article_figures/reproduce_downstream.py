@@ -36,7 +36,7 @@ ARCHIVE = ROOT.parent / 'energetic_patterns_cyclones_south_atlantic'
 TOTAL = ARCHIVE / 'csv_eofs_energetics_with_track/Total'
 PCS = [f'PC{i}' for i in range(1, 9)]
 GATE = ROOT / 'results/original/article/reproduction_gate'
-CORRECTED = ROOT / 'results/corrected/article/validated_downstream'
+CORRECTED = ROOT / 'results/corrected/article'
 PYEOF = Path('/Users/danilocoutodesouza/anaconda3/envs/data/lib/python3.12/site-packages/pyEOF/pyEOF.py')
 HISTORY = PYEOF.parents[4] / 'conda-meta/history'
 
@@ -386,6 +386,10 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
     scores=scores.set_index('track_id').loc[order].reset_index()
     mapping['ev_legacy']=old_mapping.explained_variance.to_numpy()
     evidence.table('total_eof_mapping.csv',mapping)
+    evidence.table('eof_variance_total.csv',mapping.assign(
+        explained_variance_pct=100*mapping.explained_variance,n=len(scores))[
+        ['reference_eof','corrected_raw_rank','sign_alignment','pattern_correlation',
+         'explained_variance_pct','n']])
     evidence.table('eof_scores_total.csv',scores)
     evidence.table('eof_loadings_total.csv',loadings.assign(reference_eof=range(1,9)))
     evidence.table('pc_standard_deviations.csv',pd.DataFrame(dict(pc=PCS,std=scores[PCS].std())).reset_index(drop=True))
@@ -430,7 +434,7 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
     evidence.table('figure_cluster_memberships.csv',pd.DataFrame(membership_rows))
     figures=ROOT/'figures/corrected/article'
     figures.mkdir(parents=True,exist_ok=True)
-    scratch=ROOT/'tmp/validated_downstream';scratch.mkdir(parents=True,exist_ok=True)
+    scratch=ROOT/'tmp/corrected_article';scratch.mkdir(parents=True,exist_ok=True)
     render_validated_densities(root,tracks,assignments,clusters,figures,scratch,evidence)
     render.render_eof_statistics(assignments,first,figures/render.FIGURE_NAMES[11])
     render_12(root,f12,figures/render.FIGURE_NAMES[12],scratch)
@@ -455,7 +459,16 @@ def corrected_stage(legacy,corrected,tracks,root,bundle):
         match_published_dimensions(png, ROOT/'figures/original/article'/render.FIGURE_NAMES[number])
         pdf=render.save_raster_pdf(png)
         manifest.append(dict(figure=number,script_original=str(evidence.source(root/references[number])),wrapper=str(Path(__file__).resolve()),png=str(png.relative_to(ROOT)),pdf=str(pdf.relative_to(ROOT)),png_sha256=c.sha256_file(png),pdf_sha256=c.sha256_file(pdf)))
-    evidence.table('figure_manifest.csv',pd.DataFrame(manifest))
+    evidence.table('figure_manifest_09_16.csv',pd.DataFrame(manifest))
+    complete=CORRECTED/'figure_manifest.csv'
+    if complete.is_file():
+        full=pd.read_csv(complete)
+        for row in manifest:
+            match=full.figure.eq(row['figure'])
+            if match.sum()!=1: raise GateFailure(f'complete figure manifest missing Figure {row["figure"]}')
+            for key in ('png_sha256','pdf_sha256'):
+                full.loc[match,key]=row[key]
+        full.to_csv(complete,index=False)
     evidence.save()
     metadata=dict(K=4,PCs=PCS,scaler='StandardScaler fit separately on intense subset',random_state=42,n_init='auto',effective_n_init=1,algorithm='lloyd',init='k-means++',max_iter=300,tol=1e-4,sklearn_version=sklearn.__version__,threshold=threshold,threshold_population=6789,row_order='archived legacy PC row order restricted to corrected IDs',cluster_matching='Hungarian Euclidean distance between centers in each intense-subset standardized matched-PC coordinate system; no claim of physical equivalence',legacy_manifest_sha256=c.sha256_file(GATE/'manifest.json'))
     (CORRECTED/'workflow.json').write_text(json.dumps(metadata,indent=2)+'\n')
@@ -467,7 +480,7 @@ def finalize_provenance():
     """Hash the complete corrected run and its source inputs."""
     gate=json.loads((GATE/'manifest.json').read_text())
     workflow=json.loads((CORRECTED/'workflow.json').read_text())
-    figure_manifest=pd.read_csv(CORRECTED/'figure_manifest.csv')
+    figure_manifest=pd.read_csv(CORRECTED/'figure_manifest_09_16.csv')
     if set(figure_manifest.figure)!=set(range(9,17)) or not all(x['passed'] for x in gate['checks']):
         raise GateFailure('cannot finalize incomplete downstream products')
     sources=dict(gate['sources'])

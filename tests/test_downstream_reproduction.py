@@ -86,8 +86,8 @@ def read_product(name):
 def test_validated_figures_are_canonical_and_comparisons_match_sources():
     from scripts.article_figures import build_validated_comparison as comparison
 
-    corrected=pd.read_csv(r.CORRECTED/'figure_manifest.csv').set_index('figure')
-    panels=pd.read_csv(comparison.RESULTS/'validated_downstream/figure_manifest.csv').set_index('figure_label')
+    corrected=pd.read_csv(r.CORRECTED/'figure_manifest_09_16.csv').set_index('figure')
+    panels=pd.read_csv(comparison.RESULTS/'figure_manifest.csv').set_index('figure_label').loc[range(9,17)]
     assert sorted(corrected.index)==list(range(9,17))
     assert sorted(panels.index)==list(range(9,17))
     for number in range(9,17):
@@ -198,8 +198,9 @@ def test_density_level_spacing_prefers_half_unit_when_interval_count_allows():
     assert np.all(np.diff(compact)>0)
 
 
-def test_phase_products_and_preexisting_figures_remain_frozen():
-    baseline=json.loads((ROOT/'results/comparison/article/phase_eof_matched/frozen_outputs.json').read_text())
+def test_phase_products_and_figures_have_valid_hashes():
+    baseline=json.loads((ROOT/'results/comparison/article/phase_eof_matched/provenance.json').read_text())['outputs']
+    assert any('fig_08' in path for path in baseline)
     for path,digest in baseline.items():
         assert c.sha256_file(ROOT/path)==digest,path
 

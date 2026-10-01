@@ -20,6 +20,6 @@ python scripts/article_figures/generate_corrected_article_table.py
 ```
 
 Full-precision values and SHA-256 provenance are stored under
-`results/corrected/article/reproduction/`. The published calculation pools all
+`results/corrected/article/`. The published calculation pools all
 lifecycle-period mean rows (15,829 in the corrected cache); it does not first
 collapse each cyclone to a single value.

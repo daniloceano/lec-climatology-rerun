@@ -1,10 +1,5 @@
 # Article figure comparisons
 
-Figures 9–16 here show the published figure on the left and the validated
-corrected figure on the right. They are visual comparisons derived from
-`figures/original/article/` and `figures/corrected/article/`, with source and
-output hashes in `results/comparison/article/validated_downstream/`.
+These 16 figures compare the published figures with the validated corrected figures. Figures 1–8 use the matched phase products; Figures 9–16 place the published image on the left and the corrected image on the right. Their manifest and hashes are in `results/comparison/article/`.
 
-The comparison generator does not recalculate the scientific products. Run
-`python -m scripts.article_figures.build_validated_comparison` after regenerating
-the corrected figures. Figures 1–8 retain their earlier validated outputs.
+After regenerating the corrected figures and numerical results, run `python -m scripts.article_figures.build_validated_comparison` to refresh the comparison panels.

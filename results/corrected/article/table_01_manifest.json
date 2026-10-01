@@ -7,7 +7,7 @@
   "lifecycle_period_rows": 15829,
   "method": "pool all lifecycle-period means; sample standard deviation (ddof=1); Q25/Q75; IQR=Q75-Q25; range=max-min; energy terms divided by 1e5",
   "outputs": {
-    "results/corrected/article/reproduction/table_01_lec_summary_statistics.csv": "90e9d645ec7e15108d77090b75aa6935c5766757b4d5224d0b261067adbea6b9",
+    "results/corrected/article/table_01_lec_summary_statistics.csv": "90e9d645ec7e15108d77090b75aa6935c5766757b4d5224d0b261067adbea6b9",
     "tables/corrected/article/table_01_lec_summary_statistics.md": "76fdb727be56f80ec23c5f6dfe3b6908b9fd546511533a1fa01762d1cc790997",
     "tables/corrected/article/table_01_lec_summary_statistics.tex": "b79eaecd5a38b4651b6aaf8f10ad29f0c49f593b92c453c88a9069c5c8e84f23",
     "tables/corrected/article/table_01_lec_summary_statistics_standalone.tex": "c1c6276dce9a27dcbb3854fda20a85f30b3161249eb2aab91bddb6ba77da4227",
@@ -15,7 +15,7 @@
   },
   "published_article_source": "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/sn-article_rev2.tex",
   "published_article_source_sha256": "6849f3e789277dad83fb9141a425ce5bac0d03863aa52699a74d72ef3cdfbb5a",
-  "repository_commit_before_generation": "bd591dce1b81ad722df7d036b1bcdfccec9f3d58",
+  "repository_commit_before_generation": "f35b01d0aa82d2807fe30dd0c32c4c033ed36fd4",
   "table": 1,
   "terms": 24,
   "title": "Summary Statistics of Lorenz Energetics Components",

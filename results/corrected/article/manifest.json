@@ -12,7 +12,7 @@
     }
   ],
   "sources": {
-    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/original/article/reproduction_gate/manifest.json": "427cf90df152ec3d4cf8526d9867f747cb3e0611ffec7f53cdc1c546a1d3aadb",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/original/article/reproduction_gate/manifest.json": "1f45444b37a9d9df11a3b9bbbdee90d4146c747f1b6deadc702f51c40a66ced0",
     "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/comparison/article/phase_eof_matched/loadings.csv": "d312825a939e2784e502211160f0fb0ed88f2ac13972fe45b8c1912fa1048b7e",
     "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/src_energetic_eof/export_density_eof.py": "5ea23cbe13b889ef6e4b0e3bedcff568c2aa837112254a07040de78b9dd79c65",
     "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_export_density_clusters.py": "16ed4aa5f5b8049f3a9cafc7245609c7c71ad12861c2a09e1793e471b12cb597",
@@ -25,7 +25,7 @@
     "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/tests_draw_lec/draw_lec_eofs.py": "b80608a16223d7654e3c55ee9025f6a8cb82c8a3f8e0be77c8b76c1ad2a0404b"
   },
   "sklearn_version": "1.7.1",
-  "repo_commit": "01a4c36c258f4d45cdfc39ba18202a00f442520f",
-  "wrapper_sha256": "296897cff70742806da9b65a8130bb9e639cbce27099263e0d430e7628370315",
+  "repo_commit": "f35b01d0aa82d2807fe30dd0c32c4c033ed36fd4",
+  "wrapper_sha256": "bc70d33dc5df020dfae3131a1a048133ac04a3999b0932fff04f4f55359a85c3",
   "toolkit_commit": "d38cda7e37d8e8a3a937a5919640a94bef19e34a"
 }

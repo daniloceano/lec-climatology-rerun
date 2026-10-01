@@ -37,6 +37,8 @@ The final article-style corrected figures and table can then be regenerated
 with:
 
 ```bash
-python scripts/article_figures/generate_corrected_article.py
-python scripts/article_figures/generate_corrected_article_table.py
+python -m scripts.article_figures.reproduce_downstream
+python -m scripts.article_figures.build_article_results
+python -m scripts.article_figures.build_validated_comparison
+python -m scripts.article_figures.generate_corrected_article_table
 ```

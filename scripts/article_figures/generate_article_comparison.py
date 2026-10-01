@@ -107,8 +107,8 @@ def fig12(
     all_intense_stem: Path,
     clusters_stem: Path,
 ) -> None:
-    from scripts.article_figures.downstream_guards import require_validated_downstream
-    require_validated_downstream()
+    from scripts.article_figures.downstream_guards import require_corrected_article_results
+    require_corrected_article_results()
     before = assignments[assignments["version"] == "before"]
     after = assignments[assignments["version"] == "after"]
     before_ids = set(before["track_id"].astype(int))
@@ -153,8 +153,8 @@ def fig12(
 
 
 def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
-    from scripts.article_figures.downstream_guards import require_validated_downstream
-    require_validated_downstream()
+    from scripts.article_figures.downstream_guards import require_corrected_article_results
+    require_corrected_article_results()
     items = []
     for version in ("before", "after"):
         for cluster in range(1, 6):
@@ -191,8 +191,8 @@ def fig13(tracks: pd.DataFrame, assignments: pd.DataFrame, stem: Path) -> None:
 
 
 def _cluster_row(axes, label: str, assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame):
-    from scripts.article_figures.downstream_guards import require_validated_downstream
-    require_validated_downstream()
+    from scripts.article_figures.downstream_guards import require_corrected_article_results
+    require_corrected_article_results()
     maximum = tracks.groupby("track_id")["vor42"].max().rename("max_vor42")
     merged = assignments.merge(first[["track_id", "region", "season"]], on="track_id", how="left")
     merged = merged.merge(maximum, on="track_id", how="left")
@@ -244,8 +244,8 @@ def _cluster_row(axes, label: str, assignments: pd.DataFrame, tracks: pd.DataFra
 
 
 def fig14(assignments: pd.DataFrame, tracks: pd.DataFrame, first: pd.DataFrame, stem: Path) -> pd.DataFrame:
-    from scripts.article_figures.downstream_guards import require_validated_downstream
-    require_validated_downstream()
+    from scripts.article_figures.downstream_guards import require_corrected_article_results
+    require_corrected_article_results()
     figure, axes = plt.subplots(2, 4, figsize=(13.0, 6.2))
     before = assignments[assignments["version"] == "before"].drop(columns="version")
     after = assignments[assignments["version"] == "after"].drop(columns="version")

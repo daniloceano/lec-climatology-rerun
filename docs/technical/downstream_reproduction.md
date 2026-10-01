@@ -1,7 +1,7 @@
 # Reprodução de Figures 9–16 — scripts originais como referência
 
 Data: 2026-09-30. A decisão do autor nesta rodada resolve as ambiguidades da
-[auditoria anterior](total_eof_downstream_audit.md): quatro clusters, Figure 12A
+auditoria científica anterior: quatro clusters, Figure 12A
 com todos os sistemas e Figure 16 com loadings por fase. Não há decisões científicas
 pendentes sobre esses pontos. O manuscrito, os originais e as Figures 5–8 foram
 preservados. As Figures 9–16 em `corrected` e `comparison` foram substituídas
@@ -13,7 +13,7 @@ Somente gate: adicionar `--legacy-only`. O script interrompe a execução na pri
 falha de reprodução; a etapa corrected só começa depois de todos os gates.
 
 Os **novos** candidatos estão em `figures/corrected/article/`,
-com tabelas em `results/corrected/article/validated_downstream/`. As Figures 9–16 antigas nessa pasta foram substituídas por estes candidatos.
+com tabelas em `results/corrected/article/`. As Figures 9–16 antigas nessa pasta foram substituídas por estes candidatos.
 Figures 5–8 e seus inputs canônicos permanecem congelados. Resultados legacy novos estão
 em `results/original/article/reproduction_gate/`; são evidências de reprodução,
 não substitutos dos arquivos originais. Os painéis antigos da comparison foram
@@ -246,90 +246,28 @@ normalização log original; tabela `figure15_phase_means.csv`.
 
 A tabela é documentação para a futura Correction; nenhum LaTeX foi editado.
 
-### 13. Testes
+### 13. Verificação atual
 
-Comando:
+O gate legado registra oito checks aprovados em
+`results/original/article/reproduction_gate/manifest.json`. As tabelas
+canônicas de quatro clusters estão em `results/original/article/` e
+`results/corrected/article/`; os CSVs com `version=before/after` estão em
+`results/comparison/article/`. Os manifests e a proveniência registram os
+hashes dos resultados e das figuras. A suíte atual é executada com
+`python -m pytest -q`.
 
-```bash
-python -m pytest tests/test_downstream_reproduction.py tests/test_phase_eof_matching.py tests/test_total_eof_downstream.py tests/test_article_figures.py -q
-```
+### 14. Resultados e figuras
 
-Resultado final após o ajuste das escalas: **50 passed, 0 failed, 2 xfailed, 0 warnings**.
-Os dois xfails documentam exclusivamente produtos antigos congelados: threshold
-por row na comparison antiga e orientação antiga dos total EOFs. Não são falhas
-dos candidatos novos. Regeneração produziu três warnings herdados: um
-SettingWithCopyWarning no script original e dois FutureWarnings de seaborn sobre
-palette sem hue. Nenhum afetou os valores. `git diff --check` limpo.
-Hashes dos arquivos protegidos (Figures 5–8, seus CSVs/manifests e
-produtos originais) conferidos após a promoção.
-A promoção substitui explicitamente os produtos antigos 9–16 e atualiza seus manifests. O teste antigo de cinco clusters foi substituído
-por proteção que exige bloqueio dos entry points obsoletos. Nenhum teste phase EOF
-foi alterado.
+As Figures 9–16 corrigidas estão diretamente em `figures/corrected/article/`.
+Os oito painéis publicado/corrigido estão em `figures/comparison/article/`.
+O `figure_manifest.csv` de cada família cobre as 16 figuras do artigo; o
+`figure_manifest_09_16.csv` em corrected registra o subconjunto regenerado.
+Os produtos de cinco clusters foram removidos. Figures 5–8 usam o produto
+canônico de EOF por fase em `results/comparison/article/phase_eof_matched/`.
+A Table 1 corrigida usa os 15.829 registros de período e está em
+`tables/corrected/article/`, com estatísticas completas em
+`results/corrected/article/`.
 
-### 14. Outputs gerados
-
-Diretório: `figures/corrected/article/`.
-
-- Figure 9: `fig_09_eof_positive_density.png` e `fig_09_eof_positive_density.pdf`.
-- Figure 10: `fig_10_eof_negative_density.png` e `fig_10_eof_negative_density.pdf`.
-- Figure 11: `fig_11_eof_genesis_season.png` e `fig_11_eof_genesis_season.pdf`.
-- Figure 12: `fig_12_intense_clusters_lec.png` e `fig_12_intense_clusters_lec.pdf`.
-- Figure 13: `fig_13_intense_groups_density.png` e `fig_13_intense_groups_density.pdf`.
-- Figure 14: `fig_14_intense_groups_characteristics.png` e `fig_14_intense_groups_characteristics.pdf`.
-- Figure 15: `fig_15_phase_synthesis.png` e `fig_15_phase_synthesis.pdf`.
-- Figure 16: `fig_16_eof_synthesis.png` e `fig_16_eof_synthesis.pdf`.
-
-Cada PNG e PDF está hashado em `figure_manifest.csv` e `provenance.json`.
-PDFs são raster de uma página, exportados dos PNGs; não se promete PDF vetorial.
-Todas as oito imagens foram inspecionadas visualmente. A etapa de comparação agora produz oito painéis antes/depois derivados das imagens
-publicadas e corrigidas validadas, em `figures/comparison/article/`.
-
-### 15. Arquivos alterados
-
-- Código novo: `scripts/article_figures/reproduce_downstream.py`.
-- Proteções: `common.py` bloqueia apenas o helper obsoleto de cinco clusters;
-  `generate_article_comparison.py` bloqueia também os renderers diretos 12–14;
-  `downstream_guards.py` informa a definição já resolvida e o novo comando.
-- Testes novos: `tests/test_downstream_reproduction.py`,
-  `tests/fixtures/figure12_published_annotations.csv`.
-- Testes da auditoria anterior atualizados: `tests/test_total_eof_downstream.py`;
-  removida expectativa de cinco clusters e de nova decisão do autor.
-- Dependências: scikit-learn 1.7.1 e tqdm declarados em requirements/environment.
-- Novos resultados: `results/original/article/reproduction_gate/`,
-  `results/corrected/article/validated_downstream/`.
-- Novas figuras: diretório acima, 16 arquivos; e oito pares de comparação.
-- Documentação: este relatório e `scripts/article_figures/README.md`.
-- `generate_comparison.py` e `generate_corrected_article.py` já estavam modificados
-  ao iniciar; suas alterações locais anteriores foram preservadas integralmente.
-- Auditoria anterior em `total_eof_audit/` e documento associado também preexistiam
-  como untracked; não foram removidos nem sobrescritos.
-
-### 16. Pendências
-
-Nenhuma pendência computacional bloqueante nas Figures 9–16 candidatas.
-A correspondência física dos clusters/modos com correlações moderadas é uma
-limitação interpretativa quantificada, não uma nova decisão metodológica.
-A atualização textual/captions no repositório do Corrigendum permanece fora do escopo.
-O antigo vazio de contorno em EOF3(+) foi resolvido pelo limite derivado dos dados.
-
-### 17. Git state
-
-Branch e HEAD no instante da reprodução: `main`,
-`213a6397b70dca5bd68d8345f6d34c742b83652b`.
-
-
-A working tree já estava dirty ao iniciar; nenhuma alteração anterior foi
-descartada. O estado antes da integração está registrado em
-`results/comparison/article/downstream_validation/git_status.txt`.
-O commit de integração e o estado remoto devem ser confirmados separadamente
-após o merge.
-
-### 18. Recomendação final
-
-Figures 9–16 estão prontas como candidatas científicas à Correction.
-O gate legacy passou, e os corrected seguem os mesmos algoritmos.
-Figures 5–8 permanecem congeladas; Figures 9–16 antigas foram substituídas.
-Figures 9, 10 e 13 exibem o máximo medido em cada barra de cor.
-Não interpretar Hungarian como comprovação de identidade física.
-Próximo passo mínimo: usar estes candidatos e corrigir as descrições textuais
-no repositório do Corrigendum, mantendo esta proveniência.
+As limitações interpretativas dos modos e clusters, inclusive correlações
+moderadas entre alguns padrões, permanecem descritas acima. O antigo vazio
+de contorno em EOF3(+) foi resolvido pelo limite derivado dos dados.
