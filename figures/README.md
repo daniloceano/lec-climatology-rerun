@@ -33,3 +33,11 @@ They support the paired-control report and are not paper figures.
 
 The article-layout corrected suite preserves the publication's four-cluster
 definition. The Markdown report above points to the current figures.
+
+## Supplementary figures
+
+`original/supplementary/` contains the four PNGs from the final submitted
+supplement. `corrected/supplementary/` contains reconstructed PNG/PDF figures
+S1–S4. `comparison/supplementary/` contains the published-versus-corrected
+pairs. See [the supplementary report](../docs/comparison/supplementary_report.md)
+for definitions and caption/script discrepancies.

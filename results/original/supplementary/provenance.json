@@ -1,0 +1,62 @@
+{
+  "family": "original",
+  "generator_sha256": "cdb16eb2daefbaa3621db84d876901d7d6f2a8bbc0d861117c0c73f9104d5ee6",
+  "outputs": {
+    "figures/original/supplementary/fig_s1_panel_2x2_metrics_q90_vs_q10.png": "666aae5b935eecc7abd82aca89634c1f1b5a004133f031e1b74c6d1083799c86",
+    "figures/original/supplementary/fig_s2_duration.png": "e1a4690cf4a84173ca222476297e6dca2a753c27a5a3a4d8bec656632245351c",
+    "figures/original/supplementary/fig_s3_intense_systems_PCs_stacked_pcs.png": "a3d6a2eefc70ecd80b678bc63037349199d9209cf4ecd5e6847e4c986019f175",
+    "figures/original/supplementary/fig_s4_ck_decay_phase_median_iqr.png": "b482c5c6bc2f1a4828df5d7f0bcceb645dc1ec076d6ae32d6f4ab2fdb4a5f4b8",
+    "results/original/supplementary/s1_eof_cyclone_metrics.csv": "053183943092343c6afd573d614cd7fa3b8a342969a6d2653d11a73db3de2e98",
+    "results/original/supplementary/s2_cluster_duration.csv": "b63e4dd79c59791fbbff9601932530f72fa5a6e8684bab8ec2364f522e83c1ec",
+    "results/original/supplementary/s3_intense_pc_scores.csv": "307e8516ab094b4e8048cd9e8998ea851474bdab9d16b0f3d1a1afec0930a3e8",
+    "results/original/supplementary/s4_decay_ck_pairs.csv": "71cfcc597d1081f842190c12c2b49ef506f8c89af07152cffed59f72c4d16e28"
+  },
+  "populations": {
+    "corrected": 3820,
+    "original": 6789
+  },
+  "remote_sources": {
+    "/p1-swell/danilocs/lec_climatology_corrected_v2/population_manifest.csv": "24408c8eaa9bda9fecdeac6314ef71df91c3a56939306a9b2af96c7c8700efac",
+    "/p1-swell/danilocs/lec_climatology_corrected_v2/provenance.json": "58c084b4238fbec7c1adea777d6a76fc8f4f16fc28b0e955cb1050bd194547c0"
+  },
+  "s1_counts_original": [
+    1305,
+    1334,
+    433,
+    600,
+    375,
+    642,
+    337,
+    383
+  ],
+  "s2_clusters": {
+    "corrected": 603,
+    "original": 679
+  },
+  "s3_original_script_quantile": 0.95,
+  "s3_selected": {
+    "corrected": 210,
+    "original": 242
+  },
+  "s3_threshold": 11.492299999999995,
+  "s4_valid": {
+    "corrected": 3637,
+    "original": 3637
+  },
+  "sources": {
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/tracks_SAt_filtered/tracks_SAt_filtered_with_energetics.csv": "bf1059ab2f1896c6df942a290d7676bce701f6d3cbf7ac9193f5c6b51d63cc26",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/energetic_patterns_cyclones_south_atlantic/tracks_SAt_filtered/tracks_SAt_filtered_with_periods.csv": "ef46d37751ec66db5fd566ed9909695818da774b53a3e562dd7606a9ca0acfe7",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/corrected/article/provenance.json": "163e9a81d81334ca77527960a120c2d5f9bf646568b734617986919b52067b62",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/results/original/article/reproduction_gate/manifest.json": "1f45444b37a9d9df11a3b9bbbdee90d4146c747f1b6deadc702f51c40a66ced0",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/scripts/article_figures/extract_corrected_decay_ck.py": "e59aedf463119442dc30b15fe8c965bcb9b742aa8b9769933ed0b347228b233b",
+    "/Users/danilocoutodesouza/Documents/Programs_and_scripts/lec-climatology-rerun/tmp/supplementary/ck_corrected.csv": "5db2cca13e9c4168e6b7c33b27b7f55a4bb0a9b298916988511942764cd68d5a",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/check_decay_phase.py": "5ef0bf424e41bfc96942079d3f34d4a818c8c87d9743413fcd6ae89684e262e9",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cluster_statistics.py": "dc77715e78455b535db100e4e0b03c0b9d22beb88cdda70b7ae43d35d10e684e",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/eof_cyclone_statistics_q10_q90.py": "959329da519d524327113bb93fdd1e42377f42fc35dcdc12a75ad8fcd60c6468",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/playground.py": "9a7e000328ef1c89ae3aeef1022fed4b5ca5a8988a5d3b07268d8507055519a9",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/ck_decay_phase_median_iqr.png": "b482c5c6bc2f1a4828df5d7f0bcceb645dc1ec076d6ae32d6f4ab2fdb4a5f4b8",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/duration.png": "e1a4690cf4a84173ca222476297e6dca2a753c27a5a3a4d8bec656632245351c",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/intense_systems_PCs_stacked_pcs.png": "a3d6a2eefc70ecd80b678bc63037349199d9209cf4ecd5e6847e4c986019f175",
+    "/Users/danilocoutodesouza/Documents/danilo_thesis_iag/manuscript_lec_climatology/submission_files-clim_dyn_rev2/LEC_climatology_clim_dyn_vCBG-2/panel_2x2_metrics_q90_vs_q10.png": "666aae5b935eecc7abd82aca89634c1f1b5a004133f031e1b74c6d1083799c86"
+  }
+}

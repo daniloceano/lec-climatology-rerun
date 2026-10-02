@@ -11,3 +11,12 @@ The legacy population has 6,789 cyclones, with 679 intense systems in four clust
 To regenerate Figures 9–16 and their numerical products, run `python -m scripts.article_figures.reproduce_downstream`, then `python -m scripts.article_figures.build_article_results`, then `python -m scripts.article_figures.build_validated_comparison`. Table 1 is generated with `python -m scripts.article_figures.generate_corrected_article_table`. Each family has a `provenance.json` with hashes.
 
 `comparison/paired_control/` contains separate correction-only diagnostics for a fixed 3,820-cyclone population; it is not the article-population comparison.
+
+## Supplementary figures
+
+`original/supplementary/`, `corrected/supplementary/` and
+`comparison/supplementary/` hold the four source tables, figure hashes and
+provenance for Figures S1–S4. The corrected S4 per-timestep values come from
+the production rerun. Rebuild with
+`python -m scripts.article_figures.build_supplementary` after extracting its
+corrected decay values. See [the report](../docs/comparison/supplementary_report.md).

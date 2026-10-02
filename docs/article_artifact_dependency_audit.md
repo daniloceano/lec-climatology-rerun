@@ -29,3 +29,20 @@ are under `figures/comparison/article/`.
 The corrected Table 1 is handled separately because it is a manuscript LaTeX
 artifact rather than a plotted figure. Its original extraction and corrected
 version differ only in the displayed numeric cells.
+
+## Supplementary figures
+
+The final revision-2 submission also includes four supplementary figures. Their
+published PNGs are retained under `figures/original/supplementary/`; corrected
+and paired outputs use the same figure labels under `figures/corrected/` and
+`figures/comparison/`.
+
+| Figure | Published script | Corrected dependency | Operational rule retained |
+|---|---|---|---|
+| S1 EOF metrics | `eof_cyclone_statistics_q10_q90.py` | Matched total-EOF extreme assignments | Maximum `vor42`, elapsed duration and mean WGS84 step speed; original eight bar counts checked against the published panel. |
+| S2 cluster duration | `eof_cluster_statistics.py` | Validated four-cluster assignments | First-to-last track dates, truncated to whole days. |
+| S3 intense PC bars | `playground.py` | Matched total-EOF PCs | Full-archive track-level `vor42` 95th percentile as the script uses; caption says q99. |
+| S4 decay `Ck` | `check_decay_phase.py` | Corrected per-timestep integrated LEC | Exact four-phase sequence, first/last decay `Ck`, median and IQR. |
+
+The detailed [supplementary report](comparison/supplementary_report.md)
+records the script/caption discrepancies, populations and output hashes.

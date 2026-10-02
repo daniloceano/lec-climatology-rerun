@@ -31,6 +31,10 @@ the exact 16-figure publication layout while replacing the LEC-dependent data
 with the validated rerun. Access paths and secure swell synchronization are
 documented in [docs/data_access.md](docs/data_access.md).
 
+The four [supplementary figures](docs/comparison/supplementary_report.md) are also
+available as original, corrected and side-by-side comparison products. Their
+numerical inputs and provenance live under `results/*/supplementary/`.
+
 The article's summary table is likewise preserved in its published LaTeX
 layout under [tables/corrected/article/](tables/corrected/article/), with only
 the statistics replaced by values from the validated corrected cache.
@@ -55,12 +59,14 @@ figures/original/article/              published/final-submission figures
 figures/corrected/article/             corrected-only reusable figures
 figures/comparison/article/            full-population before/after figures
 figures/comparison/paired_control/     fixed-population diagnostics
+figures/{original,corrected,comparison}/supplementary/  Figures S1–S4
 tables/original/article/               verbatim final-submission table
 tables/corrected/article/              corrected table in publication layout
 results/original/article/              validated legacy numerical products
 results/corrected/article/             validated corrected numerical products
 results/comparison/article/            canonical versioned tables and provenance
 results/comparison/paired_control/     correction-only paired tables
+results/{original,corrected,comparison}/supplementary/  supplementary numeric inputs
 scripts/article_figures/               maintained article workflow
 docs/comparison/                       reports
 docs/provenance/                       source mapping and provenance records
